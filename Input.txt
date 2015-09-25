@@ -1,0 +1,15 @@
+print 'bonjour le monde'
+print (incr (repeat_s '4' 4))
+print (arr 1 2 3)
+print (arr (repeat_s '4' 4) (repeat_s '3' 3) (repeat_s '2' 2))
+print (arr
+    (arr 1, 2, 3)
+    (arr 4, 5, 6)
+    (arr 7, 8, 9)
+    )
+print 'coucou' 'caché'
+print (print 'coucou')
+print (repeat_s '4' 4)
+print (upcase 'coucou les gens')
+print (repeat_s 4)
+print (sum (arr 4 3 2 1))
