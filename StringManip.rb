@@ -12,3 +12,18 @@ def cust_upcase(array)
 	element = str(calc(look_at(array, 0, "")))
 	element.upcase
 end
+def cust_downcase(array)
+	element = str(calc(look_at(array, 0, "")))
+	element.downcase
+end
+def cust_swapcase(array)
+	element = str(calc(look_at(array, 0, "")))
+	element.swapcase
+end
+def title(array)
+	element = str(calc(look_at(array, 0, "")))
+	liste = element.split(" ")
+	liste.map!{|i| i.capitalize}
+	element = liste.join(" ")
+	element
+end
