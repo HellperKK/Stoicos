@@ -2,30 +2,51 @@ require_relative "Conversion"
 require_relative "StringManip"
 require_relative "IntManip"
 require_relative "ArrayManip"
+require_relative "VarManip"
 def chercheFonc(tab)
 	fonction = tab[0]
 	arguments = tab[1..-1]
 	case fonction
 	#fonctions generales
 	when "print" then cust_print(arguments)
-	#fonctions generales
+	#fonctions manip variables
+	when "allocate_var" then allocate_var(arguments)
+	when "read_var" then read_var(arguments)
+	when "swap_var" then swap_var(arguments)
+	#fonctions de conversion
 	when "arr" then arr(arguments)
 	#fonctions manip string
 	when "repeat_s" then repeat_s(arguments)
 	when "capitalize" then cust_capitalize(arguments)
 	when "upcase" then cust_upcase(arguments)
+	when "downcase" then cust_downcase(arguments)
+	when "swapcase" then cust_swapcase(arguments)
+	when "title" then title(arguments)
 	#fonctions manip int
 	when "incr" then incr(arguments)
 	when "decr" then decr(arguments)
-	#fonction manip array
-	when "sort" then sorteur(arguments)
 	when "sum" then somme(arguments)
-	#fonctions erreur
+	when "dif" then difference(arguments)
+	when "prod" then produit(arguments)
+	when "div" then division(arguments)
+	when "pow" then puissance(arguments)
+	#fonctions  manip array
+	when "rangex" then rangex(arguments)
+	when "range" then range(arguments)
+	when "head" then head(arguments)
+	when "tail" then tail(arguments)
+	when "sort" then sorteur(arguments)
+	when "sum_arr" then somme_arr(arguments)
+	when "prod_arr" then product_arr(arguments)
+	when "repeat" then repeat(arguments)
+	when "repeati" then repeati(arguments)
+	when "repeatarr" then repeatarr(arguments)
+	#fonction erreur
 	else  "Instruction inconnue"
 	end
 end
 def look_at(array, indice, save)
-	if indice <= (array.length - 1)
+	if indice <= (array.length)
 		array[indice]
 	else
 		save
@@ -110,6 +131,10 @@ def exec(line)
 	#puts"___"
 	chercheFonc(tab)
 end
+###########################################
+##Début du programme
+###########################################
+$variables = Hash.new("")
 contenu = File.open('Input.txt','r').read
 contenuTab = concatLine(contenu)
 contenuTab.each do |i| 
