@@ -10,6 +10,20 @@ print (arr
 print 'coucou' 'caché'
 print (print 'coucou')
 print (repeat_s '4' 4)
-print (upcase 'coucou les gens')
-print (repeat_s 4)
-print (sum (arr 4 3 2 1))
+print (title 'coucou les gens')
+print (decr (repeat_s 4 4))
+print (prod_arr (arr 4 3 2 1))
+print (sum 1 (prod 3 4))
+print (prod 3 4)
+print (rangex 2 12)
+print (sum_arr (rangex 10))
+print (pow 4 4)
+print (head (arr 1 2 3 4))
+print (repeati 4 4)
+print (repeat 4 4)
+print (repeatarr (arr 1 2 3 4) 4)
+allocate_var bonjour 'bonjour le monde'
+allocate_var aurevoir 'aurevoir le monde'
+print (read_var bonjour)
+swap_var aurevoir bonjour
+print (read_var bonjour)
