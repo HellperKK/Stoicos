@@ -3,16 +3,20 @@ require_relative "StringManip"
 require_relative "IntManip"
 require_relative "ArrayManip"
 require_relative "VarManip"
+require_relative "BoolManip"
+require_relative "ProcManip"
 def chercheFonc(tab)
 	fonction = tab[0]
 	arguments = tab[1..-1]
 	case fonction
 	#fonctions generales
 	when "print" then cust_print(arguments)
+	when "input" then cust_get(arguments)
 	#fonctions manip variables
 	when "allocate_var" then allocate_var(arguments)
 	when "read_var" then read_var(arguments)
 	when "swap_var" then swap_var(arguments)
+	when "let_in" then let_in(arguments)
 	#fonctions de conversion
 	when "arr" then arr(arguments)
 	#fonctions manip string
@@ -22,6 +26,13 @@ def chercheFonc(tab)
 	when "downcase" then cust_downcase(arguments)
 	when "swapcase" then cust_swapcase(arguments)
 	when "title" then title(arguments)
+	when "reverse" then cust_reverse(arguments)
+	when "split" then cust_split(arguments)
+	when "format" then cust_format(arguments)
+	when "at_s" then at_s(arguments)
+	when "slice_s" then slice_s(arguments)
+	when "include_s" then include_s(arguments)
+	when "concat_s" then concat_s(arguments)
 	#fonctions manip int
 	when "incr" then incr(arguments)
 	when "decr" then decr(arguments)
@@ -29,7 +40,11 @@ def chercheFonc(tab)
 	when "dif" then difference(arguments)
 	when "prod" then produit(arguments)
 	when "div" then division(arguments)
+	when "mod" then modulo(arguments)
 	when "pow" then puissance(arguments)
+	when "divisible" then divisible(arguments)
+	when "even" then even(arguments)
+	when "odd" then odd(arguments)
 	#fonctions  manip array
 	when "rangex" then rangex(arguments)
 	when "range" then range(arguments)
@@ -39,14 +54,51 @@ def chercheFonc(tab)
 	when "sum_arr" then somme_arr(arguments)
 	when "prod_arr" then product_arr(arguments)
 	when "repeat" then repeat(arguments)
-	when "repeati" then repeati(arguments)
-	when "repeatarr" then repeatarr(arguments)
+	when "prepend" then repend(arguments)
+	when "append" then append(arguments)
+	when "remove" then remove(arguments)
+	when "remove_all" then remove_all(arguments)
+	when "filter" then filter(arguments)
+	when "map" then map(arguments)
+	when "len_arr" then len_arr(arguments)
+	when "at_arr" then at_arr(arguments)
+	when "slice_arr" then slice_arr(arguments)
+	when "include_arr" then include_arr(arguments)
+	when "concat_arr" then concat_arr(arguments)
+	#fonctions  manip bool
+	when "and" then cust_and(arguments)
+	when "or" then cust_or(arguments)
+	when "not" then cust_not(arguments)
+	when "equal" then equal(arguments)
+	when "different" then different(arguments)
+	when "inf" then inf(arguments)
+	when "sup" then sup(arguments)
+	when "infec" then infec(arguments)
+	when "supec" then supec(arguments)
+	when "true" then cust_true(arguments)
+	when "false" then cust_false(arguments)
+	#fonctions  manip proc
+	when "do" then cust_do(arguments)
+	when "proc_w" then proc_w(arguments)
+	when "proc_r" then proc_r(arguments)
+	when "each" then cust_each(arguments)
+	when "each_char" then cust_each_char(arguments)
+	when "while" then cust_while(arguments)
+	when "if" then cust_if(arguments)
+	when "case" then cust_case(arguments)
 	#fonction erreur
 	else  "Instruction inconnue"
 	end
 end
+def arr_zip(array)
+	if array.length < 2
+		[]
+	else
+		[array[0..1]] + arr_zip(array[2..-1])
+	end
+end
 def look_at(array, indice, save)
-	if indice <= (array.length)
+	if indice <= (array.length-1)
 		array[indice]
 	else
 		save
@@ -63,7 +115,12 @@ end
 def cust_print(array)
 	element = str(calc(look_at(array, 0, "")))
 	puts element
-	""
+	element
+end
+def cust_get(array)
+	element = str(calc(look_at(array, 0, "")))
+	print element
+	gets
 end
 def parseur(line)
 	line = line.strip
@@ -116,7 +173,7 @@ end
 def concatLine(texte)
 	tab = texte.split("\n")
 	(tab.length-1).downto(0) do |i|
-		if (tab[i][0] == " ") && (i > 0)
+		if ((tab[i][0] == " ")||(tab[i][0] == "\t") )&& (i > 0)
 			cont = tab[i].strip
 			tab[i-1] += " #{cont}"
 			tab.delete_at(i)
@@ -134,12 +191,21 @@ end
 ###########################################
 ##Début du programme
 ###########################################
+ouvrir = gets.chomp
+t1 = Time.now
 $variables = Hash.new("")
-contenu = File.open('Input.txt','r').read
+lire = true
+contenu = File.open("#{ouvrir}.txt",'r').read
 contenuTab = concatLine(contenu)
-contenuTab.each do |i| 
-	unless i[0] == "#"
-		exec(i)
+contenuTab.each do |i|
+	if i == "=begin"
+		lire = false
+	elsif i == "=end"
+		lire = true
+	else
+		unless i[0] == "#" or (not lire)
+			exec(i)
+		end
 	end
 end
 contenu = ""
@@ -147,3 +213,8 @@ contenuTab.each{|i| contenu += "#{i}\n"}
 f = File.open('Output.txt','w')
 f.write(contenu)
 f.close
+t2 = Time.now
+puts t2 - t1
+puts "press enter"
+b = gets
+#puts "|#{$variables["probleme4"]}|"
