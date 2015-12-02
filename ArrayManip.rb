@@ -49,18 +49,87 @@ def range(array)
 	end
 	(mini..maxi)
 end
-def repeati(array)
-	element = int(calc(look_at(array, 0, 0)))
-	fois = int(calc(look_at(array, 1, 0)))
-	(1..fois).to_a.map{|i| element}
-end
 def repeat(array)
-	element = str(calc(look_at(array, 0, "")))
+	element = calc(look_at(array, 0, ""))
 	fois = int(calc(look_at(array, 1, 0)))
 	(1..fois).to_a.map{|i| element}
 end
-def repeatarr(array)
+def prepend(array)
 	element = arr(calc(look_at(array, 0, [])))
-	fois = int(calc(look_at(array, 1, 0)))
-	(1..fois).to_a.map{|i| element}
+	valeur = calc(look_at(array, 1, ""))
+	[valeur] + element
+end
+def append(array)
+	element = arr(calc(look_at(array, 0, [])))
+	valeur = calc(look_at(array, 1, ""))
+	element + [valeur]
+end
+def filter(array)
+	element = arr(calc(look_at(array, 0, [])))
+	iter = str(calc(look_at(array, 1, "")))
+	action = str(look_at(array, 2, ""))
+	newarr = []
+	element.each do |i|
+		$variables[iter] = i
+		if bool(calc(action))
+			newarr << i
+		end
+	end
+	newarr
+end
+def map(array)
+	element = arr(calc(look_at(array, 0, [])))
+	iter = str(calc(look_at(array, 1, "")))
+	action = str(look_at(array, 2, ""))
+	newarr = []
+	element.each do |i|
+		$variables[iter] = i
+		newarr << calc(action)
+	end
+	newarr
+end
+def len_arr(array)
+	element = arr(calc(look_at(array, 0, [])))
+	element.length
+end
+def at_arr(array)
+	element = arr(calc(look_at(array, 0, [])))
+	iter = int(calc(look_at(array, 1, 0)))
+	if element != []
+		calc = iter%element.length
+		element[calc]
+	else
+		""
+	end
+end
+def slice_arr(array)
+	element = arr(calc(look_at(array, 0, [])))
+	iter = int(calc(look_at(array, 1, 0)))
+	iterb = int(calc(look_at(array, 2, 0)))
+	element[iter..iterb]
+end
+def include_arr(array)
+	element = arr(calc(look_at(array, 0, [])))
+	item = (calc(look_at(array, 1, 0)))
+	element.include?(item)
+end
+def concat_arr(array)
+	element = arr(calc(look_at(array, 0, [])))
+	elementb = arr(calc(look_at(array, 1, [])))
+	element + elementb
+end
+def remove(array)
+	element = arr(calc(look_at(array, 0, [])))
+	item = (calc(look_at(array, 1, 0)))
+	index = element.index(item)
+	unless index == nil
+		element.delete_at(index)
+	end
+	element
+end
+def remove_all(array)
+	element = arr(calc(look_at(array, 0, [])))
+	item = (calc(look_at(array, 1, 0)))
+	element.delete(item)
+	element
 end
