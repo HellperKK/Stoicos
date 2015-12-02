@@ -1,5 +1,9 @@
 # Stoicos
-Le stoicos est un langage de programmation custom, interprété en ruby.
+##Concept
+The Stoicos is a custom made language interpreted in ruby.
+Its concept is base on the fact taht it uses a simple lexer/parser with means that all that needs to be done to extend this language is to add new functions.
+The major flaw of this language (in my option) is the fact there are no syntaxic sugar, meaning this language tends to be less readable when expanding.
 
-Le code doit être placé dans le fichier Input.txt et est interprété en lançant le fichier Main.rb
-Le fichier Input.txt fourni donne des exemple de ce qui peut être fait actuellement.
+##How to use
+To use is you have to write your code in a file (.txt) then launch Main.rb and type the name of the file (without the .txt extension).
+The Input.txt give an example of things that can be done.
