@@ -5,5 +5,5 @@ Its concept is base on the fact taht it uses a simple lexer/parser with means th
 The major flaw of this language (in my opinion) is the fact there are no syntaxic sugar, meaning this language tends to be less readable when expanding.
 
 ##How to use
-To use is you have to write your code in a file (.txt) then launch Main.rb and type the name of the file (without the .txt extension).
-The Input.txt give an example of things that can be done.
+Write your code in a txt file then use this command line :
+> Main.rb My_file_name.txt
