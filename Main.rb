@@ -122,7 +122,7 @@ end
 def cust_get(array)
 	element = str(calc(look_at(array, 0, "")))
 	print element
-	gets
+	$stdin.gets
 end
 def parseur(line)
 	line = line.strip
@@ -198,7 +198,6 @@ if args != []
 else
 	ouvrir = "Test.txt"
 end
-puts ouvrir.to_s
 t1 = Time.now
 $variables = Hash.new("")
 lire = true
@@ -222,6 +221,4 @@ f.write(contenu)
 f.close
 t2 = Time.now
 puts t2 - t1
-puts "press enter"
-b = gets
 #puts "|#{$variables["probleme4"]}|"
