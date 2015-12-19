@@ -7,3 +7,5 @@ The major flaw of this language (in my opinion) is the fact there are no syntaxi
 ##How to use
 Write your code in a txt file then use this command line :
 > Main.rb My_file_name.txt
+
+With no argument given the file Test.txt will be oppened by default.
