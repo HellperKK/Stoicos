@@ -5,6 +5,7 @@ require_relative "ArrayManip"
 require_relative "VarManip"
 require_relative "BoolManip"
 require_relative "ProcManip"
+args = ARGV
 def chercheFonc(tab)
 	fonction = tab[0]
 	arguments = tab[1..-1]
@@ -73,8 +74,8 @@ def chercheFonc(tab)
 	when "different" then different(arguments)
 	when "inf" then inf(arguments)
 	when "sup" then sup(arguments)
-	when "infec" then infec(arguments)
-	when "supec" then supec(arguments)
+	when "infeq" then infeq(arguments)
+	when "supeq" then supeq(arguments)
 	when "true" then cust_true(arguments)
 	when "false" then cust_false(arguments)
 	#fonctions  manip proc
@@ -86,6 +87,7 @@ def chercheFonc(tab)
 	when "while" then cust_while(arguments)
 	when "if" then cust_if(arguments)
 	when "case" then cust_case(arguments)
+	when "pass" then pass(arguments)
 	#fonction erreur
 	else  "Instruction inconnue"
 	end
@@ -115,7 +117,7 @@ end
 def cust_print(array)
 	element = str(calc(look_at(array, 0, "")))
 	puts element
-	element
+	element.strip
 end
 def cust_get(array)
 	element = str(calc(look_at(array, 0, "")))
@@ -191,11 +193,16 @@ end
 ###########################################
 ##Début du programme
 ###########################################
-ouvrir = gets.chomp
+if args != []
+	ouvrir = args[0]
+else
+	ouvrir = "Test.txt"
+end
+puts ouvrir.to_s
 t1 = Time.now
 $variables = Hash.new("")
 lire = true
-contenu = File.open("#{ouvrir}.txt",'r').read
+contenu = File.open(ouvrir, 'r').read
 contenuTab = concatLine(contenu)
 contenuTab.each do |i|
 	if i == "=begin"
