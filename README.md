@@ -9,3 +9,6 @@ Write your code in a txt file then use this command line :
 > Main.rb My_file_name.txt
 
 With no argument given the file Test.txt will be oppened by default.
+
+##Example
+You can look at Example.txt for som code example. Also Database.txt give a tiny database example.
