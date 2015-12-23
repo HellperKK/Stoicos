@@ -1,0 +1,23 @@
+#example of comment
+#while (true) (do
+	(print 'this line will not be shown')
+	(print 'unless you erase the # before the while')
+	)
+=begin
+'same here nothing will be done'
+allocate_var i 'some value'
+print (read_var i)
+=end
+
+#print the sum of all odd integers below 10
+print (sum_arr (filter (rangex 10) i (odd (read_var i))))
+
+#print the squares of all positiv integers below 10
+print (map (rangex 9) i (pow (read_var i) 2))
+
+#case example
+allocate_var inpute (input 'give a value : ')
+case 
+	(sup (read_var inpute) 0) (print 'it is greater than 0')
+	(inf (read_var inpute) 0) (print 'it is lower than 0')
+	(print 'it is 0')
