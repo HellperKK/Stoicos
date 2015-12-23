@@ -11,4 +11,4 @@ Write your code in a txt file then use this command line :
 With no argument given the file Test.txt will be oppened by default.
 
 ##Example
-You can look at Example.txt for som code example. Also Database.txt give a tiny database example.
+You can look at Example.txt for som code example. Also Database.txt gives a tiny database example.
