@@ -65,3 +65,6 @@ def cust_case(array)
 	end
 	return calc(autre)
 end
+def pass(array)
+	""
+end
