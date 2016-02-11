@@ -1,0 +1,5 @@
+allocate_var compteur 0
+while (inf (read_var compteur) 10) (do
+	(print (read_var compteur))
+	(increment compteur)
+	)

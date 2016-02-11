@@ -1,0 +1,8 @@
+Ceci est une ligne
+    qui fait ceci
+    et fait cela
+Ceci est une seconde ligne
+Ceci en est une troisième
+ qui fait ça
+Et voici une dernière
+        qui fait cette chose

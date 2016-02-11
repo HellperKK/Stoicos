@@ -18,6 +18,8 @@ def chercheFonc(tab)
 	when "read_var" then read_var(arguments)
 	when "swap_var" then swap_var(arguments)
 	when "let_in" then let_in(arguments)
+	when "increment" then increment(arguments)
+	when "decrement" then decrement(arguments)
 	#fonctions de conversion
 	when "arr" then arr(arguments)
 	#fonctions manip string
@@ -43,6 +45,12 @@ def chercheFonc(tab)
 	when "div" then division(arguments)
 	when "mod" then modulo(arguments)
 	when "pow" then puissance(arguments)
+	when "+" then somme(arguments)
+	when "-" then difference(arguments)
+	when "*" then produit(arguments)
+	when "/" then division(arguments)
+	when "%" then modulo(arguments)
+	when "**" then puissance(arguments)
 	when "divisible" then divisible(arguments)
 	when "even" then even(arguments)
 	when "odd" then odd(arguments)
@@ -190,8 +198,25 @@ def exec(line)
 	#puts"___"
 	chercheFonc(tab)
 end
+def execute_file(name)
+	lire = true
+	contenu = File.open(name, 'r').read
+	contenuTab = concatLine(contenu)
+	contenuTab.each do |i|
+		if i == "=begin"
+			lire = false
+		elsif i == "=end"
+			lire = true
+		else
+			unless i[0] == "#" or (not lire)
+				exec(i)
+			end
+		end
+	end
+	contenuTab
+end
 ###########################################
-##DÃ©but du programme
+##Début du programme
 ###########################################
 if args != []
 	ouvrir = args[0]
@@ -200,22 +225,9 @@ else
 end
 t1 = Time.now
 $variables = Hash.new("")
-lire = true
-contenu = File.open(ouvrir, 'r').read
-contenuTab = concatLine(contenu)
-contenuTab.each do |i|
-	if i == "=begin"
-		lire = false
-	elsif i == "=end"
-		lire = true
-	else
-		unless i[0] == "#" or (not lire)
-			exec(i)
-		end
-	end
-end
+principal = execute_file(ouvrir)
 contenu = ""
-contenuTab.each{|i| contenu += "#{i}\n"}
+principal.each{|i| contenu += "#{i}\n"}
 f = File.open('Output.txt','w')
 f.write(contenu)
 f.close

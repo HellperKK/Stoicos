@@ -2,28 +2,38 @@ print 'bonjour le monde'
 print (incr (repeat_s '4' 4))
 print (arr 1 2 3)
 print (arr (repeat_s '4' 4) (repeat_s '3' 3) (repeat_s '2' 2))
-print (arr
-    (arr 1, 2, 3)
-    (arr 4, 5, 6)
-    (arr 7, 8, 9)
+allocate_var tableau (arr
+    (arr 1 2 3)
+    (arr 4 5 6)
+    (arr 7 8 9)
     )
-print 'coucou' 'cachÃ©'
+print 'coucou' 'caché'
 print (print 'coucou')
 print (repeat_s '4' 4)
 print (title 'coucou les gens')
 print (decr (repeat_s 4 4))
 print (prod_arr (arr 4 3 2 1))
-print (sum 1 (prod 3 4))
+print (sum 100 (prod 3 4))
 print (prod 3 4)
 print (rangex 2 12)
 print (sum_arr (rangex 10))
+print (sum_arr (repeat 4 4))
 print (pow 4 4)
 print (head (arr 1 2 3 4))
-print (repeati 4 4)
 print (repeat 4 4)
-print (repeatarr (arr 1 2 3 4) 4)
+print (tail (head (repeat (arr 1 2 3 4) 4)))
+print (tail (head (read_var tableau)))
 allocate_var bonjour 'bonjour le monde'
 allocate_var aurevoir 'aurevoir le monde'
 print (read_var bonjour)
 swap_var aurevoir bonjour
 print (read_var bonjour)
+allocate_var premier (allocate_var second 'jaime le chocolat')
+print (read_var premier)
+print (read_var second)
+do (allocate_var test 'me voila') (print (read_var test))
+allocate_var test2 (proc_w 
+    (allocate_var test 'me voilà') 
+    (print (read_var test)))
+proc_r (read_var test2)
+

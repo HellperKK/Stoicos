@@ -26,3 +26,13 @@ def let_in(array)
 	$variables.delete(nom)
 	a
 end
+def increment(array)
+	nom = str(calc(look_at(array, 0, "")))
+	$variables[nom] = int($variables[nom]) + 1
+	$variables[nom]
+end
+def decrement(array)
+	nom = str(calc(look_at(array, 0, "")))
+	$variables[nom] = int($variables[nom]) - 1
+	$variables[nom]
+end
