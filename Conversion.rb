@@ -1,6 +1,6 @@
 def str(arg)
 	argbis = arg.to_s
-	if argbis[0] == "'"
+	if argbis[0] == '"'
 		argbis[1..-2]
 	else
 		argbis

@@ -5,6 +5,7 @@ require_relative "ArrayManip"
 require_relative "VarManip"
 require_relative "BoolManip"
 require_relative "ProcManip"
+require_relative "FileManip"
 args = ARGV
 def chercheFonc(tab)
 	fonction = tab[0]
@@ -96,6 +97,8 @@ def chercheFonc(tab)
 	when "if" then cust_if(arguments)
 	when "case" then cust_case(arguments)
 	when "pass" then pass(arguments)
+	#fonctions  manip fichier
+	when "require" then cust_require(arguments)
 	#fonction erreur
 	else  "Instruction inconnue"
 	end
@@ -140,9 +143,9 @@ def parseur(line)
 	elsif (not line.include?(" "))
 		return [line]
 	else
-		if line[point] == "'"
+		if line[point] == '"'
 			point += 1 
-			while line[point] != "'"
+			while line[point] != '"'
 				point += 1
 			end
 		elsif line[point] == "("
@@ -225,6 +228,7 @@ else
 end
 t1 = Time.now
 $variables = Hash.new("")
+$required = []
 principal = execute_file(ouvrir)
 contenu = ""
 principal.each{|i| contenu += "#{i}\n"}

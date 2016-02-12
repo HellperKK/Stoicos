@@ -10,5 +10,5 @@ while (sup (len_arr (read_var tab)) (read_var index)) (do
 		))
 	(allocate_var tabbis (append (read_var tabbis) (arr (dif (read_var index) (read_var index2)) (read_var char))))
 	)
-print (format 'Dans la phrase {} il y a :' (read_var phrase))
-each (read_var tabbis) i (print (format '{} fois {}' (read_var i)))
+print (format "Dans la phrase {} il y a :" (read_var phrase))
+each (read_var tabbis) i (print (format "{} fois {}" (read_var i)))

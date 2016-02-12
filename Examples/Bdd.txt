@@ -1,5 +1,5 @@
 #DATABASE INIT
-allocate_var  bdd (arr (true) ' ' (arr))
+allocate_var  bdd (arr (true) " " (arr))
 
 #CREATING PROCS
 allocate_var contient (proc_w
@@ -9,10 +9,10 @@ allocate_var contient (proc_w
 allocate_var ajouteur (proc_w
 	(allocate_var personne (at_arr (read_var requette) 1))
 	(if (proc_r (read_var contient)) 
-		(arr (false) 'element already in the database' (at_arr (read_var bdd) 2))
+		(arr (false) "element already in the database" (at_arr (read_var bdd) 2))
 		(let_in temp 
 			(at_arr (read_var bdd) 2)
-			(arr (true) ' ' (append (read_var temp) (read_var personne)))
+			(arr (true) " " (append (read_var temp) (read_var personne)))
 			)
 		)
 	)
@@ -21,15 +21,15 @@ allocate_var retireur (proc_w
 	(if (proc_r (read_var contient)) 
 		(let_in temp 
 			(at_arr (read_var bdd) 2)
-			(arr (true) ' ' (remove (read_var temp) (read_var personne)))
+			(arr (true) " " (remove (read_var temp) (read_var personne)))
 			)
-		(arr (false) 'element not in the database' (at_arr (read_var bdd) 2))
+		(arr (false) "element not in the database" (at_arr (read_var bdd) 2))
 		)
 	)
 allocate_var afficheur (proc_w
 	(if (at_arr (read_var bdd) 0)
 		(each (at_arr (read_var bdd) 2) i (print (read_var i)))
-		(print (format 'There is a mistake : {}' (at_arr (read_var bdd) 1)))
+		(print (format "There is a mistake : {}" (at_arr (read_var bdd) 1)))
 		)
 		
 	)
@@ -37,7 +37,7 @@ allocate_var afficheur (proc_w
 #GENERAL LOOP
 while (different (at_arr (read_var requette) 0) 0) (do
 	(proc_r (read_var afficheur))
-	(allocate_var requette (split (input 'What is your request ? : ') ' '))
+	(allocate_var requette (split (input "What is your request ? : ") " "))
 	(case 
 		(equal (at_arr (read_var requette) 0) 0) (pass)
 		(equal (at_arr (read_var requette) 0) 1) (do 
@@ -51,9 +51,9 @@ while (different (at_arr (read_var requette) 0) 0) (do
 			(if (proc_r (read_var contient)) (print 'it is inside !') (print 'it is not inside !'))
 			(allocate_var bdd (let_in temp 
 				(at_arr (read_var bdd) 2)
-				(arr (true) ' ' (read_var temp))
+				(arr (true) " " (read_var temp))
 				))
 			)
-		(print 'maivaise requette')
+		(print "Bad request")
 		)
 	)
