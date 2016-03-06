@@ -1,5 +1,7 @@
-#DATABASE INIT
-allocate_var  bdd (arr (true) " " (arr))
+#DATABASE INI
+if (exist_f Todolistbis.txt) 
+	(allocate_var  bdd (arr (true) " " (split (open_read Todolistbis.txt) "|"))) 
+	(allocate_var  bdd (arr (true) " " (arr)))
 
 #CREATING PROCS
 allocate_var contient (proc_w
@@ -57,3 +59,6 @@ while (different (at_arr (read_var requette) 0) 0) (do
 		(print "Bad request")
 		)
 	)
+print  (read_var bdd)
+print (at_arr (read_var bdd) 2)
+open_write Todolistbis.txt (join (at_arr (read_var bdd) 3) "|') 

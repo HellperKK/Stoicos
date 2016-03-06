@@ -32,6 +32,7 @@ def chercheFonc(tab)
 	when "title" then title(arguments)
 	when "reverse" then cust_reverse(arguments)
 	when "split" then cust_split(arguments)
+	when "join" then cust_join(arguments)
 	when "format" then cust_format(arguments)
 	when "at_s" then at_s(arguments)
 	when "slice_s" then slice_s(arguments)
@@ -99,6 +100,9 @@ def chercheFonc(tab)
 	when "pass" then pass(arguments)
 	#fonctions  manip fichier
 	when "require" then cust_require(arguments)
+	when "open_read" then cust_open_read(arguments)
+	when "open_write" then cust_open_write(arguments)
+	when "exist_f" then exist_f(arguments)
 	#fonction erreur
 	else  "Instruction inconnue"
 	end
