@@ -59,6 +59,4 @@ while (different (at_arr (read_var requette) 0) 0) (do
 		(print "Bad request")
 		)
 	)
-print  (read_var bdd)
-print (at_arr (read_var bdd) 2)
 open_write Todolistbis.txt (join (at_arr (read_var bdd) 2) "|') 
