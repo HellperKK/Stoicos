@@ -11,10 +11,12 @@ def int(arg)
 	arg.to_i
 end
 def arr(arg)
+=begin
 	if arg[0] == "["
 		arg = arg[1..-2].gsub("[", "").gsub("]", "").split(",")
 		arg.each{|i| i.strip!}
 	end
+=end
 	begin
 		argbis = arg.to_a
 	rescue

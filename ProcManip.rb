@@ -17,7 +17,7 @@ def cust_each(array)
 	iterateur = str(calc(look_at(array, 1, "i")))
 	action = look_at(array, 2, "")
 	tableau.each do |i|
-		$variables[iterateur] = i
+		$variables.add(iterateur, i)
 		calc(action)
 	end
 	""
@@ -27,7 +27,7 @@ def cust_each_char(array)
 	iterateur = str(calc(look_at(array, 1, "i")))
 	action = look_at(array, 2, "")
 	tableau.each_char do |i|
-		$variables[iterateur] = i
+		$variables.add(iterateur, i)
 		calc(action)
 	end
 	""

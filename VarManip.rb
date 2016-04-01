@@ -44,7 +44,7 @@ def let_in(array)
 	action = look_at(array, 1, "")
 	actionbis = look_at(array, 2, "")
 	#puts "#{nom}, #{action}, #{actionbis}"
-	$variables.add(calc(action))
+	$variables.add(nom, calc(action))
 	#puts $variables[nom]
 	a = calc(actionbis)
 	$variables.delete(nom)
