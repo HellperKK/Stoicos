@@ -8,7 +8,9 @@ class Vars
 	end
 	def delete(nom)
 		a = @vars[nom][0]
-		@vars[nom].delete_at(0)
+		unless @vars[nom] == [""]
+			@vars[nom].delete_at(0)
+		end
 		a
 	end
 	def swap(nom, nombis)

@@ -70,7 +70,7 @@ def filter(array)
 	action = str(look_at(array, 2, ""))
 	newarr = []
 	element.each do |i|
-		$variables[iter] = i
+		$variables.add(iter, i)
 		if bool(calc(action))
 			newarr << i
 		end
@@ -83,7 +83,7 @@ def map(array)
 	action = str(look_at(array, 2, ""))
 	newarr = []
 	element.each do |i|
-		$variables[iter] = i
+		$variables.add(iter, i)
 		newarr << calc(action)
 	end
 	newarr
