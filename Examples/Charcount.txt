@@ -1,4 +1,4 @@
-allocate_var phrase 'portez ce vieux whisky au juge blond qui fume'
+allocate_var phrase "portez ce vieux whisky au juge blond qui fume"
 allocate_var tab (sort (split (read_var phrase)))
 allocate_var tabbis (arr)
 allocate_var index 0
