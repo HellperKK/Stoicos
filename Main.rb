@@ -231,7 +231,7 @@ else
 	ouvrir = "Test.txt"
 end
 t1 = Time.now
-$variables = Hash.new("")
+$variables = Vars.new
 $required = []
 principal = execute_file(ouvrir)
 contenu = ""

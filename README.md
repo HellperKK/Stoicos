@@ -1,4 +1,5 @@
 # Stoicos
+Note : this version is a WIP since I am trying to change the way variables are used. If you want to try this interpretor, you can rename VarManip_old.rb, into VarManip.rb.
 ##Concept
 The Stoicos is a custom made language interpreted in ruby.
 Its concept is based on the fact that it uses a simple lexer/parser with means that all that needs to be done to extend this language is to add new functions.

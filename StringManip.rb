@@ -31,11 +31,9 @@ def cust_split(array)
 end
 def cust_join(array)
 	element = arr(calc(look_at(array, 0, [])))
-	print element
 	separateur = str(calc(look_at(array, 1, "")))
 	if element != []
 		element.join(separateur)
-		elemnt
 	else
 		""
 	end
