@@ -88,6 +88,17 @@ def map(array)
 	end
 	newarr
 end
+def fold_left(array)
+	element = arr(calc(look_at(array, 0, [])))
+	iter = str(calc(look_at(array, 1, "")))
+	iterbis = str(look_at(array, 2, ""))
+	action = str(look_at(array, 3, ""))
+	element.each do |i|
+		$variables.add(iterbis, i)
+		$variables.add(iter, calc(action))
+	end
+	$variables.get_value(iter)
+end
 def len_arr(array)
 	element = arr(calc(look_at(array, 0, [])))
 	element.length

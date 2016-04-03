@@ -1,7 +1,5 @@
-allocate_var phrase "portez ce vieux whisky au juge blond qui fume"
-allocate_var tab (sort (split (read_var phrase)))
-allocate_var tabbis (arr)
-allocate_var index 0
-while (sup (len_arr (read_var tab)) (read_var index)) (do (allocate_var index2 (read_var index)) (allocate_var char (at_arr (read_var tab) (read_var index))) (while (equal (read_var char) (at_arr (read_var tab) (read_var index))) (do (allocate_var index (incr (read_var index))) )) (allocate_var tabbis (append (read_var tabbis) (arr (dif (read_var index) (read_var index2)) (read_var char)))) )
-print (format "Dans la phrase {} il y a :" (read_var phrase))
-each (read_var tabbis) i (print (format "{} fois {}" (read_var i)))
+#Affiche la some des entiers d'une liste
+print (fold_left (rangex 10) x y (+ (read_var x) (read_var y)))
+
+#Affiche la plus petite valeur d'une liste
+print (fold_left (arr 10 20 54) x y (do (if (inf (read_var x) (read_var y)) (read_var x) (read_var y) ) ))
