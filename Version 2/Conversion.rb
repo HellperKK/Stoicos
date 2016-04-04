@@ -1,11 +1,15 @@
 =begin
-Liste des types
+Liste des types :
 Int
 String
 Proc
 Variable
 Boolean
 Array
+Plus, potentiellement :
+Float
+Char
+Fonction
 =end
 class Entier
 	def initialize(x)
@@ -76,26 +80,49 @@ class Procedure
 		[@valeur]
 	end
 end
-class Procedure
+class Variable
 	def initialize(x)
 		@valeur = x
 	end
 	def to_int
-		@valeur.to_i
+		$variables.get_value(@valeur).to_int
 	end
 	def to_string
-		@valeur
+		$variables.get_value(@valeur).to_string
 	end
 	def to_proce
-		@valeur
+		$variables.get_value(@valeur).to_proce
 	end
 	def to_var
 		@valeur
 	end
 	def to_bool
-		@valeur != ""
+		$variables.get_value(@valeur).to_bool
 	end
 	def to_array
-		[@valeur]
+		$variables.get_value(@valeur).to_array
+	end
+end
+class Tableau
+	def initialize(x)
+		@valeur = x.to_a
+	end
+	def to_int
+		@valeur[0].to_int
+	end
+	def to_string
+		@valeur[0].to_int
+	end
+	def to_proce
+		@valeur[0].to_int
+	end
+	def to_var
+		@valeur[0].to_int
+	end
+	def to_bool
+		@valeur[0].to_int
+	end
+	def to_array
+		@valeur[0].to_int
 	end
 end
