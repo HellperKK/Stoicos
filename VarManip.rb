@@ -13,6 +13,10 @@ class Vars
 		end
 		a
 	end
+	def replace(nom, contenu)
+		@vars[nom][0] = contenu
+		contenu
+	end
 	def swap(nom, nombis)
 		@vars[nom][0], @vars[nombis][0] = @vars[nombis][0], @vars[nom][0]
 		@vars[nom][0]
@@ -32,9 +36,20 @@ def allocate_var(array)
 	#puts "|#{$variables[nom]}|"
 	donnee
 end
+def replace_var(array)
+	nom = str(calc(look_at(array, 0, "")))
+	donnee = calc(look_at(array, 1, ""))
+	$variables.replace(nom, donnee)
+	#puts "|#{$variables[nom]}|"
+	donnee
+end
 def read_var(array)
 	nom = str(calc(look_at(array, 0, "")))
 	$variables.get_value(nom)
+end
+def get_historic(array)
+	nom = str(calc(look_at(array, 0, "")))
+	$variables.history(nom)
 end
 def swap_var(array)
 	nom = str(calc(look_at(array, 0, "")))

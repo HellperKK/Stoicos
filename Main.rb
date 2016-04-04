@@ -16,7 +16,9 @@ def chercheFonc(tab)
 	when "input" then cust_get(arguments)
 	#fonctions manip variables
 	when "allocate_var" then allocate_var(arguments)
+	when "replace_var" then replace_var(arguments)
 	when "read_var" then read_var(arguments)
+	when "get_historic" then get_historic(arguments)
 	when "swap_var" then swap_var(arguments)
 	when "let_in" then let_in(arguments)
 	when "increment" then increment(arguments)
@@ -71,7 +73,7 @@ def chercheFonc(tab)
 	when "remove_all" then remove_all(arguments)
 	when "filter" then filter(arguments)
 	when "map" then map(arguments)
-	when "fold_left" then fold_left(arguments)
+	when "inject" then inject(arguments)
 	when "len_arr" then len_arr(arguments)
 	when "at_arr" then at_arr(arguments)
 	when "slice_arr" then slice_arr(arguments)
@@ -131,10 +133,18 @@ def calc(arg)
 	arg	
 end
 def cust_print(array)
+	element = array.map{|i| str(calc(i))}
+	element.each{|i| print i + " "}
+	print "\n"
+	element.join(" ")
+end
+=begin
+def cust_print(array)
 	element = str(calc(look_at(array, 0, "")))
 	puts element
 	element.strip
 end
+=end
 def cust_get(array)
 	element = str(calc(look_at(array, 0, "")))
 	print element

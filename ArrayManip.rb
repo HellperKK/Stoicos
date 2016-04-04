@@ -66,11 +66,11 @@ def append(array)
 end
 def filter(array)
 	element = arr(calc(look_at(array, 0, [])))
-	iter = str(calc(look_at(array, 1, "")))
+	iter = str(calc(look_at(array, 1, "i")))
 	action = str(look_at(array, 2, ""))
 	newarr = []
 	element.each do |i|
-		$variables.add(iter, i)
+		$variables.replace(iter, i)
 		if bool(calc(action))
 			newarr << i
 		end
@@ -79,23 +79,25 @@ def filter(array)
 end
 def map(array)
 	element = arr(calc(look_at(array, 0, [])))
-	iter = str(calc(look_at(array, 1, "")))
+	iter = str(calc(look_at(array, 1, "i")))
 	action = str(look_at(array, 2, ""))
 	newarr = []
 	element.each do |i|
-		$variables.add(iter, i)
+		$variables.replace(iter, i)
 		newarr << calc(action)
 	end
 	newarr
 end
-def fold_left(array)
+def inject(array)
 	element = arr(calc(look_at(array, 0, [])))
-	iter = str(calc(look_at(array, 1, "")))
-	iterbis = str(look_at(array, 2, ""))
+	iter = str(calc(look_at(array, 1, "i")))
+	iterbis = str(look_at(array, 2, "v"))
 	action = str(look_at(array, 3, ""))
+	$variables.add(iter, element[0])
+	element = element[1..-1]
 	element.each do |i|
-		$variables.add(iterbis, i)
-		$variables.add(iter, calc(action))
+		$variables.replace(iterbis, i)
+		$variables.replace(iter, calc(action))
 	end
 	$variables.get_value(iter)
 end
