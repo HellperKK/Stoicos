@@ -1,0 +1,5 @@
+allocate_var inpute (input 'give a value : ')
+case 
+	(sup (read_var inpute) 0) (print 'it is greater than 0')
+	(inf (read_var inpute) 0) (print 'it is lower than 0')
+	(print 'it is 0')

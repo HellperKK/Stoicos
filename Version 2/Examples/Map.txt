@@ -1,0 +1,2 @@
+#print the squares of all positiv integers below 10
+print (map (rangex 9) i (pow (read_var i) 2))

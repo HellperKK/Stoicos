@@ -1,0 +1,2 @@
+#print the sum of all odd integers below 10
+print (sum_arr (filter (rangex 10) i (odd (read_var i))))

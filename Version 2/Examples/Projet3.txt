@@ -1,0 +1,13 @@
+####################
+##Problème 3
+####################
+allocate_var isPrime (proc_w
+	(allocate_var prime1 2)
+	(while (and (not (divisible (read_var prime2) (read_var prime1))) (inf (pow (read_var prime1) 2) (read_var prime2)))
+		(allocate_var prime1 (incr (read_var prime1)))
+		)
+	(or (not (divisible (read_var prime2) (read_var prime1))) (equal (read_var prime2) (read_var prime1)))
+	)
+allocate_var prime2 600851475143
+while (not (proc_r (read_var isPrime))) (allocate_var prime2 (div (read_var prime2) (read_var prime1)))
+print (read_var prime2)

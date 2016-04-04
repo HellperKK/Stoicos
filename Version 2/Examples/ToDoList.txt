@@ -1,0 +1,62 @@
+#DATABASE INI
+if (exist_f Todolistbis.txt) 
+	(allocate_var  bdd (arr (true) " " (split (open_read Todolistbis.txt) "|"))) 
+	(allocate_var  bdd (arr (true) " " (arr)))
+
+#CREATING PROCS
+allocate_var contient (proc_w
+	(allocate_var table (at_arr (read_var bdd) 2))
+	(include_arr (read_var table) (read_var personne))
+	)
+allocate_var ajouteur (proc_w
+	(allocate_var personne (at_arr (read_var requette) 1))
+	(if (proc_r (read_var contient)) 
+		(arr (false) "element already in the database" (at_arr (read_var bdd) 2))
+		(let_in temp 
+			(at_arr (read_var bdd) 2)
+			(arr (true) " " (append (read_var temp) (read_var personne)))
+			)
+		)
+	)
+allocate_var retireur (proc_w
+	(allocate_var personne (at_arr (read_var requette) 1))
+	(if (proc_r (read_var contient)) 
+		(let_in temp 
+			(at_arr (read_var bdd) 2)
+			(arr (true) " " (remove (read_var temp) (read_var personne)))
+			)
+		(arr (false) "element not in the database" (at_arr (read_var bdd) 2))
+		)
+	)
+allocate_var afficheur (proc_w
+	(if (at_arr (read_var bdd) 0)
+		(each (at_arr (read_var bdd) 2) i (print (read_var i)))
+		(print (format "There is a mistake : {}" (at_arr (read_var bdd) 1)))
+		)
+		
+	)
+	
+#GENERAL LOOP
+while (different (at_arr (read_var requette) 0) 0) (do
+	(proc_r (read_var afficheur))
+	(allocate_var requette (split (input "What is your request ? : ") " "))
+	(case 
+		(equal (at_arr (read_var requette) 0) 0) (pass)
+		(equal (at_arr (read_var requette) 0) 1) (do 
+			(allocate_var bdd (proc_r (read_var ajouteur)))
+			)
+		(equal (at_arr (read_var requette) 0) 2) (do 
+			(allocate_var bdd (proc_r (read_var retireur)))
+			)
+		(equal (at_arr (read_var requette) 0) 3) (do 
+			(allocate_var personne (at_arr (read_var requette) 1))
+			(if (proc_r (read_var contient)) (print "it is inside !") (print "it is not inside !"))
+			(allocate_var bdd (let_in temp 
+				(at_arr (read_var bdd) 2)
+				(arr (true) " " (read_var temp))
+				))
+			)
+		(print "Bad request")
+		)
+	)
+open_write Todolistbis.txt (join (at_arr (read_var bdd) 2) "|') 

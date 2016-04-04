@@ -5,4 +5,8 @@ print (inject (rangex 10) x y (+ (read_var x) (read_var y)))
 print (inject (arr 10 20 54) x y (if (inf (read_var x) (read_var y)) (read_var x) (read_var y)))
 
 print bonjour le monde
-print bonjour monsieur (input "Quel est votre nom ?")
+#print bonjour monsieur (input "Quel est votre nom ?")
+
+#print un sac de (allocate_var poids (input "Quel poids ? ")) kilos a 3 euros le kilo coute (* (read_var poids) 3)
+
+let_in poids (input "Quel poids ?") (print ca vous fera (* (read_var poids) 3) euros)

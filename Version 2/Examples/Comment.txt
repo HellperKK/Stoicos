@@ -1,0 +1,10 @@
+#Nothing here will be executed
+#while (true) (do
+	(print 'this line will not be shown')
+	(print 'unless you erase the # before the while')
+	)
+=begin
+same here nothing will be done
+allocate_var i 'some value'
+print (read_var i)
+=end
