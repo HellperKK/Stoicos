@@ -10,6 +10,7 @@ Plus, potentiellement :
 Float
 Char
 Fonction
+Struct
 =end
 class Entier
 	def initialize(x)
@@ -36,7 +37,7 @@ class Entier
 end
 class Chaine
 	def initialize(x)
-		@valeur = x
+		@valeur = x[1..-2]
 	end
 	def to_int
 		@valeur.to_i
@@ -48,7 +49,7 @@ class Chaine
 		@valeur
 	end
 	def to_var
-		@valeur
+		@valeur.split(" ")[0]
 	end
 	def to_bool
 		@valeur != ""
@@ -59,7 +60,7 @@ class Chaine
 end
 class Procedure
 	def initialize(x)
-		@valeur = x
+		@valeur = x[1..-2]
 	end
 	def to_int
 		@valeur.to_i
@@ -71,7 +72,7 @@ class Procedure
 		@valeur
 	end
 	def to_var
-		@valeur
+		@valeur.split(" ")[0]
 	end
 	def to_bool
 		@valeur != ""
@@ -108,21 +109,21 @@ class Tableau
 		@valeur = x.to_a
 	end
 	def to_int
-		@valeur[0].to_int
+		@valeur != [] ? @valeur[0].to_int : 0
 	end
 	def to_string
-		@valeur[0].to_int
+		@valeur != [] ? @valeur[0].to_string : ""
 	end
 	def to_proce
-		@valeur[0].to_int
+		@valeur != [] ? @valeur[0].to_proce : 0
 	end
 	def to_var
-		@valeur[0].to_int
+		@valeur != [] ? @valeur[0].to_var : 0
 	end
 	def to_bool
-		@valeur[0].to_int
+		@valeur != [] ? @valeur[0].to_bool : 0
 	end
 	def to_array
-		@valeur[0].to_int
+		@valeur
 	end
 end
