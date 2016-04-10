@@ -19,6 +19,8 @@ each_with_index (arr 12 15 43 86 25) i y (print (read_var i) _ (read_var y))
 
 upto 0 10 i (print (read_var i))
 downto 10 0 i (print (read_var i))
-=end
+
 times 3 (print hip)
 print hourra
+=end
+if (equal (int 1) 1) (print oui) (print non)
