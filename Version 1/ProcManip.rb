@@ -86,7 +86,7 @@ def cust_times(array)
 	fois = int(calc(look_at(array, 0, 0)))
 	action = look_at(array, 1, "")
 	a = ""
-	fois.times {a = calc(action)}
+	fois.times{a = calc(action)}
 	a
 end
 def cust_while(array)

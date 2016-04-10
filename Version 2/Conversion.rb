@@ -151,13 +151,13 @@ class Tableau
 		@valeur != [] ? @valeur[0].to_string : ""
 	end
 	def to_proce
-		@valeur != [] ? @valeur[0].to_proce : 0
+		@valeur != [] ? @valeur[0].to_proce : ""
 	end
 	def to_var
-		@valeur != [] ? @valeur[0].to_var : 0
+		@valeur != [] ? @valeur[0].to_var : ""
 	end
 	def to_bool
-		@valeur != [] ? @valeur[0].to_bool : 0
+		@valeur != [] ? @valeur[0].to_bool : false
 	end
 	def to_array
 		@valeur
