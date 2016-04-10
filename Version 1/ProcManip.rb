@@ -70,13 +70,6 @@ def cust_upto(array)
 	end
 	a
 end
-def cust_times(array)
-	fois = int(calc(look_at(array, 0, 0)))
-	action = look_at(array, 1, "")
-	a = ""
-	fois.times {a = calc(action)}
-	a
-end
 def cust_downto(array)
 	max = int(calc(look_at(array, 0, 0)))
 	min = int(calc(look_at(array, 1, 0)))
@@ -87,6 +80,13 @@ def cust_downto(array)
 		$variables.replace(iterateur, i)
 		a = calc(action)
 	end
+	a
+end
+def cust_times(array)
+	fois = int(calc(look_at(array, 0, 0)))
+	action = look_at(array, 1, "")
+	a = ""
+	fois.times {a = calc(action)}
 	a
 end
 def cust_while(array)
