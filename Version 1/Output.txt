@@ -7,6 +7,18 @@ print (inject (arr 10 20 54) x y (if (inf (read_var x) (read_var y)) (read_var x
 print bonjour le monde
 #print bonjour monsieur (input "Quel est votre nom ?")
 
-#print un sac de (allocate_var poids (input "Quel poids ? ")) kilos a 3 euros le kilo coute (* (read_var poids) 3)
+#print un sac de (allocate_var poids (input "Quel poids ? ")) kilos a 3 euros le kilo coute (* (read_var poids) 3) euros
 
-let_in poids (input "Quel poids ?") (print ca vous fera (* (read_var poids) 3) euros)
+#let_in poids (input "Quel poids ?") (print ca vous fera (* (read_var poids) 3) euros)
+=begin
+each (arr 12 15 43 86 25) i (print (read_var i))
+
+each_index (arr 12 15 43 86 25) i (print (read_var i))
+
+each_with_index (arr 12 15 43 86 25) i y (print (read_var i) _ (read_var y))
+
+upto 0 10 i (print (read_var i))
+downto 10 0 i (print (read_var i))
+=end
+times 3 (print hip)
+print hourra

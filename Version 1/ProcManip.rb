@@ -23,12 +23,67 @@ def cust_each(array)
 	end
 	a
 end
+def cust_each_index(array)
+	tableau = arr(calc(look_at(array, 0, [])))
+	iterateur = str(calc(look_at(array, 1, "i")))
+	action = look_at(array, 2, "")
+	a = ""
+	tableau.each_index do |i|
+		$variables.replace(iterateur, i)
+		a = calc(action)
+	end
+	a
+end
+def cust_each_with_index(array)
+	tableau = arr(calc(look_at(array, 0, [])))
+	iterateur = str(calc(look_at(array, 1, "i")))
+	iterbis = str(calc(look_at(array, 2, "y")))
+	action = look_at(array, 3, "")
+	a = ""
+	tableau.each_with_index do |i, y|
+		$variables.replace(iterateur, i)
+		$variables.replace(iterbis, y)
+		a = calc(action)
+	end
+	a
+end
 def cust_each_char(array)
 	tableau = str(calc(look_at(array, 0, [])))
 	iterateur = str(calc(look_at(array, 1, "i")))
 	action = look_at(array, 2, "")
-	a ""
+	a = ""
 	tableau.each_char do |i|
+		$variables.replace(iterateur, i)
+		a = calc(action)
+	end
+	a
+end
+def cust_upto(array)
+	min = int(calc(look_at(array, 0, 0)))
+	max = int(calc(look_at(array, 1, 0)))
+	iterateur = str(calc(look_at(array, 2, "i")))
+	action = look_at(array, 3, "")
+	a = ""
+	min.upto(max) do |i|
+		$variables.replace(iterateur, i)
+		a = calc(action)
+	end
+	a
+end
+def cust_times(array)
+	fois = int(calc(look_at(array, 0, 0)))
+	action = look_at(array, 1, "")
+	a = ""
+	fois.times {a = calc(action)}
+	a
+end
+def cust_downto(array)
+	max = int(calc(look_at(array, 0, 0)))
+	min = int(calc(look_at(array, 1, 0)))
+	iterateur = str(calc(look_at(array, 2, "i")))
+	action = look_at(array, 3, "")
+	a = ""
+	max.downto(min) do |i|
 		$variables.replace(iterateur, i)
 		a = calc(action)
 	end
@@ -37,6 +92,7 @@ end
 def cust_while(array)
 	bool = look_at(array, 0, false)
 	action = look_at(array, 1, "")
+	a = ""
 	while calc(bool)
 		a = calc(action)
 	end

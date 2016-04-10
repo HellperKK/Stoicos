@@ -96,7 +96,12 @@ def chercheFonc(tab)
 	when "proc_w" then proc_w(arguments)
 	when "proc_r" then proc_r(arguments)
 	when "each" then cust_each(arguments)
+	when "each_index" then cust_each_index(arguments)
+	when "each_with_index" then cust_each_with_index(arguments)
 	when "each_char" then cust_each_char(arguments)
+	when "upto" then cust_upto(arguments)
+	when "downto" then cust_downto(arguments)
+	when "times" then cust_times(arguments)
 	when "while" then cust_while(arguments)
 	when "if" then cust_if(arguments)
 	when "case" then cust_case(arguments)
@@ -128,15 +133,16 @@ def calc(arg)
 	argstr = str(arg)
 	if argstr[0] == "("
 		argstr = argstr[1..-2]
-		arg = calc(chercheFonc(parseur(argstr)))
+		calc(chercheFonc(parseur(argstr)))
+	else
+		arg
 	end
-	arg	
 end
 def cust_print(array)
 	element = array.map{|i| str(calc(i))}
-	element.each{|i| print i + " "}
-	print "\n"
-	element.join(" ")
+	a = element.join(" ")
+	puts a
+	a
 end
 =begin
 def cust_print(array)
@@ -252,4 +258,5 @@ f.write(contenu)
 f.close
 t2 = Time.now
 puts t2 - t1
+#puts $variables
 #puts "|#{$variables["probleme4"]}|"
