@@ -93,9 +93,10 @@ def cust_while(array)
 	bool = look_at(array, 0, false)
 	action = look_at(array, 1, "")
 	a = ""
-	while calc(bool)
+	while calc(bool) && $break
 		a = calc(action)
 	end
+	$break = true
 	a
 end
 def cust_if(array)

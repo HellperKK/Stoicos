@@ -1,3 +1,4 @@
+=begin
 #Affiche la some des entiers d'une liste
 print (inject (rangex 10) x y (+ (read_var x) (read_var y)))
 
@@ -10,7 +11,7 @@ print bonjour le monde
 #print un sac de (allocate_var poids (input "Quel poids ? ")) kilos a 3 euros le kilo coute (* (read_var poids) 3) euros
 
 #let_in poids (input "Quel poids ?") (print ca vous fera (* (read_var poids) 3) euros)
-=begin
+
 each (arr 12 15 43 86 25) i (print (read_var i))
 
 each_index (arr 12 15 43 86 25) i (print (read_var i))
@@ -23,4 +24,19 @@ downto 10 0 i (print (read_var i))
 times 3 (print hip)
 print hourra
 =end
-if (equal (int 1) 1) (print oui) (print non)
+allocate_var test (int 0)
+allocate_var test2 (int 0)
+while (< (read_var test) 10) (do
+	(while (< (read_var test2) 10) (do
+		(print | (read_var test) | (read_var test2) |)
+		(if (equal (read_var test2) 8) (break) (pass))
+		(increment test2)
+	))
+	(allocate_var test2 (int 0))
+	(print | " " | " " |)
+	(increment test)
+	)
+#while (< (read_var test) 10) (do
+	(print | (read_var test) | (read_var test2) |)
+	(increment test)
+	)

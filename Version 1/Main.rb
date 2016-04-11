@@ -110,6 +110,7 @@ def chercheFonc(tab)
 	when "downto" then cust_downto(arguments)
 	when "times" then cust_times(arguments)
 	when "while" then cust_while(arguments)
+	when "break" then cust_break(arguments)
 	when "if" then cust_if(arguments)
 	when "case" then cust_case(arguments)
 	when "pass" then pass(arguments)
@@ -162,6 +163,10 @@ def cust_get(array)
 	element = str(calc(look_at(array, 0, "")))
 	print element
 	$stdin.gets.strip
+end
+def cust_break(array)
+	$break = false
+	""
 end
 def parseur(line)
 	line = line.strip
@@ -256,6 +261,7 @@ else
 end
 t1 = Time.now
 $variables = Vars.new
+$break = true
 $required = []
 principal = execute_file(ouvrir)
 contenu = ""
