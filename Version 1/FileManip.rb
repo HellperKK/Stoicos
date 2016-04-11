@@ -1,18 +1,20 @@
 def cust_require(array)
 	element = str(calc(look_at(array, 0, "")))
-	unless $required.include?(element)
+	unless $required.include?(element) || (not File.file?("#{element}.txt"))
 		execute_file("#{element}.txt")
 		$required << element
 	end
+	""
 end
 def cust_open_read(array)
 	element = str(calc(look_at(array, 0, "")))
-	unless element == ""
+	unless element == "" || (not File.file?(element))
 		file = File.open(element, "r")
 		content = file.read
 		file.close
-		content
+		return content
 	end
+	""
 end
 def cust_open_write(array)
 	element = str(calc(look_at(array, 0, "")))

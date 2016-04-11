@@ -88,6 +88,19 @@ def map(array)
 	end
 	newarr
 end
+def mapi(array)
+	element = arr(calc(look_at(array, 0, [])))
+	iter = str(calc(look_at(array, 1, "i")))
+	iterbis = str(calc(look_at(array, 2, "y")))
+	action = str(look_at(array, 3, ""))
+	newarr = []
+	element.each_with_index do |i, y|
+		$variables.replace(iter, i)
+		$variables.replace(iterbis, y)
+		newarr << calc(action)
+	end
+	newarr
+end
 def inject(array)
 	element = arr(calc(look_at(array, 0, [])))
 	iter = str(calc(look_at(array, 1, "i")))
