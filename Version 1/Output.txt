@@ -1,11 +1,32 @@
-#DATABASE INI
-if (exist_f Todolistbis.txt)  (allocate_var  bdd (arr (true) " " (split (open_read Todolistbis.txt) "|")))  (allocate_var  bdd (arr (true) " " (arr)))
+=begin
+#Affiche la some des entiers d'une liste
+print (inject (rangex 10) x y (+ (read_var x) (read_var y)))
 
-#CREATING PROCS
-allocate_var contient (proc_w (allocate_var table (at_arr (read_var bdd) 2)) (include_arr (read_var table) (read_var personne)) )
-allocate_var ajouteur (proc_w (allocate_var personne (at_arr (read_var requette) 1)) (if (proc_r (read_var contient))  (arr (false) "element already in the database" (at_arr (read_var bdd) 2)) (let_in temp  (at_arr (read_var bdd) 2) (arr (true) " " (append (read_var temp) (read_var personne))) ) ) )
-allocate_var retireur (proc_w (allocate_var personne (at_arr (read_var requette) 1)) (if (proc_r (read_var contient))  (let_in temp  (at_arr (read_var bdd) 2) (arr (true) " " (remove (read_var temp) (read_var personne))) ) (arr (false) "element not in the database" (at_arr (read_var bdd) 2)) ) )
-allocate_var afficheur (proc_w (if (at_arr (read_var bdd) 0) (each (at_arr (read_var bdd) 2) i (print (read_var i))) (print (format "There is a mistake : {}" (at_arr (read_var bdd) 1))) ) )
-#GENERAL LOOP
-while (different (at_arr (read_var requette) 0) 0) (do (proc_r (read_var afficheur)) (allocate_var requette (split (input "What is your request ? : ") " ")) (case  (equal (at_arr (read_var requette) 0) 0) (pass) (equal (at_arr (read_var requette) 0) 1) (do  (allocate_var bdd (proc_r (read_var ajouteur))) ) (equal (at_arr (read_var requette) 0) 2) (do  (allocate_var bdd (proc_r (read_var retireur))) ) (equal (at_arr (read_var requette) 0) 3) (do  (allocate_var personne (at_arr (read_var requette) 1)) (if (proc_r (read_var contient)) (print "it is inside !") (print "it is not inside !")) (allocate_var bdd (let_in temp  (at_arr (read_var bdd) 2) (arr (true) " " (read_var temp)) )) ) (print "Bad request") ) )
-open_write Todolistbis.txt (join (at_arr (read_var bdd) 2) "|') 
+#Affiche la plus petite valeur d'une liste
+print (inject (arr 10 20 54) x y (if (inf (read_var x) (read_var y)) (read_var x) (read_var y)))
+
+print bonjour le monde
+#print bonjour monsieur (input "Quel est votre nom ?")
+
+#print un sac de (allocate_var poids (input "Quel poids ? ")) kilos a 3 euros le kilo coute (* (read_var poids) 3) euros
+
+#let_in poids (input "Quel poids ?") (print ca vous fera (* (read_var poids) 3) euros)
+
+each (arr 12 15 43 86 25) i (print (read_var i))
+
+each_index (arr 12 15 43 86 25) i (print (read_var i))
+
+each_with_index (arr 12 15 43 86 25) i y (print (read_var i) _ (read_var y))
+
+upto 0 10 i (print (read_var i))
+downto 10 0 i (print (read_var i))
+
+times 3 (print hip)
+print hourra
+
+allocate_var test (int 0)
+allocate_var test2 (int 0)
+#while (< (read_var test) 10) (do (while (< (read_var test2) 10) (do (print | (read_var test) | (read_var test2) |) (if (equal (read_var test2) 8) (break) (pass)) (increment test2) )) (allocate_var test2 (int 0)) (print | " " | " " |) (increment test) )
+#while (< (read_var test) 10) (do (print | (read_var test) | (read_var test2) |) (increment test) )
+=end
+print (mapi (rangex 50 59) valeur cle (- (read_var valeur) (read_var cle)))
