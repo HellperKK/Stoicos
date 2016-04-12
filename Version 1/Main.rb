@@ -248,7 +248,7 @@ def execute_file(name)
 		elsif i == "=end"
 			lire = true
 		else
-			unless i[0] == "#" or (not lire)
+			unless (i[0] == "#") || (not lire)
 				exec(i)
 			end
 		end

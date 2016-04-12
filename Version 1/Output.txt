@@ -23,10 +23,10 @@ downto 10 0 i (print (read_var i))
 
 times 3 (print hip)
 print hourra
-
+=end
 allocate_var test (int 0)
 allocate_var test2 (int 0)
-#while (< (read_var test) 10) (do (while (< (read_var test2) 10) (do (print | (read_var test) | (read_var test2) |) (if (equal (read_var test2) 8) (break) (pass)) (increment test2) )) (allocate_var test2 (int 0)) (print | " " | " " |) (increment test) )
+while (< (read_var test) 10) (do (while (< (read_var test2) 10) (do (print | (read_var test) | (read_var test2) |) (if (equal (read_var test2) 8) (break) (pass)) (print coucou) (increment test2) )) (allocate_var test2 (int 0)) (print | " " | " " |) (increment test) )
 #while (< (read_var test) 10) (do (print | (read_var test) | (read_var test2) |) (increment test) )
 =end
 print (mapi (rangex 50 59) valeur cle (- (read_var valeur) (read_var cle)))
