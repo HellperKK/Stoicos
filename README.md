@@ -7,6 +7,6 @@ The major flaw of this language (in my opinion) is the fact there are no syntaxi
 ##Version
 Two versions of the interpretor are in devellopement. 
 
-The version 1 is the oldest one but suffer form some problems especialy the functions "equal" and "different".
+The version 1 is the oldest one but is functionnal.
 
 The version 2 is young and not yet functionnal.
