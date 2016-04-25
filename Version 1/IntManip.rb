@@ -18,12 +18,12 @@ def difference(array)
 end
 def produit(array)
 	element = int(calc(look_at(array, 0, 0)))
-	ajout = int(calc(look_at(array, 1, 0)))
+	ajout = int(calc(look_at(array, 1, 1)))
 	element * ajout
 end
 def division(array)
 	element = int(calc(look_at(array, 0, 0)))
-	ajout = int(calc(look_at(array, 1, 0)))
+	ajout = int(calc(look_at(array, 1, 1)))
 	element / ajout
 end
 def modulo(array)
