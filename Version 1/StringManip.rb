@@ -56,6 +56,10 @@ def cust_reverse(array)
 	element = str(calc(look_at(array, 0, "")))
 	element.reverse
 end
+def len_s(array)
+	element = str(calc(look_at(array, 0, "")))
+	element.length
+end
 def at_s(array)
 	element = str(calc(look_at(array, 0, "")))
 	iter = int(calc(look_at(array, 1, 0)))

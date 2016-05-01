@@ -25,7 +25,8 @@ def keep_only(str, strbis)
 		end
 	end
 end
-class Entier
+class Valeur; end
+class Entier < valeur
 	def initialize(x)
 		@valeur = x
 	end
@@ -48,7 +49,7 @@ class Entier
 		[@valeur]
 	end
 end
-class Chaine
+class Chaine < valeur
 	def initialize(x)
 		@valeur = x
 	end
@@ -71,7 +72,7 @@ class Chaine
 		[@valeur]
 	end
 end
-class Procedure
+class Procedure < valeur
 	def initialize(x)
 		@valeur = x
 	end
@@ -94,7 +95,7 @@ class Procedure
 		[@valeur]
 	end
 end
-class Variable
+class Variable < valeur
 	def initialize(x)
 		@valeur = x
 	end
@@ -117,7 +118,7 @@ class Variable
 		$variables.get_value(@valeur).to_array
 	end
 end
-class Booleen
+class Booleen < valeur
 	def initialize(x)
 		@valeur = x
 	end
@@ -140,7 +141,7 @@ class Booleen
 		[@valeur]
 	end
 end
-class Tableau
+class Tableau < valeur
 	def initialize(x)
 		@valeur = x
 	end
