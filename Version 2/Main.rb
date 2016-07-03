@@ -9,7 +9,6 @@ require_relative "VarManip"
 args = ARGV
 def chercheFonc(tab)
 	fonction = tab[0]
-	puts tab.to_s
 	arguments = tab[1..-1]
 	case fonction
 	#fonctions generales
@@ -150,7 +149,7 @@ def cust_print(array)
 	element = array.map{|i| i.calc.to_string}
 	a = element.join(" ")
 	puts a
-	a
+	Chaine.new(a)
 end
 def cust_get(array)
 	element = str(calc(look_at(array, 0, "")))
@@ -201,10 +200,9 @@ def parseur(line, compteur = 0)
 			when "[" then find_matching(line, "]", "[")
 			else find_second(line, " ")
 			end
-			[to_objet(line[0..(point-1)], compteur)] + parseur(line[point..-1], compteur + 1)
+			[to_objet(line[0..point].strip, compteur)] + parseur(line[(point+1)..-1], compteur + 1)
 		rescue
-			#[to_objet(line, compteur)]
-			[]
+			[to_objet(line, compteur)]
 		end
 	end
 end

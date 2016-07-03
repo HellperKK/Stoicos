@@ -1,2 +1,2 @@
-print (print "Bonjour le monde")
+print (print "Bonjour les amis")
 print "Bonjour le monde"
