@@ -185,8 +185,8 @@ class Tableau < Valeur
 	def to_int
 		@valeur != [] ? @valeur[0].to_int : 0
 	end
-	def to_int
-		@valeur != [] ? @valeur[0].to_int : 0
+	def to_float
+		@valeur != [] ? @valeur[0].to_float : 0.0
 	end
 	def to_string
 		@valeur != [] ? @valeur[0].to_string : ""
@@ -198,16 +198,40 @@ class Tableau < Valeur
 		@valeur != [] ? @valeur[0].to_bool : false
 	end
 	def to_proce
-		@valeur != [] ? @valeur[0].to_proce : ""
+		@valeur != [] ? @valeur[0].to_proce : []
 	end
 	def to_array
 		@valeur
 	end
 end
+class Vide < Valeur
+	#Contient du vide
+	def to_int
+		0
+	end
+	def to_float
+		0.0
+	end
+	def to_string
+		""
+	end
+	def to_var
+		""
+	end
+	def to_bool
+		false
+	end
+	def to_proce
+		[]
+	end
+	def to_array
+		[]
+	end
+end
 def to_objet(chaine, id)
 	if chaine.to_i.to_s == chaine
 		Entier.new(chaine.to_i)
-	elsif chaine.to_i.to_s == chaine
+	elsif chaine.to_f.to_s == chaine
 		Flottant.new(chaine.to_f)
 	elsif chaine[0] == '"'
 		Chaine.new(chaine[1..-2])

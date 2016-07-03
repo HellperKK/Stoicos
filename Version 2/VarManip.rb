@@ -39,46 +39,46 @@ class Vars
 end
 
 def allocate_var(array)
-	nom = calc(look_at(array, 0, "").to_var)
-	donnee = calc(look_at(array, 1, ""))
+	nom = look_at(array, 0, Vide.new(nil).calc.to_var)
+	donnee = calc(look_at(array, 1, Vide.new(nil)))
 	$variables.add(nom, donnee)
 	donnee
 end
 def replace_var(array)
-	nom = calc(look_at(array, 0, "").to_var)
-	donnee = calc(look_at(array, 1, ""))
+	nom = calc(look_at(array, 0, Vide.new(nil)).to_var)
+	donnee = calc(look_at(array, 1, Vide.new(nil)))
 	$variables.replace(nom, donnee)
 	donnee
 end
 def read_var(array)
-	nom = calc(look_at(array, 0, "").to_string)
+	nom = calc(look_at(array, 0, Vide.new(nil)).to_string)
 	$variables.get_value(nom)
 end
 def get_historic(array)
-	nom = calc(look_at(array, 0, "").to_string)
+	nom = calc(look_at(array, 0, Vide.new(nil)).to_string)
 	$variables.history(nom)
 end
 def swap_var(array)
-	nom = calc(look_at(array, 0, "").to_var)
-	nombis = calc(look_at(array, 1, "").to_var)
+	nom = calc(look_at(array, 0, Vide.new(nil)).to_var)
+	nombis = calc(look_at(array, 1, Vide.new(nil)).to_var)
 	$variables.swap(nom, nombis)
 end
 def let_in(array)
-	nom = calc(look_at(array, 0, "").to_var)
-	action = look_at(array, 1, "")
-	actionbis = look_at(array, 2, "")
+	nom = calc(look_at(array, 0, Vide.new(nil)).to_var)
+	action = look_at(array, 1, Vide.new(nil))
+	actionbis = look_at(array, 2, Vide.new(nil))
 	$variables.add(nom, calc(action))
 	a = calc(actionbis)
 	$variables.delete(nom)
 	a
 end
 def increment(array)
-	nom = calc(look_at(array, 0, "").to_var)
+	nom = calc(look_at(array, 0, Vide.new(nil)).to_var)
 	$variables.add(nom, int($variables.get_value(nom)) + 1)
 	$variables.get_value(nom)
 end
 def decrement(array)
-	nom = calc(look_at(array, 0, "").to_var)
+	nom = calc(look_at(array, 0, Vide.new(nil)).to_var)
 	$variables.add(nom, int($variables.get_value(nom)) - 1)
 	$variables.get_value(nom)
 end

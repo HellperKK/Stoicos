@@ -8,6 +8,7 @@ require_relative "VarManip"
 #require_relative "FileManip"
 args = ARGV
 def chercheFonc(tab)
+	puts tab.to_s
 	fonction = tab[0]
 	arguments = tab[1..-1]
 	case fonction
@@ -152,21 +153,23 @@ def cust_print(array)
 	Chaine.new(a)
 end
 def cust_get(array)
-	element = str(calc(look_at(array, 0, "")))
+	element = look_at(array, 0, Vide.new(nil)).calc.to_string
 	print element
-	$stdin.gets.strip
+	Chaine.new($stdin.gets.strip)
 end
 def cust_break(array)
 	$break = false
-	""
+	Vide.new(nil)
 end
 ###########################################
 ##Parseurs
 ###########################################
 def find_second(text, char, index=1)
 	if index == text.length
+		puts "outRange"
 		raise "outRange"
 	elsif text[index] == char
+		puts "trouve !"
 		index
 	else
 		find_second(text, char, index+1)
@@ -190,7 +193,7 @@ def parseur(line, compteur = 0)
 	if line == ""
 		return []
 	elsif (not line.include?(" "))
-		return [line]
+		return [to_objet(line)]
 	else
 		begin
 			point = case line[0]
