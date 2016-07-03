@@ -39,32 +39,32 @@ class Vars
 end
 
 def allocate_var(array)
-	nom = str(calc(look_at(array, 0, "")))
+	nom = calc(look_at(array, 0, "").to_var)
 	donnee = calc(look_at(array, 1, ""))
 	$variables.add(nom, donnee)
 	donnee
 end
 def replace_var(array)
-	nom = str(calc(look_at(array, 0, "")))
+	nom = calc(look_at(array, 0, "").to_var)
 	donnee = calc(look_at(array, 1, ""))
 	$variables.replace(nom, donnee)
 	donnee
 end
 def read_var(array)
-	nom = str(calc(look_at(array, 0, "")))
+	nom = calc(look_at(array, 0, "").to_string)
 	$variables.get_value(nom)
 end
 def get_historic(array)
-	nom = str(calc(look_at(array, 0, "")))
+	nom = calc(look_at(array, 0, "").to_string)
 	$variables.history(nom)
 end
 def swap_var(array)
-	nom = str(calc(look_at(array, 0, "")))
-	nombis = str(calc(look_at(array, 1, "")))
+	nom = calc(look_at(array, 0, "").to_var)
+	nombis = calc(look_at(array, 1, "").to_var)
 	$variables.swap(nom, nombis)
 end
 def let_in(array)
-	nom = str(calc(look_at(array, 0, "")))
+	nom = calc(look_at(array, 0, "").to_var)
 	action = look_at(array, 1, "")
 	actionbis = look_at(array, 2, "")
 	$variables.add(nom, calc(action))
@@ -73,12 +73,12 @@ def let_in(array)
 	a
 end
 def increment(array)
-	nom = str(calc(look_at(array, 0, "")))
+	nom = calc(look_at(array, 0, "").to_var)
 	$variables.add(nom, int($variables.get_value(nom)) + 1)
 	$variables.get_value(nom)
 end
 def decrement(array)
-	nom = str(calc(look_at(array, 0, "")))
+	nom = calc(look_at(array, 0, "").to_var)
 	$variables.add(nom, int($variables.get_value(nom)) - 1)
 	$variables.get_value(nom)
 end
