@@ -40,13 +40,15 @@ end
 
 def allocate_var(array)
 	nom = look_at(array, 0, Vide.new(nil).calc.to_var)
+	puts "/#{array[0]}/"
+	puts "|#{nom}|"
 	donnee = calc(look_at(array, 1, Vide.new(nil)))
 	$variables.add(nom, donnee)
 	donnee
 end
 def replace_var(array)
-	nom = calc(look_at(array, 0, Vide.new(nil)).to_var)
-	donnee = calc(look_at(array, 1, Vide.new(nil)))
+	nom = look_at(array, 0, Vide.new(nil).calc.to_var)
+	donnee = look_at(array, 1, Vide.new(nil)).calc.valeur
 	$variables.replace(nom, donnee)
 	donnee
 end

@@ -8,8 +8,9 @@ require_relative "VarManip"
 #require_relative "FileManip"
 args = ARGV
 def chercheFonc(tab)
+	puts $variables
 	puts tab.to_s
-	fonction = tab[0]
+	fonction = tab[0].strip
 	arguments = tab[1..-1]
 	case fonction
 	#fonctions generales
@@ -166,24 +167,22 @@ end
 ###########################################
 def find_second(text, char, index=1)
 	if index == text.length
-		puts "outRange"
 		raise "outRange"
 	elsif text[index] == char
-		puts "trouve !"
 		index
 	else
 		find_second(text, char, index+1)
 	end
 end
 def find_matching(text, char, charbis, index=1, compteur=1)
-	if index == text.length
-		raise "outRange"
+	if compteur == 0
+		index - 1
 	elsif text[index] == char
 		find_matching(text, char, charbis, index+1, compteur-1)
 	elsif text[index] == charbis
 		find_matching(text, char, charbis, index+1, compteur+1)
-	elsif compteur == 0
-		index
+	elsif index == text.length
+		raise "outRange"
 	else
 		find_matching(text, char, charbis, index+1, compteur)
 	end
@@ -193,17 +192,17 @@ def parseur(line, compteur = 0)
 	if line == ""
 		return []
 	elsif (not line.include?(" "))
-		return [to_objet(line)]
+		return [to_objet(line, compteur)]
 	else
 		begin
-			point = case line[0]
-			when "'" then find_second(line, "'")
-			when '"' then find_second(line, '"')
-			when "(" then find_matching(line, ")", "(")
-			when "[" then find_matching(line, "]", "[")
-			else find_second(line, " ")
+			case line[0]
+			when "'" then point = find_second(line, "'")
+			when '"' then point = find_second(line, '"')
+			when "(" then point = find_matching(line, ")", "(")
+			when "[" then point = find_matching(line, "]", "[")
+			else point = find_second(line, " ")
 			end
-			[to_objet(line[0..point].strip, compteur)] + parseur(line[(point+1)..-1], compteur + 1)
+			[to_objet(line[0..point], compteur)] + parseur(line[(point+1)..-1], compteur + 1)
 		rescue
 			[to_objet(line, compteur)]
 		end

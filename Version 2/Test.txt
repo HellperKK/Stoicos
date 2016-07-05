@@ -1,4 +1,4 @@
-print (print "Bonjour les amis")
 print "Bonjour le monde" "C'est moi !"
 #print "Bonjour" (input "Quel est votre nom ?")
 allocate_var nom "Jean"
+print nom

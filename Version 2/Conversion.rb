@@ -26,6 +26,7 @@ def keep_only(str, strbis)
 	end
 end
 class Valeur
+	attr_reader :valeur
 	def initialize(x)
 		@valeur = x
 	end
