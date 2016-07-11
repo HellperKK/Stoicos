@@ -1,6 +1,7 @@
 class Vars
+	attr_reader :vars
 	def initialize
-		@vars = Hash.new([""])
+		@vars = Hash.new([Vide.new(nil)])
 	end
 	def to_s
 		@vars.to_s
@@ -19,7 +20,7 @@ class Vars
 		a
 	end
 	def replace(nom, contenu)
-		if @vars[nom] != [""] 
+		if @vars[nom] != [Vide.new(nil)] 
 			@vars[nom][0] = contenu
 		else
 			@vars[nom] = [contenu] + @vars[nom]
@@ -39,16 +40,14 @@ class Vars
 end
 
 def allocate_var(array)
-	nom = look_at(array, 0, Vide.new(nil).calc.to_var)
-	puts "/#{array[0]}/"
-	puts "|#{nom}|"
-	donnee = calc(look_at(array, 1, Vide.new(nil)))
+	nom = look_at(array, 0, Vide.new(nil)).calc.to_var
+	donnee = look_at(array, 1, Vide.new(nil))
 	$variables.add(nom, donnee)
 	donnee
 end
 def replace_var(array)
 	nom = look_at(array, 0, Vide.new(nil).calc.to_var)
-	donnee = look_at(array, 1, Vide.new(nil)).calc.valeur
+	donnee = look_at(array, 1, Vide.new(nil)).calc
 	$variables.replace(nom, donnee)
 	donnee
 end

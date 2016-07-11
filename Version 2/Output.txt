@@ -1,3 +1,8 @@
-print "Bonjour le monde" "C'est moi !"
+print "Bonjour le monde" "c'est moi !"
 #print "Bonjour" (input "Quel est votre nom ?")
-allocate_var nom "Jean"
+:= nom "Jean"
+:= prenom "Pierre"
+print prenom
+:= prenom nom
+print nom
+print prenom

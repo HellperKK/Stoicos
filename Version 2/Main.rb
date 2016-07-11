@@ -8,8 +8,6 @@ require_relative "VarManip"
 #require_relative "FileManip"
 args = ARGV
 def chercheFonc(tab)
-	puts $variables
-	puts tab.to_s
 	fonction = tab[0].strip
 	arguments = tab[1..-1]
 	case fonction
@@ -18,6 +16,7 @@ def chercheFonc(tab)
 	when "input" then cust_get(arguments)
 	#fonctions manip variables
 	when "allocate_var" then allocate_var(arguments)
+	when ":=" then allocate_var(arguments)
 	when "replace_var" then replace_var(arguments)
 	when "read_var" then read_var(arguments)
 	when "get_historic" then get_historic(arguments)
@@ -169,7 +168,7 @@ def find_second(text, char, index=1)
 	if index == text.length
 		raise "outRange"
 	elsif text[index] == char
-		index
+		index 
 	else
 		find_second(text, char, index+1)
 	end
@@ -191,8 +190,6 @@ def parseur(line, compteur = 0)
 	line = line.strip
 	if line == ""
 		return []
-	elsif (not line.include?(" "))
-		return [to_objet(line, compteur)]
 	else
 		begin
 			case line[0]
@@ -202,9 +199,9 @@ def parseur(line, compteur = 0)
 			when "[" then point = find_matching(line, "]", "[")
 			else point = find_second(line, " ")
 			end
-			[to_objet(line[0..point], compteur)] + parseur(line[(point+1)..-1], compteur + 1)
+			[to_objet(line[0..point].strip, compteur)] + parseur(line[(point + 1)..-1], compteur + 1)
 		rescue
-			[to_objet(line, compteur)]
+			[to_objet(line.strip, compteur)]
 		end
 	end
 end
