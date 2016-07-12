@@ -40,46 +40,55 @@ class Vars
 end
 
 def allocate_var(array)
-	nom = look_at(array, 0, Vide.new(nil)).calc.to_var
-	donnee = look_at(array, 1, Vide.new(nil))
+	nom = array.fetch(0, Vide.new(nil)).calc.to_var
+	donnee = array.fetch(1, Vide.new(nil)).calc
+	if Vairable === donnee
+		donnee = Chaine.new(donnee.valeur)
+	end
 	$variables.add(nom, donnee)
 	donnee
 end
 def replace_var(array)
-	nom = look_at(array, 0, Vide.new(nil).calc.to_var)
-	donnee = look_at(array, 1, Vide.new(nil)).calc
+	nom = array.fetch(0, Vide.new(nil)).calc.to_var
+	donnee = array.fetch(1, Vide.new(nil)).calc
+	if Vairable === donnee
+		donnee = Chaine.new(donnee.valeur)
+	end
 	$variables.replace(nom, donnee)
 	donnee
 end
 def read_var(array)
-	nom = calc(look_at(array, 0, Vide.new(nil)).to_string)
+	nom = array.fetch(0, Vide.new(nil)).calc.to_string
 	$variables.get_value(nom)
 end
 def get_historic(array)
-	nom = calc(look_at(array, 0, Vide.new(nil)).to_string)
+	nom = array.fetch(0, Vide.new(nil)).calc.to_var
 	$variables.history(nom)
 end
 def swap_var(array)
-	nom = calc(look_at(array, 0, Vide.new(nil)).to_var)
-	nombis = calc(look_at(array, 1, Vide.new(nil)).to_var)
+	nom = array.fetch(0, Vide.new(nil)).calc.to_var
+	nombis = array.fetch(1, Vide.new(nil)).calc.to_var
 	$variables.swap(nom, nombis)
 end
 def let_in(array)
-	nom = calc(look_at(array, 0, Vide.new(nil)).to_var)
-	action = look_at(array, 1, Vide.new(nil))
-	actionbis = look_at(array, 2, Vide.new(nil))
-	$variables.add(nom, calc(action))
-	a = calc(actionbis)
+	nom = array.fetch(0, Vide.new(nil)).calc.to_var
+	action = array.fetch(1, Vide.new(nil))
+	if Vairable === action
+		action = Chaine.new(action.valeur)
+	end
+	actionbis = array.fetch(2, Vide.new(nil))
+	$variables.add(nom, action.calc)
+	a = actionbis.calc
 	$variables.delete(nom)
 	a
 end
 def increment(array)
-	nom = calc(look_at(array, 0, Vide.new(nil)).to_var)
-	$variables.add(nom, int($variables.get_value(nom)) + 1)
+	nom = array.fetch(0, Vide.new(nil)).calc.to_var
+	$variables.add(nom, $variables.get_value(nom).to_int + 1)
 	$variables.get_value(nom)
 end
 def decrement(array)
-	nom = calc(look_at(array, 0, Vide.new(nil)).to_var)
-	$variables.add(nom, int($variables.get_value(nom)) - 1)
+	nom = array.fetch(0, Vide.new(nil)).calc.to_var
+	$variables.add(nom, $variables.get_value(nom).to_int - 1)
 	$variables.get_value(nom)
 end

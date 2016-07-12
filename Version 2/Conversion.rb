@@ -1,13 +1,13 @@
 =begin
 Liste des types :
 Int
+Float
 String
 Proc
 Variable
 Boolean
 Array
 Plus, potentiellement :
-Float
 Char
 Fonction
 Struct
@@ -244,5 +244,20 @@ def to_objet(chaine, id)
 		chaine
 	else
 		Variable.new(chaine)
+	end
+end
+def to_objet_dyn(valeur)
+	if Integer === valeur 
+		Entier.new(valeur)
+	elsif Float === valeur
+		Flottant.new(valeur)
+	elsif String === valeur
+		Chaine.new(valeur)
+	elsif Array === valeur
+		Tableau.new(valeur)
+	elsif String === valeur
+		Chaine.new(valeur)
+	elsif TrueClass === valeur || FalseClass === valeur
+		Booleen.new(valeur)
 	end
 end

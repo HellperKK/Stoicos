@@ -153,7 +153,7 @@ def cust_print(array)
 	Chaine.new(a)
 end
 def cust_get(array)
-	element = look_at(array, 0, Vide.new(nil)).calc.to_string
+	element = array.fetch(0, Vide.new(nil)).calc.to_string
 	print element
 	Chaine.new($stdin.gets.strip)
 end
