@@ -1,8 +1,32 @@
+=begin
 print "Bonjour le monde" "c'est moi !"
-#print "Bonjour" (input "Quel est votre nom ?")
-print (:= nom "Jean")
+#print "Bonjour" (input "Quel est votre nom ? ")
+print (:= nom "Machin")
 := prenom "Pierre"
 print prenom
-:= prenom nom
+:= prenom nom 
 print nom
 print prenom
+:= langage "Stoicos"
+:= qualificatif "genial"
+print  "Le" langage "c'est" qualificatif "!"
+let_in age 23 (print "J'ai" age "ans donc je suis encore jeune !")
+let_in papaille "J'aime" (print papaille "le chocolat !")
+print (upcase "coucou les amis c'est moi !" 2)
+print (join (split "Je suis un gentil canard !" " ") "-")
+print (format "J'ai {} ans et je mange {} piossons par jours !" 23)
+print (concat_s "coucou" "arg")
+let_in i (input "Quel poids ? ") (print "Ca vous fera" (* i 3) "euros")
+:= tableau [ 1 2 3 ]
+:= bloc { (+ 2 2) }
+:= chaine "J'aime le chocolat !"
+each tableau i (print i)
+each_with_index tableau i y (print  i y)
+each_char chaine i (print i)
+upto 0 10 i (print i)
+downto 10 0 i (print i)
+times 3 (print "hip")
+:= entier 7
+while (decr entier){ (if (even entier)  (:= entier (/ entier 2))  (:= entier (+ (* entier 3) 1)) ) (print entier) }
+=end
+print (format "Cette phrase {} sera vue {} comme ayant plein {} de {} placés un peu {} partout." 42)

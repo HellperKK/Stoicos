@@ -33,6 +33,9 @@ class Valeur
 	def calc
 		self
 	end
+	def calculate
+		self
+	end
 end
 class Entier < Valeur
 	#Contient un int
@@ -52,10 +55,10 @@ class Entier < Valeur
 		@valeur != 0
 	end
 	def to_proce
-		[@valeur]
+		[self]
 	end
 	def to_array
-		[@valeur]
+		[self]
 	end
 end
 class Flottant < Valeur
@@ -76,10 +79,10 @@ class Flottant < Valeur
 		@valeur != 0.0
 	end
 	def to_proce
-		[@valeur]
+		[self]
 	end
 	def to_array
-		[@valeur]
+		[self]
 	end
 end
 class Chaine < Valeur
@@ -100,10 +103,10 @@ class Chaine < Valeur
 		@valeur != ""
 	end
 	def to_proce
-		[@valeur]
+		[self]
 	end
 	def to_array
-		[@valeur]
+		[self]
 	end
 end
 class Variable < Valeur
@@ -148,28 +151,28 @@ class Booleen < Valeur
 		@valeur
 	end
 	def to_proce
-		[@valeur]
+		[self]
 	end
 	def to_array
-		[@valeur]
+		[self]
 	end
 end
 class Procedure < Valeur
 	#Contient un array
 	def to_int
-		@valeur != [] ? @valeur[0].to_int : 0
+		self.calculate.to_int
 	end
 	def to_float
-		@valeur != [] ? @valeur[0].to_float : 0.0
+		self.calculate.to_float
 	end
 	def to_string
-		@valeur != [] ? @valeur[0].to_string : ""
+		self.calculate.to_string
 	end
 	def to_var
-		@valeur != [] ? @valeur[0].to_var : ""
+		self.calculate.to_var
 	end
 	def to_bool
-		@valeur != [] ? @valeur[0].to_bool : false
+		self.calculate.to_bool
 	end
 	def to_proce
 		@valeur
@@ -179,6 +182,38 @@ class Procedure < Valeur
 	end
 	def calc
 		chercheFonc(@valeur)
+	end
+	def calculate
+		chercheFonc(@valeur)
+	end
+end
+class Bloc < Valeur
+	#Contient un array
+	def to_int
+		self.calculate.to_int
+	end
+	def to_float
+		self.calculate.to_float
+	end
+	def to_string
+		self.calculate.to_string
+	end
+	def to_var
+		self.calculate.to_var
+	end
+	def to_bool
+		self.calculate.to_bool
+	end
+	def to_proce
+		@valeur
+	end
+	def to_array
+		@valeur
+	end
+	def calculate
+		a = Vide.new(nil)
+		@valeur.each{|i| a = i.calc}
+		a
 	end
 end
 class Tableau < Valeur
@@ -190,7 +225,7 @@ class Tableau < Valeur
 		@valeur != [] ? @valeur[0].to_float : 0.0
 	end
 	def to_string
-		@valeur != [] ? @valeur[0].to_string : ""
+		@valeur.map{|i| i.to_string}.to_s
 	end
 	def to_var
 		@valeur != [] ? @valeur[0].to_var : ""
@@ -238,6 +273,10 @@ def to_objet(chaine, id)
 		Chaine.new(chaine[1..-2])
 	elsif chaine[0] == '('
 		Procedure.new(parseur(chaine[1..-2]))
+	elsif chaine[0] == '{'
+		Bloc.new(parseur(chaine[1..-2]))
+	elsif chaine[0] == '['
+		Tableau.new(parseur(chaine[1..-2]).map{|i| i.calc})
 	elsif ["true", "false"].include?(chaine)
 		Booleen.new(chaine == "true")
 	elsif id == 0

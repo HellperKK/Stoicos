@@ -20,7 +20,7 @@ class Vars
 		a
 	end
 	def replace(nom, contenu)
-		if @vars[nom] != [Vide.new(nil)] 
+		if @vars.include?(nom)
 			@vars[nom][0] = contenu
 		else
 			@vars[nom] = [contenu] + @vars[nom]
@@ -42,8 +42,8 @@ end
 def allocate_var(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
 	donnee = array.fetch(1, Vide.new(nil)).calc
-	if Vairable === donnee
-		donnee = Chaine.new(donnee.valeur)
+	if Variable === donnee
+		donnee = $variables.get_value(donnee.valeur)
 	end
 	$variables.add(nom, donnee)
 	donnee
@@ -51,8 +51,8 @@ end
 def replace_var(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
 	donnee = array.fetch(1, Vide.new(nil)).calc
-	if Vairable === donnee
-		donnee = Chaine.new(donnee.valeur)
+	if Variable === donnee
+		donnee = $variables.get_value(donnee.valeur)
 	end
 	$variables.replace(nom, donnee)
 	donnee
@@ -73,8 +73,8 @@ end
 def let_in(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
 	action = array.fetch(1, Vide.new(nil))
-	if Vairable === action
-		action = Chaine.new(action.valeur)
+	if Variable === action
+		action = $variables.get_value(donnee.valeur)
 	end
 	actionbis = array.fetch(2, Vide.new(nil))
 	$variables.add(nom, action.calc)
@@ -84,11 +84,11 @@ def let_in(array)
 end
 def increment(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
-	$variables.add(nom, $variables.get_value(nom).to_int + 1)
+	$variables.add(nom, Entier.new($variables.get_value(nom).to_int + 1))
 	$variables.get_value(nom)
 end
 def decrement(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
-	$variables.add(nom, $variables.get_value(nom).to_int - 1)
+	$variables.add(nom, Entier.new($variables.get_value(nom).to_int - 1))
 	$variables.get_value(nom)
 end

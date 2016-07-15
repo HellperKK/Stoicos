@@ -1,10 +1,10 @@
 require_relative "Conversion"
-#require_relative "StringManip"
-#require_relative "IntManip"
+require_relative "StringManip"
+require_relative "IntManip"
 #require_relative "ArrayManip"
 require_relative "VarManip"
 #require_relative "BoolManip"
-#require_relative "ProcManip"
+require_relative "ProcManip"
 #require_relative "FileManip"
 args = ARGV
 def chercheFonc(tab)
@@ -25,8 +25,8 @@ def chercheFonc(tab)
 	when "increment" then increment(arguments)
 	when "decrement" then decrement(arguments)
 	#fonctions de conversion
-	when "arr" then arr(arguments)
-	when "int" then intbis(arguments)
+	#when "arr" then arr(arguments)
+	#when "int" then intbis(arguments)
 	#fonctions manip string
 	when "repeat_s" then repeat_s(arguments)
 	when "capitalize" then cust_capitalize(arguments)
@@ -106,7 +106,7 @@ def chercheFonc(tab)
 	when "false" then cust_false(arguments)
 	#fonctions  manip proc
 	when "do" then cust_do(arguments)
-	when "proc_w" then proc_w(arguments)
+	#when "proc_w" then proc_w(arguments)
 	when "proc_r" then proc_r(arguments)
 	when "each" then cust_each(arguments)
 	when "each_index" then cust_each_index(arguments)
@@ -197,11 +197,12 @@ def parseur(line, compteur = 0)
 			when '"' then point = find_second(line, '"')
 			when "(" then point = find_matching(line, ")", "(")
 			when "[" then point = find_matching(line, "]", "[")
-			else point = find_second(line, " ")
+			when "{" then point = find_matching(line, "}", "{")
+			else point = find_second(line, " ") - 1
 			end
-			[to_objet(line[0..point].strip, compteur)] + parseur(line[(point + 1)..-1], compteur + 1)
+			[to_objet(line[0..point], compteur)] + parseur(line[(point + 1)..-1], compteur + 1)
 		rescue
-			[to_objet(line.strip, compteur)]
+			[to_objet(line, compteur)]
 		end
 	end
 end
