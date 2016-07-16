@@ -41,19 +41,16 @@ end
 
 def allocate_var(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
-	donnee = array.fetch(1, Vide.new(nil)).calc
-	if Variable === donnee
-		donnee = $variables.get_value(donnee.valeur)
-	end
+	donnee = array.fetch(1, Vide.new(nil)).calc.get
+	#~ if Variable === donnee
+		#~ donnee = $variables.get_value(donnee.valeur)
+	#~ end
 	$variables.add(nom, donnee)
 	donnee
 end
 def replace_var(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
-	donnee = array.fetch(1, Vide.new(nil)).calc
-	if Variable === donnee
-		donnee = $variables.get_value(donnee.valeur)
-	end
+	donnee = array.fetch(1, Vide.new(nil)).calc.get
 	$variables.replace(nom, donnee)
 	donnee
 end
@@ -72,10 +69,7 @@ def swap_var(array)
 end
 def let_in(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
-	action = array.fetch(1, Vide.new(nil))
-	if Variable === action
-		action = $variables.get_value(donnee.valeur)
-	end
+	action = array.fetch(1, Vide.new(nil)).get
 	actionbis = array.fetch(2, Vide.new(nil))
 	$variables.add(nom, action.calc)
 	a = actionbis.calc

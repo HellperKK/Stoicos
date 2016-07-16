@@ -6,21 +6,21 @@ end
 def cust_or(array)
 	bool = array.fetch(0, Vide.new(nil)).calc.to_bool
 	boolb = array.fetch(1, Vide.new(nil)).calc.to_bool
-	bool || boolb
+	Booleen.new(bool || boolb)
 end
 def cust_not(array)
 	array.fetch(0, Vide.new(nil)).calc.to_bool
-	not bool
+	Booleen.new((not bool))
 end
 def equal(array)
-	val = array.fetch(0, Vide.new(nil)).calc
-	valb = array.fetch(1, Vide.new(nil)).calc
-	(val == valb)
+	val = array.fetch(0, Vide.new(nil)).calc.get
+	valb = array.fetch(1, Vide.new(nil)).calc.get
+	Booleen.new(val.valeur == valb.valeur)
 end
 def different(array)
-	val = array.fetch(0, Vide.new(nil)).calc
-	valb = array.fetch(1, Vide.new(nil)).calc
-	(val != valb)
+	val = array.fetch(0, Vide.new(nil)).calc.get
+	valb = array.fetch(1, Vide.new(nil)).calc.get
+	Booleen.new(val.valeur != valb.valeur)
 end
 ############################
 def inf(array)

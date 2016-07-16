@@ -18,7 +18,7 @@ print (format "J'ai {} ans et je mange {} piossons par jours !" 23)
 print (concat_s "coucou" "arg")
 let_in i (input "Quel poids ? ") (print "Ca vous fera" (* i 3) "euros")
 := tableau [ 1 2 3 ]
-:= bloc { (+ 2 2) }
+:= bloc { (+ 2 2) "It's a trap !" }
 := chaine "J'aime le chocolat !"
 each tableau i (print i)
 each_with_index tableau i y (print  i y)
@@ -27,6 +27,21 @@ upto 0 10 i (print i)
 downto 10 0 i (print i)
 times 3 (print "hip")
 := entier 7
-while (decr entier){ (if (even entier)  (:= entier (/ entier 2))  (:= entier (+ (* entier 3) 1)) ) (print entier) }
+while (decr entier) { (if (even entier)  (:= entier (/ entier 2))  (:= entier (+ (* entier 3) 1)) ) (print entier) }
+:= isPrime { (:= prime2 2) (while (<> prime2 prime1) { (if (divisible prime1 prime2) (break) (pass)) (++ prime2) }) (= prime1 prime2) }
+:= prime1 139
+print (if (proc_r isPrime) "C'est un premier" "Ce n'est pas un premier")
+print (if true "Oui" "Non")
+:= liste (range 10)
+:= liste (mapi liste i y (* i y))
+each liste i (print i)
+:= liste (range 10)
+print (inject (slice_arr liste 3 7) x y (+ x y))
+print (sum_arr liste)
+print (if (include_arr [1 2 3] 5) "Oui" "Non")
 =end
-print (format "Cette phrase {} sera vue {} comme ayant plein {} de {} placés un peu {} partout." 42)
+:= isPrime { (:= prime2 2) (while (<> prime2 prime1) { (if (divisible prime1 prime2) (break) (pass)) (++ prime2) }) (print prime1 prime2) (= prime1 prime2) }
+:= prime1 8
+print (if (proc_r isPrime) "C'est un premier" "Ce n'est pas un premier")
+print (filter (range 100) i (even i))
+#print (filter (range 100) prime1 isPrime)

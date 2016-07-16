@@ -39,10 +39,11 @@ end
 def divisible(array)
 	element = array.fetch(0, Vide.new(nil)).calc.to_int
 	ajout = array.fetch(1, Entier.new(1)).calc.to_int
-	Entier.new(element % ajout == 0)
+	Booleen.new(element % ajout == 0)
 end
 def even(array)
 	element = array.fetch(0, Vide.new(nil)).calc.to_int
+	puts element
 	Booleen.new(element % 2 == 0)
 end
 def odd(array)

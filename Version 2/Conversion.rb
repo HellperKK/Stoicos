@@ -36,6 +36,9 @@ class Valeur
 	def calculate
 		self
 	end
+	def get
+		self
+	end
 end
 class Entier < Valeur
 	#Contient un int
@@ -59,6 +62,9 @@ class Entier < Valeur
 	end
 	def to_array
 		[self]
+	end
+	def to_self(x) 
+		x.to_int
 	end
 end
 class Flottant < Valeur
@@ -84,6 +90,9 @@ class Flottant < Valeur
 	def to_array
 		[self]
 	end
+	def to_self(x) 
+		x.to_float
+	end
 end
 class Chaine < Valeur
 	#Contient une string
@@ -107,6 +116,9 @@ class Chaine < Valeur
 	end
 	def to_array
 		[self]
+	end
+	def to_self(x) 
+		x.to_string
 	end
 end
 class Variable < Valeur
@@ -132,6 +144,12 @@ class Variable < Valeur
 	def to_array
 		$variables.get_value(@valeur).to_array
 	end
+	def get 
+		$variables.get_value(@valeur)
+	end
+	def to_self(x) 
+		x.to_var
+	end
 end
 class Booleen < Valeur
 	#Contient un booleen
@@ -155,6 +173,9 @@ class Booleen < Valeur
 	end
 	def to_array
 		[self]
+	end
+	def to_self(x) 
+		x.to_bool
 	end
 end
 class Procedure < Valeur
@@ -186,6 +207,9 @@ class Procedure < Valeur
 	def calculate
 		chercheFonc(@valeur)
 	end
+	def to_self(x) 
+		x.to_proce
+	end
 end
 class Bloc < Valeur
 	#Contient un array
@@ -215,6 +239,9 @@ class Bloc < Valeur
 		@valeur.each{|i| a = i.calc}
 		a
 	end
+	def to_self(x) 
+		x.to_bloc
+	end
 end
 class Tableau < Valeur
 	#Contient un array
@@ -239,6 +266,9 @@ class Tableau < Valeur
 	def to_array
 		@valeur
 	end
+	def to_self(x) 
+		x.to_array
+	end
 end
 class Vide < Valeur
 	#Contient du vide
@@ -262,6 +292,9 @@ class Vide < Valeur
 	end
 	def to_array
 		[]
+	end
+	def to_self(x) 
+		Vide.new(nil)
 	end
 end
 def to_objet(chaine, id)

@@ -1,9 +1,9 @@
 require_relative "Conversion"
 require_relative "StringManip"
 require_relative "IntManip"
-#require_relative "ArrayManip"
+require_relative "ArrayManip"
 require_relative "VarManip"
-#require_relative "BoolManip"
+require_relative "BoolManip"#Non finit
 require_relative "ProcManip"
 #require_relative "FileManip"
 args = ARGV
@@ -23,18 +23,20 @@ def chercheFonc(tab)
 	when "swap_var" then swap_var(arguments)
 	when "let_in" then let_in(arguments)
 	when "increment" then increment(arguments)
+	when "++" then increment(arguments)
 	when "decrement" then decrement(arguments)
+	when "--" then decrement(arguments)
 	#fonctions de conversion
 	#when "arr" then arr(arguments)
 	#when "int" then intbis(arguments)
-	#fonctions manip string
+	#fonctions manip string 
 	when "repeat_s" then repeat_s(arguments)
 	when "capitalize" then cust_capitalize(arguments)
 	when "upcase" then cust_upcase(arguments)
 	when "downcase" then cust_downcase(arguments)
 	when "swapcase" then cust_swapcase(arguments)
 	when "title" then title(arguments)
-	when "reverse" then cust_reverse(arguments)
+	when "reverse_s" then cust_reverse_s(arguments)
 	when "split" then cust_split(arguments)
 	when "join" then cust_join(arguments)
 	when "format" then cust_format(arguments)
@@ -62,7 +64,6 @@ def chercheFonc(tab)
 	when "even" then even(arguments)
 	when "odd" then odd(arguments)
 	#fonctions  manip array
-	when "rangex" then rangex(arguments)
 	when "range" then range(arguments)
 	when "head" then head(arguments)
 	when "tail" then tail(arguments)
@@ -102,8 +103,8 @@ def chercheFonc(tab)
 	when ">" then sup(arguments)
 	when "<=" then infeq(arguments)
 	when ">=" then supeq(arguments)
-	when "true" then cust_true(arguments)
-	when "false" then cust_false(arguments)
+	#when "true" then cust_true(arguments)
+	#when "false" then cust_false(arguments)
 	#fonctions  manip proc
 	when "do" then cust_do(arguments)
 	#when "proc_w" then proc_w(arguments)

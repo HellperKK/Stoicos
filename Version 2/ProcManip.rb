@@ -13,7 +13,7 @@ end
 def cust_each(array)
 	tableau = array.fetch(0, Vide.new(nil)).calc.to_array
 	iterateur = array.fetch(1, Vide.new(nil)).calc.to_var
-	action = array.fetch(2, Vide.new(nil))
+	action = array.fetch(2, Vide.new(nil)).get
 	a = Vide.new(nil)
 	tableau.each do |i|
 		$variables.replace(iterateur, i)
@@ -24,7 +24,7 @@ end
 def cust_each_index(array)
 	tableau = array.fetch(0, Vide.new(nil)).calc.to_array
 	iterateur = array.fetch(1, Vide.new(nil)).calc.to_var
-	action = array.fetch(2, Vide.new(nil))
+	action = array.fetch(2, Vide.new(nil)).get
 	a = ""
 	tableau.each_index do |i|
 		$variables.replace(iterateur, Entier.new(i))
@@ -36,7 +36,7 @@ def cust_each_with_index(array)
 	tableau = array.fetch(0, Vide.new(nil)).calc.to_array
 	iterateur = array.fetch(1, Vide.new(nil)).calc.to_var
 	iterbis = array.fetch(2, Vide.new(nil)).calc.to_var
-	action = array.fetch(3, Vide.new(nil))
+	action = array.fetch(3, Vide.new(nil)).get
 	a = ""
 	tableau.each_with_index do |i, y|
 		$variables.replace(iterateur, i)
@@ -48,7 +48,7 @@ end
 def cust_each_char(array)
 	tableau = array.fetch(0, Vide.new(nil)).calc.to_string
 	iterateur = array.fetch(1, Vide.new(nil)).calc.to_var
-	action = array.fetch(2, Vide.new(nil))
+	action = array.fetch(2, Vide.new(nil)).get
 	a = Vide.new(nil)
 	tableau.each_char do |i|
 		$variables.replace(iterateur, Chaine.new(i))
@@ -60,7 +60,7 @@ def cust_upto(array)
 	min = array.fetch(0, Vide.new(nil)).calc.to_int
 	max = array.fetch(1, Vide.new(nil)).calc.to_int
 	iterateur = array.fetch(2, Vide.new(nil)).calc.to_var
-	action = array.fetch(3, Vide.new(nil))
+	action = array.fetch(3, Vide.new(nil)).get
 	a = Vide.new(nil)
 	min.upto(max) do |i|
 		$variables.replace(iterateur, Entier.new(i))
@@ -72,7 +72,7 @@ def cust_downto(array)
 	max = array.fetch(0, Vide.new(nil)).calc.to_int
 	min = array.fetch(1, Vide.new(nil)).calc.to_int
 	iterateur = array.fetch(2, Vide.new(nil)).calc.to_var
-	action = array.fetch(3, Vide.new(nil))
+	action = array.fetch(3, Vide.new(nil)).get
 	a = Vide.new(nil)
 	max.downto(min) do |i|
 		$variables.replace(iterateur, Entier.new(i))
@@ -82,14 +82,14 @@ def cust_downto(array)
 end
 def cust_times(array)
 	fois = array.fetch(0, Vide.new(nil)).calc.to_int
-	action = array.fetch(1, Vide.new(nil))
+	action = array.fetch(1, Vide.new(nil)).get
 	a = Vide.new(nil)
 	fois.times{a = action.calculate}
 	a
 end
 def cust_while(array)
-	bool = array.fetch(0, Vide.new(nil))
-	action = array.fetch(1, Vide.new(nil))
+	bool = array.fetch(0, Vide.new(nil)).get
+	action = array.fetch(1, Vide.new(nil)).get
 	a = Vide.new(nil)
 	while bool.to_bool && $break
 		#puts $variables.get_value("entier")
@@ -100,9 +100,9 @@ def cust_while(array)
 end
 
 def cust_if(array)
-	bool = array.fetch(0, Vide.new(nil))
-	action = array.fetch(1, Vide.new(nil))
-	actionb = array.fetch(2, Vide.new(nil))
+	bool = array.fetch(0, Vide.new(nil)).get
+	action = array.fetch(1, Vide.new(nil)).get
+	actionb = array.fetch(2, Vide.new(nil)).get
 	if bool.to_bool
 		action.calculate
 	else
@@ -110,6 +110,7 @@ def cust_if(array)
 	end
 end
 def cust_case(array)
+	array.map!{|i| i.get}
 	if (array.length % 2) == 1
 		autre = array[-1]
 	else
