@@ -60,6 +60,9 @@ class Entier < Valeur
 	def to_proce
 		[self]
 	end
+	def to_bloc
+		[self]
+	end
 	def to_array
 		[self]
 	end
@@ -85,6 +88,9 @@ class Flottant < Valeur
 		@valeur != 0.0
 	end
 	def to_proce
+		[self]
+	end
+	def to_bloc
 		[self]
 	end
 	def to_array
@@ -114,6 +120,9 @@ class Chaine < Valeur
 	def to_proce
 		[self]
 	end
+	def to_bloc
+		[self]
+	end
 	def to_array
 		[self]
 	end
@@ -140,6 +149,9 @@ class Variable < Valeur
 	end
 	def to_proce
 		$variables.get_value(@valeur).to_proce
+	end
+	def to_proce
+		$variables.get_value(@valeur).to_bloc
 	end
 	def to_array
 		$variables.get_value(@valeur).to_array
@@ -171,6 +183,9 @@ class Booleen < Valeur
 	def to_proce
 		[self]
 	end
+	def to_bloc
+		[self]
+	end
 	def to_array
 		[self]
 	end
@@ -196,6 +211,9 @@ class Procedure < Valeur
 		self.calculate.to_bool
 	end
 	def to_proce
+		@valeur
+	end
+	def to_bloc
 		@valeur
 	end
 	def to_array
@@ -231,6 +249,9 @@ class Bloc < Valeur
 	def to_proce
 		@valeur
 	end
+	def to_bloc
+		@valeur
+	end
 	def to_array
 		@valeur
 	end
@@ -261,7 +282,10 @@ class Tableau < Valeur
 		@valeur != [] ? @valeur[0].to_bool : false
 	end
 	def to_proce
-		@valeur != [] ? @valeur[0].to_proce : []
+		@valeur
+	end
+	def to_bloc
+		@valeur
 	end
 	def to_array
 		@valeur
@@ -288,6 +312,9 @@ class Vide < Valeur
 		false
 	end
 	def to_proce
+		[]
+	end
+	def to_bloc
 		[]
 	end
 	def to_array

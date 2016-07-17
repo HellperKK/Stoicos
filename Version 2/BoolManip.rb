@@ -9,8 +9,8 @@ def cust_or(array)
 	Booleen.new(bool || boolb)
 end
 def cust_not(array)
-	array.fetch(0, Vide.new(nil)).calc.to_bool
-	Booleen.new((not bool))
+	bool = array.fetch(0, Vide.new(nil)).calc.to_bool
+	Booleen.new(! bool)
 end
 def equal(array)
 	val = array.fetch(0, Vide.new(nil)).calc.get
@@ -22,34 +22,33 @@ def different(array)
 	valb = array.fetch(1, Vide.new(nil)).calc.get
 	Booleen.new(val.valeur != valb.valeur)
 end
-############################
 def inf(array)
-	val = calc(look_at(array, 0, ""))
-	valb = calc(look_at(array, 1, ""))
-	valb = dynconv(val, valb)
-	(val < valb)
+	val = array.fetch(0, Vide.new(nil)).calc.get
+	valb = array.fetch(1, Vide.new(nil)).calc.get
+	valb = val.to_self(valb)
+	Booleen.new(val.valeur < valb)
 end
 def sup(array)
-	val = calc(look_at(array, 0, ""))
-	valb = calc(look_at(array, 1, ""))
-	valb = dynconv(val, valb)
-	(val > valb)
+	val = array.fetch(0, Vide.new(nil)).calc.get
+	valb = array.fetch(1, Vide.new(nil)).calc.get
+	valb = val.to_self(valb)
+	Booleen.new(val.valeur > valb)
 end
 def infeq(array)
-	val = calc(look_at(array, 0, ""))
-	valb = calc(look_at(array, 1, ""))
-	valb = dynconv(val, valb)
-	(val <= valb)
+	val = array.fetch(0, Vide.new(nil)).calc.get
+	valb = array.fetch(1, Vide.new(nil)).calc.get
+	valb = val.to_self(valb)
+	Booleen.new(val.valeur <= valb)
 end
 def supeq(array)
-	val = calc(look_at(array, 0, ""))
-	valb = calc(look_at(array, 1, ""))
-	valb = dynconv(val, valb)
-	(val >= valb)
+	val = array.fetch(0, Vide.new(nil)).calc.get
+	valb = array.fetch(1, Vide.new(nil)).calc.get
+	valb = val.to_self(valb)
+	Booleen.new(val.valeur >= valb)
 end
-def cust_true(array)
-	true
-end
-def cust_false(array)
-	false
-end
+#~ def cust_true(array)
+	#~ true
+#~ end
+#~ def cust_false(array)
+	#~ false
+#~ end

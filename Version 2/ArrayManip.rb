@@ -55,6 +55,7 @@ def filter(array)
 	element = array.fetch(0, Vide.new(nil)).calc.to_array
 	iter = array.fetch(1, Vide.new(nil)).calc.to_var
 	action = array.fetch(2, Vide.new(nil)).get
+	#puts [element, iter, action].to_s
 	newarr = []
 	element.each do |i|
 		$variables.replace(iter, i)
@@ -67,7 +68,7 @@ end
 def map(array)
 	element = array.fetch(0, Vide.new(nil)).calc.to_array
 	iter = array.fetch(1, Vide.new(nil)).calc.to_var
-	action = array.fetch(2, Vide.new(nil))
+	action = array.fetch(2, Vide.new(nil)).get
 	newarr = []
 	element.each do |i|
 		$variables.replace(iter, i)
@@ -79,7 +80,7 @@ def mapi(array)
 	element = array.fetch(0, Vide.new(nil)).calc.to_array
 	iter = array.fetch(1, Vide.new(nil)).calc.to_var
 	iterbis = array.fetch(2, Vide.new(nil)).calc.to_var
-	action = array.fetch(3, Vide.new(nil))
+	action = array.fetch(3, Vide.new(nil)).get
 	newarr = []
 	element.each_with_index do |item, index|
 		$variables.replace(iter, item)
@@ -92,7 +93,7 @@ def inject(array)
 	element = array.fetch(0, Vide.new(nil)).calc.to_array
 	iter = array.fetch(1, Vide.new(nil)).calc.to_var
 	iterbis = array.fetch(2, Vide.new(nil)).calc.to_var
-	action = array.fetch(3, Vide.new(nil))
+	action = array.fetch(3, Vide.new(nil)).get
 	$variables.add(iter, element[0])
 	element = element[1..-1]
 	element.each do |i|

@@ -3,7 +3,7 @@ require_relative "StringManip"
 require_relative "IntManip"
 require_relative "ArrayManip"
 require_relative "VarManip"
-require_relative "BoolManip"#Non finit
+require_relative "BoolManip"
 require_relative "ProcManip"
 #require_relative "FileManip"
 args = ARGV
