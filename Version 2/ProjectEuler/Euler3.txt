@@ -1,0 +1,10 @@
+:= isPrime {
+	(:= prime2 2)
+	(while (&& (!  (divisible prime1 prime2)) (inf (pow prime2 2) prime1)) 
+		(++ prime2)
+		)
+	(|| (!  (divisible prime1 prime2)) (= prime1 prime2))
+	}
+:= prime1 600851475143
+while (! isPrime) (:= prime1 (/ prime1 prime2))
+print prime1

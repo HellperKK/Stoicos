@@ -8,7 +8,7 @@ end
 #~ end
 def proc_r(array)
 	element = array.fetch(0, Vide.new(nil))
-	element.calculate
+	element.get.calculate
 end
 def cust_each(array)
 	tableau = array.fetch(0, Vide.new(nil)).calc.to_array

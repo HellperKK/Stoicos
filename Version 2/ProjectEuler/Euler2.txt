@@ -3,14 +3,12 @@
 	(:= fibo2 1)
 	(:= fibo3 [])
 	(while (< fibo2 fiboMax) {
-		(:= fibo3 (append fibo3 fibo2))
-		(print (len_arr fibo3))
+		(append fibo3 fibo2)
 		(swap_var fibo1 fibo2)
 		(:= fibo2 (+ fibo1 fibo2))
-		(print fibo2)
 		})
 		fibo3
 	}
 := fiboMax 4000000
-:= liste (proc_r fibos)
-print liste
+:= liste (filter (proc_r fibos) i (even i))
+print (sum_arr liste)

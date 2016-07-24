@@ -41,7 +41,7 @@ end
 
 def allocate_var(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
-	donnee = array.fetch(1, Vide.new(nil)).calc.get
+	donnee = array.fetch(1, Vide.new(nil)).get.calc
 	#~ if Variable === donnee
 		#~ donnee = $variables.get_value(donnee.valeur)
 	#~ end
@@ -50,7 +50,7 @@ def allocate_var(array)
 end
 def replace_var(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
-	donnee = array.fetch(1, Vide.new(nil)).calc.get
+	donnee = array.fetch(1, Vide.new(nil)).get.calc
 	$variables.replace(nom, donnee)
 	donnee
 end
@@ -84,5 +84,17 @@ end
 def decrement(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
 	$variables.add(nom, Entier.new($variables.get_value(nom).to_int - 1))
+	$variables.get_value(nom)
+end
+def prepend(array)
+	nom = array.fetch(0, Vide.new(nil)).calc.to_var
+	valeur = array.fetch(1, Vide.new(nil)).get.calc
+	$variables.add(nom, Tableau.new([valeur] + $variables.get_value(nom).to_array ))
+	$variables.get_value(nom)
+end
+def append(array)
+	nom = array.fetch(0, Vide.new(nil)).calc.to_var
+	valeur = array.fetch(1, Vide.new(nil)).get.calc
+	$variables.add(nom, Tableau.new($variables.get_value(nom).to_array + [valeur]))
 	$variables.get_value(nom)
 end

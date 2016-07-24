@@ -40,17 +40,6 @@ def repeat(array)
 	fois = array.fetch(1, Entier.new(mini-1)).calc.to_int
 	Tableau.new(Array.new(fois){element})
 end
-
-def prepend(array)
-	element = array.fetch(0, Vide.new(nil)).calc.to_array
-	valeur = array.fetch(1, Vide.new(nil)).calc
-	Tableau.new([valeur] + element)
-end
-def append(array)
-	element = array.fetch(0, Vide.new(nil)).calc.to_array
-	valeur = array.fetch(1, Vide.new(nil)).calc
-	Tableau.new(element + [valeur])
-end
 def filter(array)
 	element = array.fetch(0, Vide.new(nil)).calc.to_array
 	iter = array.fetch(1, Vide.new(nil)).calc.to_var
