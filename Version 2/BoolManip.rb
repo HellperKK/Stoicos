@@ -15,12 +15,14 @@ end
 def equal(array)
 	val = array.fetch(0, Vide.new(nil)).calc.get
 	valb = array.fetch(1, Vide.new(nil)).calc.get
-	Booleen.new(val.valeur == valb.valeur)
+	valb = val.to_self(valb)
+	Booleen.new(val.valeur == valb)
 end
 def different(array)
 	val = array.fetch(0, Vide.new(nil)).calc.get
 	valb = array.fetch(1, Vide.new(nil)).calc.get
-	Booleen.new(val.valeur != valb.valeur)
+	valb = val.to_self(valb)
+	Booleen.new(val.valeur != valb)
 end
 def inf(array)
 	val = array.fetch(0, Vide.new(nil)).calc.get

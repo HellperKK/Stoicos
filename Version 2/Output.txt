@@ -1,1 +1,4 @@
-times 20 (print (rand_int 10))
+:= fibos { (:= fibo1 0) (:= fibo2 1) (:= fibo3 []) (while (< fibo2 fiboMax) { (:= fibo3 (append fibo3 fibo2)) (swap_var fibo1 fibo2) (:= fibo2 (+ fibo1 fibo2)) (print fibo) }) fibo3 }
+:= fiboMax 4000000
+:= liste (proc_r fibos)
+print (at_arr liste 10)

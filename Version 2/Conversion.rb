@@ -313,7 +313,7 @@ class Bloc < Valeur
 	end
 	def calculate
 		a = Vide.new(nil)
-		@valeur.each{|i| a = i.calc}
+		@valeur.each{|i| a = i.calc.get}
 		a
 	end
 	def to_self(x) 
