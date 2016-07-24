@@ -3,10 +3,12 @@ Liste des types :
 Int
 Float
 String
-Proc
 Variable
 Boolean
+Proc
+Bloc
 Array
+Void
 Plus, potentiellement :
 Char
 Fonction
@@ -48,6 +50,9 @@ class Entier < Valeur
 	def to_float
 		@valeur.to_f
 	end
+	def to_char
+		@valeur.to_s[0]
+	end
 	def to_string
 		@valeur.to_s
 	end
@@ -78,6 +83,9 @@ class Flottant < Valeur
 	def to_float
 		@valeur
 	end
+	def to_char
+		@valeur.to_s[0]
+	end
 	def to_string
 		@valeur.to_s
 	end
@@ -100,6 +108,39 @@ class Flottant < Valeur
 		x.to_float
 	end
 end
+class Caractere < Valeur
+	#Contient une string
+	def to_int
+		@valeur.to_i
+	end
+	def to_float
+		@valeur.to_f
+	end
+	def to_char
+		@valeur
+	end
+	def to_string
+		@valeur
+	end
+	def to_var
+		@valeur.split(" ")[0]
+	end
+	def to_bool
+		@valeur != ""
+	end
+	def to_proce
+		[self]
+	end
+	def to_bloc
+		[self]
+	end
+	def to_array
+		[self]
+	end
+	def to_self(x) 
+		x.to_string
+	end
+end
 class Chaine < Valeur
 	#Contient une string
 	def to_int
@@ -107,6 +148,9 @@ class Chaine < Valeur
 	end
 	def to_float
 		@valeur.to_f
+	end
+	def to_char
+		@valeur[0]
 	end
 	def to_string
 		@valeur
@@ -137,6 +181,9 @@ class Variable < Valeur
 	end
 	def to_float
 		$variables.get_value(@valeur).to_float
+	end
+	def to_string
+		$variables.get_value(@valeur).to_string[0]
 	end
 	def to_string
 		$variables.get_value(@valeur).to_string
@@ -172,6 +219,9 @@ class Booleen < Valeur
 		@valeur ? 1.0 : 0.0
 	end
 	def to_string
+		@valeur ? "t" : "f"
+	end
+	def to_string
 		@valeur ? "true" : "false"
 	end
 	def to_var
@@ -200,6 +250,9 @@ class Procedure < Valeur
 	end
 	def to_float
 		self.calculate.to_float
+	end
+	def to_string
+		self.calculate.to_string[0]
 	end
 	def to_string
 		self.calculate.to_string
@@ -238,6 +291,9 @@ class Bloc < Valeur
 		self.calculate.to_float
 	end
 	def to_string
+		self.calculate.to_string[0]
+	end
+	def to_string
 		self.calculate.to_string
 	end
 	def to_var
@@ -272,6 +328,9 @@ class Tableau < Valeur
 	def to_float
 		@valeur != [] ? @valeur[0].to_float : 0.0
 	end
+	def to_var
+		@valeur != [] ? @valeur[0].to_string[0] : ""
+	end
 	def to_string
 		@valeur.map{|i| i.to_string}.to_s
 	end
@@ -302,6 +361,9 @@ class Vide < Valeur
 	def to_float
 		0.0
 	end
+	def to_char
+		""
+	end
 	def to_string
 		""
 	end
@@ -329,6 +391,8 @@ def to_objet(chaine, id)
 		Entier.new(chaine.to_i)
 	elsif chaine.to_f.to_s == chaine
 		Flottant.new(chaine.to_f)
+	elsif chaine[0] == "'" 
+		Caractere.new(chaine[1])
 	elsif chaine[0] == '"'
 		Chaine.new(chaine[1..-2])
 	elsif chaine[0] == '('
@@ -345,18 +409,18 @@ def to_objet(chaine, id)
 		Variable.new(chaine)
 	end
 end
-def to_objet_dyn(valeur)
-	if Integer === valeur 
-		Entier.new(valeur)
-	elsif Float === valeur
-		Flottant.new(valeur)
-	elsif String === valeur
-		Chaine.new(valeur)
-	elsif Array === valeur
-		Tableau.new(valeur)
-	elsif String === valeur
-		Chaine.new(valeur)
-	elsif TrueClass === valeur || FalseClass === valeur
-		Booleen.new(valeur)
-	end
-end
+#~ def to_objet_dyn(valeur)
+	#~ if Integer === valeur 
+		#~ Entier.new(valeur)
+	#~ elsif Float === valeur
+		#~ Flottant.new(valeur)
+	#~ elsif String === valeur
+		#~ Chaine.new(valeur)
+	#~ elsif Array === valeur
+		#~ Tableau.new(valeur)
+	#~ elsif String === valeur
+		#~ Chaine.new(valeur)
+	#~ elsif TrueClass === valeur || FalseClass === valeur
+		#~ Booleen.new(valeur)
+	#~ end
+#~ end

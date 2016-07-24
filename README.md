@@ -1,12 +1,11 @@
 # Stoicos
 ##Concept
-The Stoicos is a custom made language interpreted in ruby.
-Its concept is based on the fact that it uses a simple lexer/parser with means that all that needs to be done to extend this language is to add new functions.
-The major flaw of this language (in my opinion) is the fact there are no syntaxic sugar, meaning this language tends to be less readable when expanding.
+Le Stoicos est un langage de programmation interprété en ruby.
+Il est basé sur le fait d'utliser un lexer/parser très simple ce qui faiclite le travail de développement.
 
-##Version
-Two versions of the interpretor are in devellopement. 
+##Versions
+Deux verzsion sont disponibles
 
-The version 1 is the oldest one but is functionnal.
+La version 1 est terminée mais n'est plus en développement.
 
-The version 2 is young and not yet functionnal.
+La version 2 est proche de la sortie et possède des corrections ainsi que plus de fonctions. Il est cependant probable que des bugs non corrigés soient encore présents.

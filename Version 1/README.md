@@ -1,23 +1,20 @@
 # Stoicos
-##Concept
-The Stoicos is a custom made language interpreted in ruby.
-Its concept is based on the fact that it uses a simple lexer/parser with means that all that needs to be done to extend this language is to add new functions.
-The major flaw of this language (in my opinion) is the fact there are no syntaxic sugar, meaning this language tends to be less readable when expanding.
-Since a new version of this interpreter is on devellopement, support will be stopped when the new version will have enough to replace this version.
+##Developpement
+La version 2 étant en développement, l'utilisation de la version 1 n'est conseillée que dans le cas où le code serazit "cassé" par la version 2.
 
-##How to use
-Write your code in a txt file then use this command line :
-> [ruby] Main.rb My_file_name.txt
+##Utilisation
+Ecrire le code dans un fichier txt et esecuter la commande que voici :
+> [ruby] Main.rb Mon_fichier.txt
 
-You will need to have ruby 2.x installed on your computer.
+La présence de ruby 2.x est nécessaire.
 
-If you are on Windows, you can use this instead :
+Si vous êtes sur windows, vbous pouvezs utiliser la variante suivante :
 > Main.exe My_file_name.txt
 
-With no argument given the file Test.txt will be oppened by default.
+Par défaut Test.txt sera ouvert.
 
-##Example
-You can look at Examples for som code example.
+##Examples
+Des exemples sont présents dans le dossier Examples.
 
 ##Doc
-There is a full documentation in french (Doc_FR.pdf). Engish traslation will be done soon.
+Le fichier Doc_FR.pdf fourni une documentation complète.

@@ -1,4 +1,5 @@
 require_relative "Conversion"
+require_relative "CharManip"
 require_relative "StringManip"
 require_relative "IntManip"
 require_relative "ArrayManip"
@@ -29,6 +30,8 @@ def chercheFonc(tab)
 	#fonctions de conversion
 	#when "arr" then arr(arguments)
 	#when "int" then intbis(arguments)
+	#fonctions manip char
+	when "ord" then ord(arguments)
 	#fonctions manip string 
 	when "repeat_s" then repeat_s(arguments)
 	when "capitalize" then cust_capitalize(arguments)
@@ -46,6 +49,7 @@ def chercheFonc(tab)
 	when "include_s" then include_s(arguments)
 	when "concat_s" then concat_s(arguments)
 	#fonctions manip int
+	when "rand_int" then rand_int(arguments)
 	when "incr" then incr(arguments)
 	when "decr" then decr(arguments)
 	when "sum" then somme(arguments)
@@ -63,6 +67,7 @@ def chercheFonc(tab)
 	when "divisible" then divisible(arguments)
 	when "even" then even(arguments)
 	when "odd" then odd(arguments)
+	when "chr" then chr(arguments)
 	#fonctions  manip array
 	when "range" then range(arguments)
 	when "head" then head(arguments)
@@ -127,7 +132,7 @@ def chercheFonc(tab)
 	when "open_write" then cust_open_write(arguments)
 	when "exist_f" then exist_f(arguments)
 	#fonction erreur
-	else  "Instruction inconnue"
+	else  Vide.new(nil)
 	end
 end
 def arr_zip(array)

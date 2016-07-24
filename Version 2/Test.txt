@@ -1,11 +1,8 @@
-:= isPrime {
-	(:= prime2 2)
-	(while (&& (!  (divisible prime1 prime2)) (inf (pow prime2 2) prime1)) 
-		(++ prime2)
-		)
-	(|| (!  (divisible prime1 prime2)) (= prime1 prime2))
+:= aTrouver (rand_int 100)
+print aTrouver
+while (<> aTrouver proposition) {
+	(:= proposition (input "Proposez un nombre "))
+	(if (= proposition aTrouver) (print "Bien joue c'etait bien" aTrouver))
+	(if (< proposition aTrouver) (print "C'est plus grand"))
+	(if (> proposition aTrouver) (print "C'est plus petit"))
 	}
-:= prime1 17641
-print (if isPrime "C'est un premier" "Ce n'est pas un premier")
-let_in a 1 (while (<= a 10) {(print a) (++ a)})
-each (range 1 10) i (print i)

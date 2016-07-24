@@ -1,3 +1,12 @@
+def rand_int(array)
+	mini = array.fetch(0, Vide.new(nil)).calc.to_int
+	maxi = array.fetch(1, Entier.new(mini-1)).calc.to_int
+	if maxi < mini
+		maxi = mini
+		mini = 0
+	end
+	Entier.new(rand(mini..maxi))
+end
 def incr(array)
 	element = array.fetch(0, Vide.new(nil)).calc.to_int
 	Entier.new(element + 1)
@@ -48,4 +57,8 @@ end
 def odd(array)
 	element = array.fetch(0, Vide.new(nil)).calc.to_int
 	Booleen.new(element % 2 == 1)
+end
+def chr(array)
+	element = array.fetch(0, Vide.new(nil)).calc.to_int
+	Caractere.new(element.chr)
 end
