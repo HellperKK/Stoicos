@@ -95,6 +95,7 @@ end
 def append(array)
 	nom = array.fetch(0, Vide.new(nil)).calc.to_var
 	valeur = array.fetch(1, Vide.new(nil)).get.calc
-	$variables.add(nom, Tableau.new($variables.get_value(nom).to_array + [valeur]))
+	tableau = $variables.get_value(nom).to_array
+	$variables.add(nom, Tableau.new(tableau + [valeur]))
 	$variables.get_value(nom)
 end

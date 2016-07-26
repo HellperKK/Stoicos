@@ -55,7 +55,7 @@ def cust_format(array)
 	Chaine.new(element)
 end
 def cust_reverse_s(array)
-	array.fetch(0, Vide.new(nil)).calc.to_string
+	element = array.fetch(0, Vide.new(nil)).calc.to_string
 	Chaine.new(element.reverse)
 end
 def len_s(array)

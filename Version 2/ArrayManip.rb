@@ -1,6 +1,6 @@
 def sorteur(array)
 	element = array.fetch(0, Vide.new(nil)).calc.to_array
-	Tableau.new(element.sort)
+	Tableau.new(element.sort{|x, y| x.valeur <=> y.valeur})
 end
 def head(array)
 	element = array.fetch(0, Vide.new(nil)).calc.to_array
