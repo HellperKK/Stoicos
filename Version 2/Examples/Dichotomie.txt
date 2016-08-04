@@ -1,0 +1,16 @@
+:= min 0
+:= max 100
+:= liste (sort (map (range max) i (rand_int 100)))
+each liste i (print i)
+:= aTrouver (input "Quelle valeur chercher ? ")
+:= trouve false
+while true {
+	(:= milieu (/ (+ min max) 2))
+	(case
+		(= (at_arr liste milieu) aTrouver) {(:= trouve true) (break)}
+		(<= (- max min) 1) (break) 
+		(< (at_arr liste milieu) aTrouver) (:= min milieu)
+		(> (at_arr liste milieu) aTrouver) (:= max milieu) 
+		)
+	}
+print (if trouve "Trouve !" "Pas trouve")

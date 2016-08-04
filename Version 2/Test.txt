@@ -1,3 +1,2 @@
-:= min (sum_arr (map (range 100) i (** i 2)))
-:= max (** (sum_arr (range 100)) 2)
-print (- max min)
+:= phrase "Porte ce vieux wisky au juge blond qui fume"
+ each_char phrase i (print i)
