@@ -1,11 +1,11 @@
 # Stoicos
-##Concept
-Le Stoicos est un langage de programmation interprété en ruby.
-Il est basé sur le fait d'utliser un lexer/parser très simple ce qui faiclite le travail de développement.
+## Concept
+Le Stoicos est un langage de programmation interprÃ©tÃ© en ruby.
+Il est basÃ© sur le fait d'utliser un lexer/parser trÃ¨s simple ce qui faiclite le travail de dÃ©veloppement.
 
-##Versions
+## Versions
 Deux verzsion sont disponibles
 
-La version 1 est terminée mais n'est plus en développement.
+La version 1 est terminÃ©e mais n'est plus en dÃ©veloppement.
 
-La version 2 est proche de la sortie et possède des corrections ainsi que plus de fonctions. Il est cependant probable que des bugs non corrigés soient encore présents.
+La version 2 est proche de la sortie et possÃ¨de des corrections ainsi que plus de fonctions. Il est cependant probable que des bugs non corrigÃ©s soient encore prÃ©sents.
