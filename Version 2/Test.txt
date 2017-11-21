@@ -1,1 +1,36 @@
-print (sqrt 2)
+:= liste [31 17 64 87 52]
+each liste i (print i)
+
+print "____"
+print (inject liste a b (+ a b))
+print (inject liste a b (if (< b a) b a))
+print (inject liste a b (if (> b a) b a))
+
+print "____"
+append liste 46
+each liste i (print i)
+
+print "____"
+print (join liste "_")
+
+print "____"
+:= bloc {
+	(:= valeur (if (even valeur) (/ valeur 2) (+ 1 (* 3 valeur))))
+	}
+:= valeur (input "Entrer un nombre : ")
+while (<> valeur 1) {
+	(print valeur)
+	(proc_r bloc)
+	}
+print valeur
+
+print "____"
+:= rectest 4
+:= rectestb 1
+:= rec {
+	if (= rectest 0) 1 {(:= rectestb (* rectestb rectest)) (-- rectest) (proc_r rec)}
+	}
+#:= final (proc_r rec)
+print rectest
+print rectestb
+print final

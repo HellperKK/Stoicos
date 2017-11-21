@@ -14,10 +14,6 @@ Char
 Fonction
 Struct
 =end
-def has_only(str, strbis)
-	str.split("").all?{|i| strbis.include?(i)}
-end
-
 def keep_only(str, strbis)
 	if str == ""
 		""
@@ -31,7 +27,6 @@ def keep_only(str, strbis)
 		end
 	end
 end
-
 class Valeur
 	attr_reader :valeur
 	def initialize(x)
@@ -47,7 +42,6 @@ class Valeur
 		self
 	end
 end
-
 class Entier < Valeur
 	#Contient un int
 	def to_int
@@ -81,7 +75,6 @@ class Entier < Valeur
 		x.to_int
 	end
 end
-
 class Flottant < Valeur
 	#Contient un float
 	def to_int
@@ -115,7 +108,6 @@ class Flottant < Valeur
 		x.to_float
 	end
 end
-
 class Caractere < Valeur
 	#Contient une string
 	def to_int
@@ -149,7 +141,6 @@ class Caractere < Valeur
 		x.to_string
 	end
 end
-
 class Chaine < Valeur
 	#Contient une string
 	def to_int
@@ -183,7 +174,6 @@ class Chaine < Valeur
 		x.to_string
 	end
 end
-
 class Variable < Valeur
 	#Contient une string
 	def to_int
@@ -192,7 +182,7 @@ class Variable < Valeur
 	def to_float
 		$variables.get_value(@valeur).to_float
 	end
-	def to_char
+	def to_string
 		$variables.get_value(@valeur).to_string[0]
 	end
 	def to_string
@@ -220,7 +210,6 @@ class Variable < Valeur
 		x.to_var
 	end
 end
-
 class Booleen < Valeur
 	#Contient un booleen
 	def to_int
@@ -229,7 +218,7 @@ class Booleen < Valeur
 	def to_float
 		@valeur ? 1.0 : 0.0
 	end
-	def to_char
+	def to_string
 		@valeur ? "t" : "f"
 	end
 	def to_string
@@ -254,7 +243,6 @@ class Booleen < Valeur
 		x.to_bool
 	end
 end
-
 class Procedure < Valeur
 	#Contient un array
 	def to_int
@@ -263,7 +251,7 @@ class Procedure < Valeur
 	def to_float
 		self.calculate.to_float
 	end
-	def to_char
+	def to_string
 		self.calculate.to_string[0]
 	end
 	def to_string
@@ -294,7 +282,6 @@ class Procedure < Valeur
 		x.to_proce
 	end
 end
-
 class Bloc < Valeur
 	#Contient un array
 	def to_int
@@ -303,7 +290,7 @@ class Bloc < Valeur
 	def to_float
 		self.calculate.to_float
 	end
-	def to_char
+	def to_string
 		self.calculate.to_string[0]
 	end
 	def to_string
@@ -333,7 +320,6 @@ class Bloc < Valeur
 		x.to_bloc
 	end
 end
-
 class Tableau < Valeur
 	#Contient un array
 	def to_int
@@ -342,7 +328,7 @@ class Tableau < Valeur
 	def to_float
 		@valeur != [] ? @valeur[0].to_float : 0.0
 	end
-	def to_char
+	def to_var
 		@valeur != [] ? @valeur[0].to_string[0] : ""
 	end
 	def to_string
@@ -367,7 +353,6 @@ class Tableau < Valeur
 		x.to_array
 	end
 end
-
 class Vide < Valeur
 	#Contient du vide
 	def to_int
@@ -401,7 +386,6 @@ class Vide < Valeur
 		Vide.new(nil)
 	end
 end
-
 def to_objet(chaine, id)
 	if chaine.to_i.to_s == chaine
 		Entier.new(chaine.to_i)

@@ -37,7 +37,7 @@ def cust_split(array)
 	end
 end
 def cust_join(array)
-	element = array.fetch(0, Vide.new(nil)).calc.to_array
+	element = array.fetch(0, Vide.new(nil)).calc.to_array.map{|i| i.to_string}
 	separateur = array.fetch(1, Vide.new(nil)).calc.to_string
 	if element != []
 		Chaine.new(element.join(separateur))

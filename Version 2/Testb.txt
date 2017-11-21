@@ -1,0 +1,14 @@
+=begin
+:= acc 0
+upto 1 999 i (if (|| (divisible i 3) (divisible i 5)) (:= acc (+ acc i)) (pass))
+print acc
+=end
+
+=begin
+:= a 3
+:= b 0
+if (> a 2) (:= b "Trouve") (:= b "Rate")
+print b
+:= b (if (> a 2) "Trouve" "Rate")
+print b
+=end

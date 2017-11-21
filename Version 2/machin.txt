@@ -1,0 +1,9 @@
+print "Bonjour le monde !"
+:= nombre 12
+print "12 x 3 =" (* nombre 3)
+each (range 9) i (print i "x" nombre "=" (* i nombre))
+print i
+print (inject (range 9) a b (+ a b))
+print (inject (range 1000) a b (if (= (% b 19) 0) b a))
+:= times19 {(= (% b 19) 0)}
+print (inject (range 1000) a b (if times19 b a))

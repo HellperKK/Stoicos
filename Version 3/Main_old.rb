@@ -195,7 +195,7 @@ end
 def parseur(line, compteur = 0)
 	line = line.strip
 	if line == ""
-		[]
+		return []
 	else
 		begin
 			case line[0]
@@ -238,7 +238,7 @@ def execute_file(name)
 		elsif i == "=end"
 			lire = true
 		else
-			unless (i[0] == "#") || (i.strip == "") || (not lire)
+			unless (i[0] == "#") || (not lire)
 				exec(i)
 			end
 		end
