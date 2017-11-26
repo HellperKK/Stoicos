@@ -4,15 +4,19 @@ class Vars
 		@vars = [self.initial_hash]
 	end
 	
+	def unit
+		Value.new("unit", nil)
+	end
+	
 	def initial_hash
-		Hash.new()
+		Hash.new(self.unit)
 	end
 	
 	def to_s
 		@vars.to_s
 	end
 	
-	def add(nom, contenu)
+	def set_value(nom, contenu)
 		@vars[-1][nom] = contenu
 		contenu
 	end
@@ -29,7 +33,7 @@ class Vars
 				return @vars[i][nom]
 			end
 		end
-		self.get_value("unit")
+		self.unit
 	end
 	
 	def add_stack
@@ -38,5 +42,8 @@ class Vars
 	
 	def remove_stack
 		@vars.pop
+	end
+	def to_s
+		@vars[-1].to_s
 	end
 end

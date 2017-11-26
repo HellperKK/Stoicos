@@ -17,10 +17,13 @@ Struct
 $types = {}
 
 class Value
-	attr_reader :value
+	attr_reader :value, :type
 	def initialize(type, value)
 		@type = type
 		@value = value
+	end
+	def total_manip(type)
+		self.get.calc.convert(type)
 	end
 	def convert(type)
 		if @type == type
@@ -28,9 +31,9 @@ class Value
 		elsif ! ($types.include?(@type))
 			puts [self, @type, type].to_s
 		elsif ! ($types[@type].conversion.include?(type))
-			$types[@type].defaut.call()
+			$types[type].defaut.call()
 		else
-			$types[@type].conversion[type].call(@value)
+			$types[@type].conversion[type].call(self)
 		end
 	end
 	def calc
@@ -45,43 +48,81 @@ class Value
 	def call(x)
 		self
 	end
+	def to_s
+		@value.to_s
+	end
 end
 
 class Variable < Value
-	def initialize(type, name)
-		@type = type
-		@name = name
+	def initialize(type, value)
+		super(type, value)
 	end
 	def get
-		$vars.get_value(@name)
+		$vars.get_value(@value)
 	end
 end
 
 class NativeFunction < Value
-	def initialize(type, lambda)
-		@type = type
-		@lam = lambda
+	def initialize(type, value)
+		super(type, value)
 	end
 	def call(value)
-		@lam.call(value)
+		@value.call(value)
 	end
 end
 
 class CustonFunction < Value
-	def initialize(type, code)
-		@type = type
-		@code = code
+	def initialize(type, value, args)
+		super(type, value)
+		@args = args
 	end
 	def call(value)
-		@code.calculate
+		$vars.add_stack
+		if value.length < @args.length
+			arguments = value + Array.new(@args.length - value.length, $vars.unit)
+		else
+			arguments = value[0...@args.length]
+		end
+		@args.zip(arguments){|pair| $vars.set_value(pair[0].value, pair[1].get.calc)}
+		#~ puts $vars
+		result = @value.calculate
+		#~ puts $vars
+		$vars.remove_stack
+		result
+	end
+end
+
+class Proce < Value
+	def initialize(type, value)
+		super(type, value)
+	end
+	def calc
+		chercheFonc(@value)
+	end
+	def calculate
+		chercheFonc(@value)
+	end
+end
+
+class Blocke < Value
+	def initialize(type, value)
+		super(type, value)
+	end
+	def calculate
+		a = $vars.unit
+		@value.each{|x| a = x.calc}
+		a
 	end
 end
 
 class Type
 	attr_reader :conversion, :defaut
-	def initialize(defaut=lambda{$vars.get_value("unit")})
+	def initialize(defaut=lambda{$vars.unit})
 		@conversion = Hash.new()
 		@defaut = defaut
+	end
+	def set_conv(type, lam)
+		@conversion[type] = lam
 	end
 end
 
@@ -93,9 +134,9 @@ def to_objet(chaine)
 	elsif chaine[0] == '"'
 		Value.new("string", chaine[1..-2])
 	elsif chaine[0] == '('
-		Value.new("proc", parseur(chaine[1..-2]))
+		Proce.new("proc", parseur(chaine[1..-2]))
 	elsif chaine[0] == '{'
-		Value.new("block", parseur(chaine[1..-2]))
+		Blocke.new("block", parseur(chaine[1..-2]))
 	elsif ["true", "false"].include?(chaine)
 		Value.new("bool", chaine == "true")
 	else

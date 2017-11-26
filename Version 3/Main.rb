@@ -1,16 +1,9 @@
 require_relative "VarManip"
 require_relative "Conversion"
 require_relative "StdDef"
-#~ require_relative "CharManip"
-#~ require_relative "StringManip"
-#~ require_relative "IntManip"
-#~ require_relative "ArrayManip"
-#~ require_relative "BoolManip"
-#~ require_relative "ProcManip"
-#require_relative "FileManip"
 def chercheFonc(tab)
-	tab.map!{|x| x.get}
-	fonction = tab[0]
+	#~ puts tab.to_s
+	fonction = tab[0].get
 	arguments = tab[1..-1]
 	#~ puts arguments.to_s
 	fonction.convert("fun").call(arguments)
@@ -22,13 +15,13 @@ def arr_zip(array)
 		[array[0..1]] + arr_zip(array[2..-1])
 	end
 end
-#~ def look_at(array, indice, save)
-	#~ if indice <= (array.length-1)
-		#~ array[indice]
-	#~ else
-		#~ save
-	#~ end
-#~ end
+def look_at(array, indice)
+	if indice <= (array.length-1)
+		array[indice]
+	else
+		$vars.unit
+	end
+end
 def calc(arg)
 	arg.calc
 end
@@ -93,7 +86,7 @@ def parseur(line)
 	else
 		begin
 			case line[0]
-			when "'" then point = find_second(line, "'")
+			#~ when "'" then point = find_second(line, "'")
 			when '"' then point = find_second(line, '"')
 			when "(" then point = find_matching(line, ")", "(")
 			when "[" then point = find_matching(line, "]", "[")
@@ -135,7 +128,7 @@ def execute_file(name)
 		elsif i == "=end"
 			lire = true
 		else
-			unless (i[0] == "#") || (not lire)
+			unless (i == "") || (i[0] == "#") || (not lire)
 				exec(i)
 			end
 		end
@@ -161,7 +154,7 @@ principal = execute_file(ouvrir)
 contenu = principal.join("\n")
 f = File.open('Output.txt','w'){|i| i.write(contenu)}
 t2 = Time.now
-puts ""
+print "\n"
 puts t2 - t1
-#puts $variables
+#~ puts $vars
 #puts "|#{$variables["probleme4"]}|"
