@@ -62,6 +62,20 @@ class Variable < Value
 	end
 end
 
+class NSpace < Value
+	def initialize(type, value, attr)
+		super(type, value)
+		@attr = attr
+	end
+	def get
+		begin
+			$vars.get_value(@value).value[@attr]
+		rescue
+			$vars.get_value(@value)
+		end
+	end
+end
+
 class NativeFunction < Value
 	def initialize(type, value)
 		super(type, value)
@@ -110,7 +124,7 @@ class Blocke < Value
 	end
 	def calculate
 		a = $vars.unit
-		@value.each{|x| a = x.calc}
+		@value.each{|x| a = x.get.calc}
 		a
 	end
 end
@@ -139,6 +153,9 @@ def to_objet(chaine)
 		Blocke.new("block", parseur(chaine[1..-2]))
 	elsif ["true", "false"].include?(chaine)
 		Value.new("bool", chaine == "true")
+	elsif chaine.include?(".")
+		vals = chaine.split(".")
+		NSpace.new("nspace", vals[0], vals[1])
 	else
 		Variable.new("nom", chaine)
 	end

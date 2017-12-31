@@ -6,9 +6,11 @@ def std_init
 	$types["string"] = Type.new(lambda{Value.new("string", "")})
 	$types["nom"] = Type.new(lambda{Variable.new("nom", "unit")})
 	$types["bool"] = Type.new(lambda{Value.new("bool", false)})
+	$types["struct"] = Type.new(lambda{Value.new("struct", Hash.new($vars.unit))})
 	$types["proc"] = Type.new(lambda{Proce.new("proc", [])})
 	$types["block"] = Type.new(lambda{Blocke.new("block", [])})
-	$types["fun"] = Type.new(lambda{NativeFunction.new("fun", lambda(x){$vars.unit})})
+	$types["fun"] = Type.new(lambda{NativeFunction.new("fun", lambda{|x|$vars.unit})})
+	$types["nspace"] = Type.new(lambda{NSpace.new("nspace", "unit", "")})
 	
 	#Definition des convertions
 	$types["int"].set_conv("string", lambda{|value| Value.new("string", value.value.to_s)})
@@ -31,6 +33,9 @@ def std_init
 		str = array.map{|val| val.total_manip("string").value}.join(" ")
 		puts str
 		Value.new("string", str)
+	end))
+	$vars.set_value("debug", NativeFunction.new("fun", lambda do |array|
+		puts array.map{|i| i.get}.to_s
 	end))
 	$vars.set_value("input", NativeFunction.new("fun", lambda do |array| 
 		print look_at(array, 0).total_manip("string").value 
@@ -120,5 +125,13 @@ def std_init
 		block = array.pop.total_manip("block")
 		args = array.map{|value| value.calc.convert("nom")}
 		CustonFunction.new("fun", block, args)
+	end))
+	$vars.set_value("struct", NativeFunction.new("fun", lambda do |array|
+		block = look_at(array, 0).total_manip("block")
+		$vars.add_stack
+		block.calculate
+		resultat = $vars.get_stack
+		$vars.remove_stack
+		Value.new("struct", resultat)
 	end))
 end

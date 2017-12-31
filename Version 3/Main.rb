@@ -4,7 +4,7 @@ require_relative "StdDef"
 def chercheFonc(tab)
 	#~ puts tab.to_s
 	fonction = tab[0].get
-	arguments = tab[1..-1]
+	arguments = tab[1..-1].map{|i| i.calc}
 	#~ puts arguments.to_s
 	fonction.convert("fun").call(arguments)
 end

@@ -40,6 +40,10 @@ class Vars
 		@vars << self.initial_hash
 	end
 	
+	def get_stack
+		@vars[-1]
+	end
+	
 	def remove_stack
 		@vars.pop
 	end
