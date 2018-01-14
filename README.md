@@ -4,8 +4,8 @@ Le Stoicos est un langage de programmation interprete en ruby.
 Il est base sur le fait d'utliser un lexer très simple ce qui faiclite le travail de développement.
 
 ##Versions
+
 Trois version sont disponibles
-=======
 
 La version 1 est terminée mais n'est plus en dÃ©veloppement.
 
