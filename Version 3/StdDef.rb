@@ -16,9 +16,9 @@ def std_init
 	$types["int"].set_conv("string", lambda{|value| Value.new("string", value.value.to_s)})
 	
 	#Definition des valeurs de base
-	$vars.set_value("unit", Value.new("unit", nil))
-	$vars.set_value("true", Value.new("bool", true))
-	$vars.set_value("false", Value.new("bool", false))
+	#~ $vars.set_value("unit", Value.new("unit", nil))
+	#~ $vars.set_value("true", Value.new("bool", true))
+	#~ $vars.set_value("false", Value.new("bool", false))
 	
 	#Definition des fonctions de base
 	#Gestion console
