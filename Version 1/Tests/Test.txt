@@ -1,7 +1,0 @@
-#Récupère l'input
-allocate_var age (input 'quel est ton age ? : ')
-#Affiche le résultat selon l'input
-print (if (supeq (read_var age) 25)
-	(format 'tu as {} ans donc tu es vieux !' (read_var age))
-	(format 'tu as {} ans donc tu es jeune !' (read_var age))
-	)
