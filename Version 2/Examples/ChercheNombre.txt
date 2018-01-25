@@ -1,7 +1,0 @@
-:= aTrouver (rand_int 100)
-while (<> aTrouver proposition) {
-	(:= proposition (input "Proposez un nombre "))
-	(if (= proposition aTrouver) (print "Bien joue c'etait bien" aTrouver))
-	(if (< proposition aTrouver) (print "C'est plus grand"))
-	(if (> proposition aTrouver) (print "C'est plus petit"))
-	}
