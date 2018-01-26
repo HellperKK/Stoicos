@@ -62,7 +62,7 @@
 	)
 
 #debug List
-= test (List.range 0 10)
+= test (List.range 0 11)
 List.iter test (function x {(println x)})
-println ""
+println
 List.iter (List.reverse test) (function x {(println x)})
