@@ -13,7 +13,23 @@ def std_init
 	$types["nspace"] = Type.new(lambda{NSpace.new("nspace", "unit", "")})
 	
 	#Definition des convertions
-	$types["int"].set_conv("string", lambda{|value| Value.new("string", value.value.to_s)})
+	##Int
+	$types["int"].set_conv("float", lambda{|element| Value.new("float", element.value.to_f)})
+	$types["int"].set_conv("string", lambda{|element| Value.new("string", element.value.to_s)})
+	$types["int"].set_conv("nom", lambda{|element| Variable.new("nom", element.value.to_s)})
+	$types["int"].set_conv("bool", lambda{|element| Value.new("bool", element.value != 0)})
+	
+	##Float
+	$types["float"].set_conv("int", lambda{|element| Value.new("int", element.value.to_i)})
+	$types["float"].set_conv("string", lambda{|element| Value.new("string", element.value.to_s)})
+	$types["float"].set_conv("nom", lambda{|element| Variable.new("nom", element.value.to_s)})
+	$types["float"].set_conv("bool", lambda{|element| Value.new("bool", element.value != 0.0)})
+	
+	##String
+	$types["string"].set_conv("int", lambda{|element| Value.new("int", element.value.to_i)})
+	$types["string"].set_conv("float", lambda{|element| Value.new("float", element.value.to_f)})
+	$types["string"].set_conv("nom", lambda{|element| Variable.new("nom", element.value)})
+	$types["string"].set_conv("bool", lambda{|element| Value.new("bool", element.value != "")})
 	
 	#Definition des valeurs de base
 	#~ $vars.set_value("unit", Value.new("unit", nil))
