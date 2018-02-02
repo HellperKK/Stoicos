@@ -47,7 +47,7 @@ def find_second(text, char, index=1)
 	if index == text.length
 		raise "outRange"
 	elsif text[index] == char
-		index 
+		index
 	else
 		find_second(text, char, index+1)
 	end
@@ -109,13 +109,8 @@ def concatLine(texte)
 			tab.delete_at(i)
 		end
 	end
-	tab[0] = tab[0].strip 
+	tab[0] = tab[0].strip
 	tab
-end
-
-def exec(line)
-	tab = parseur(line)
-	chercheFonc(tab)
 end
 
 def execute_file(name)
@@ -129,7 +124,8 @@ def execute_file(name)
 			lire = true
 		else
 			unless (i == "") || (i[0] == "#") || (not lire)
-				exec(i)
+				tab = parseur(i)
+				chercheFonc(tab)
 			end
 		end
 	end
