@@ -1,18 +1,17 @@
 =begin
 Liste des types :
-Int
-Float
-String
-Variable
-Boolean
-Proc
-Bloc
-Array
-Void
-Plus, potentiellement :
+Int -> present
+Float -> present
+String -> present
+Variable -> present
+Boolean -> present
+Proc -> present
+Bloc -> present
+Array -> present
+Unit -> present
 Char
-Fonction
-Struct
+Fonction -> present
+Struct -> present
 =end
 $types = {}
 
@@ -103,6 +102,28 @@ class CustonFunction < Value
 		#~ puts $vars
 		$vars.remove_stack
 		result
+	end
+end
+
+class ArrayFunction < Value
+	def initialize(type, value)
+		super(type, value)
+	end
+	def call(args)
+		$vars.add_stack
+		$vars.set_value("args", args)
+		#~ puts $vars
+		result = @value.calculate
+		#~ puts $vars
+		$vars.remove_stack
+		result
+	end
+	def convert(type)
+		if type != "fun"
+			super(type)
+		else
+			self
+		end
 	end
 end
 

@@ -1,29 +1,29 @@
-= List 
+= List
 	(struct
 		{
 			(= preppend (function value liste {(struct {(= tete value) (= queue liste)})}))
-			(= make 
-				(function size value 
+			(= make
+				(function size value
 					{
-						(= aux 
+						(= aux
 							(function size acc
 								{
 									(if (== size 0) {acc} {(aux (- size 1) (List.preppend value acc))})
-								}							
+								}
 							)
 						)
 						(aux size unit)
 					}
 				)
 			)
-			(= iter 
-				(function list fun 
+			(= iter
+				(function list fun
 					{
-						(= aux 
+						(= aux
 							(function list
 								{
 									(if (!= list unit) {(fun list.tete) (aux list.queue)})
-								}							
+								}
 							)
 						)
 						(aux list)
@@ -33,11 +33,11 @@
 			(= reverse
 				(function list
 					{
-						(= aux 
+						(= aux
 							(function list acc
 								{
 									(if (== list unit) {acc} {(aux list.queue (List.preppend list.tete acc))})
-								}							
+								}
 							)
 						)
 						(aux list unit)
@@ -47,11 +47,11 @@
 			(= range
 				(function min max
 					{
-						(= aux 
+						(= aux
 							(function i acc
 								{
 									(if (== i max) {acc} {(aux (+ i 1) (List.preppend i acc))})
-								}							
+								}
 							)
 						)
 						(List.reverse (aux min unit))
@@ -64,5 +64,5 @@
 #debug List
 = test (List.range 0 10)
 List.iter test (function x {(println x)})
-println ""
+println
 List.iter (List.reverse test) (function x {(println x)})

@@ -11,6 +11,7 @@ def std_init
 	$types["proc"] = Type.new(lambda{|element| Proce.new("proc", [])})
 	$types["block"] = Type.new(lambda{|element| Blocke.new("block", [])})
 	$types["fun"] = Type.new(lambda{|element| NativeFunction.new("fun", lambda{|x|$vars.unit})})
+	$types["funa"] = Type.new(lambda{|element| ArrayFunction.new("funa", lambda{|x|$vars.unit})})
 	$types["nspace"] = Type.new(lambda{|element| NSpace.new("nspace", "unit", "")})
 
 	#Definition des convertions
@@ -145,6 +146,11 @@ def std_init
 		block = array.pop.total_manip("block")
 		args = array.map{|value| value.calc.convert("nom")}
 		CustonFunction.new("fun", block, args)
+	end))
+
+	$vars.set_value("funa", NativeFunction.new("fun", lambda do |array|
+		block = look_at(array, 0).total_manip("block")
+		ArrayFunction.new("funa", block)
 	end))
 
 	$vars.set_value("struct", NativeFunction.new("fun", lambda do |array|
