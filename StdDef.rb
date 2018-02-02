@@ -70,6 +70,8 @@ def std_init
 
 	#Gestion entiers
 	$vars.set_value("+", NativeFunction.new("fun", lambda do |array|
+		puts array.to_s
+		puts "test"
 		Value.new("int", array.map{|val| val.total_manip("int").value}.reduce(:+))
 	end))
 	$vars.set_value("-", NativeFunction.new("fun", lambda do |array|
@@ -84,6 +86,7 @@ def std_init
 
 	#Gestion flottants
 	$vars.set_value("+.", NativeFunction.new("fun", lambda do |array|
+		puts array.to_s
 		Value.new("float", array.map{|val| val.total_manip("float").value}.reduce(:+))
 	end))
 	$vars.set_value("-.", NativeFunction.new("fun", lambda do |array|

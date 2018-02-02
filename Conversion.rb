@@ -174,7 +174,7 @@ def to_objet(chaine)
 		Blocke.new("block", parseur(chaine[1..-2]))
 	elsif ["true", "false"].include?(chaine)
 		Value.new("bool", chaine == "true")
-	elsif chaine.include?(".")
+	elsif chaine.split(".").length >= 2
 		vals = chaine.split(".")
 		NSpace.new("nspace", vals[0], vals[1])
 	else
