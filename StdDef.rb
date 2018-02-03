@@ -33,6 +33,12 @@ def std_init
 	$types["string"].set_conv("nom", lambda{|element| Variable.new("nom", element.value)})
 	$types["string"].set_conv("bool", lambda{|element| Value.new("bool", element.value != "")})
 
+	##Fun
+	$types["fun"].set_conv("block", lambda{|element| element.value})
+
+	##Funa
+	$types["funa"].set_conv("block", lambda{|element| element.value})
+
 	#Definition des valeurs de base
 	#~ $vars.set_value("unit", Value.new("unit", nil))
 	#~ $vars.set_value("true", Value.new("bool", true))
@@ -70,8 +76,6 @@ def std_init
 
 	#Gestion entiers
 	$vars.set_value("+", NativeFunction.new("fun", lambda do |array|
-		puts array.to_s
-		puts "test"
 		Value.new("int", array.map{|val| val.total_manip("int").value}.reduce(:+))
 	end))
 	$vars.set_value("-", NativeFunction.new("fun", lambda do |array|
@@ -86,7 +90,6 @@ def std_init
 
 	#Gestion flottants
 	$vars.set_value("+.", NativeFunction.new("fun", lambda do |array|
-		puts array.to_s
 		Value.new("float", array.map{|val| val.total_manip("float").value}.reduce(:+))
 	end))
 	$vars.set_value("-.", NativeFunction.new("fun", lambda do |array|
@@ -145,8 +148,8 @@ def std_init
 	#Gestion block
 	$vars.set_value("if", NativeFunction.new("fun", lambda do |array|
 		first = look_at(array, 0).total_manip("bool")
-		second = look_at(array, 1).get.calc
-		third = look_at(array, 2).get.calc
+		second = look_at(array, 1).total_manip("block")
+		third = look_at(array, 2).total_manip("block")
 		if first.value
 			second.calculate
 		else
