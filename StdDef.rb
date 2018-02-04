@@ -33,11 +33,14 @@ def std_init
 	$types["string"].set_conv("nom", lambda{|element| Variable.new("nom", element.value)})
 	$types["string"].set_conv("bool", lambda{|element| Value.new("bool", element.value != "")})
 
+	##Block
+	$types["block"].set_conv("fun", lambda{|element| CustonFunction.new("fun", element, [])})
+
 	##Fun
-	$types["fun"].set_conv("block", lambda{|element| element.value})
+	#$types["fun"].set_conv("block", lambda{|element| element.value})
 
 	##Funa
-	$types["funa"].set_conv("block", lambda{|element| element.value})
+	#$types["funa"].set_conv("block", lambda{|element| element.value})
 
 	#Definition des valeurs de base
 	#~ $vars.set_value("unit", Value.new("unit", nil))

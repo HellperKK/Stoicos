@@ -1,5 +1,3 @@
 println "Hello"
 println (+ 1 (* 2 3))
-= test (function {(println "oui")})
-= test2 (function {(println "non")})
-if false test test2
+{(println "dans un block")}
