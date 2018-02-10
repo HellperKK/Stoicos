@@ -1,2 +1,4 @@
 = chaine "hello"
-println (String.get 3 chaine)
+println (String.get chaine 3)
+println (String.slice chaine 0 3)
+println (String.sub chaine 0 3)
