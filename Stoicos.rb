@@ -1,6 +1,8 @@
 require_relative "VarManip"
 require_relative "Conversion"
+$vars = Vars.new
 require_relative "StdDef"
+require_relative "StdDefBis"
 def chercheFonc(tab)
 	#~ puts tab.to_s
 	fonction = tab[0].get
@@ -142,7 +144,6 @@ else
 end
 
 t1 = Time.now
-$vars = Vars.new
 std_init
 #~ $break = true
 #~ $required = []
