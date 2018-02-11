@@ -2,3 +2,5 @@
 println (String.get chaine 3)
 println (String.slice chaine 0 3)
 println (String.sub chaine 0 3)
+#String.iter chaine println
+String.iter chaine (function item index {(println index ":" item) (debug index)})
