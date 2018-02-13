@@ -44,7 +44,7 @@ stringMod["iter"] = NativeFunction.new("fun", lambda do |array|
   $vars.unit
 end)
 
-# A debugguer 
+# A debugguer
 # stringMod["iteri"] = NativeFunction.new("fun", lambda do |array|
 #   first = look_at(array, 0).total_manip("string").value
 #   second = look_at(array, 1).total_manip("fun")
@@ -53,3 +53,36 @@ end)
 # end)
 
 $vars.set_value("String", Value.new("struct", stringMod))
+
+##Modif de string
+arrayMod = Hash.new($vars.unit)
+
+arrayMod["get"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("int").value
+  first[second]
+end)
+
+arrayMod["slice"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("int").value
+  third = look_at(array, 2).total_manip("int").value
+  Value.new("array", first[second...third])
+end)
+
+arrayMod["sub"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("int").value
+  third = look_at(array, 2).total_manip("int").value
+  maximum = second + third
+  Value.new("array", first[second...maximum])
+end)
+
+arrayMod["iter"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("fun")
+  first.each{|item| second.call([item])}
+  $vars.unit
+end)
+
+$vars.set_value("Array", Value.new("struct", arrayMod))

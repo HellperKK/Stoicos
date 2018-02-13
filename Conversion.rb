@@ -168,6 +168,8 @@ def to_objet(chaine)
 		Value.new("float", chaine.to_f)
 	elsif chaine[0] == '"'
 		Value.new("string", chaine[1..-2])
+	elsif chaine[0] == '['
+		Value.new("array", parseur(chaine[1..-2]).map{|i| i.get.calc})
 	elsif chaine[0] == '('
 		Proce.new("proc", parseur(chaine[1..-2]))
 	elsif chaine[0] == '{'
