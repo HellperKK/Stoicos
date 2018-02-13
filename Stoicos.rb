@@ -5,10 +5,10 @@ require_relative "StdDef"
 require_relative "StdDefBis"
 def chercheFonc(tab)
 	#~ puts tab.to_s
-	fonction = tab[0].get
+	fonction = tab[0].total_manip("fun")
 	arguments = tab[1..-1].map{|i| i.calc}
 	#~ puts arguments.to_s
-	fonction.convert("fun").call(arguments)
+	fonction.call(arguments)
 end
 def arr_zip(array)
 	if array.length < 2
