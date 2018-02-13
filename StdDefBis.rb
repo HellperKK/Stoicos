@@ -22,6 +22,11 @@ stringMod["sub"] = NativeFunction.new("fun", lambda do |array|
   Value.new("string", first[second...maximum])
 end)
 
+stringMod["length"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  Value.new("int", first.length)
+end)
+
 stringMod["strip"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   Value.new("string", first.strip)
@@ -76,6 +81,11 @@ arrayMod["sub"] = NativeFunction.new("fun", lambda do |array|
   third = look_at(array, 2).total_manip("int").value
   maximum = second + third
   Value.new("array", first[second...maximum])
+end)
+
+arrayMod["length"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  Value.new("int", first.length)
 end)
 
 arrayMod["iter"] = NativeFunction.new("fun", lambda do |array|

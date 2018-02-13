@@ -1,3 +1,4 @@
 = tab [1 2 3 "coucou"]
 println (Array.get tab 3)
 Array.iter tab println
+println (Array.length tab)
