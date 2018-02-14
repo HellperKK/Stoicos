@@ -157,7 +157,6 @@ def std_init
 		else
 			Value.new("int", -1)
 		end
-		Value.new("bool", )
 	end))
 
 	#Gestion block
