@@ -117,4 +117,11 @@ arrayMod["iter"] = NativeFunction.new("fun", lambda do |array|
   $vars.unit
 end)
 
+arrayMod["iteri"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("fun")
+  first.each_with_index{|item, index| second.call([item, Value.new("int", index)])}
+  $vars.unit
+end)
+
 $vars.set_value("Array", Value.new("struct", arrayMod))
