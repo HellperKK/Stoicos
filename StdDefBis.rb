@@ -42,6 +42,11 @@ stringMod["lowercase"] = NativeFunction.new("fun", lambda do |array|
   Value.new("string", first.lowercase)
 end)
 
+stringMod["reverse"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  Value.new("string", first.reverse)
+end)
+
 stringMod["iter"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   second = look_at(array, 1).total_manip("fun")
@@ -86,6 +91,17 @@ end)
 arrayMod["length"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   Value.new("int", first.length)
+end)
+
+arrayMod["reverse"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  Value.new("array", first.reverse)
+end)
+
+arrayMod["sort"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("fun")
+  Value.new("array", first.sort{|x, y| second.call([x, y]).total_manip("int").value})
 end)
 
 arrayMod["iter"] = NativeFunction.new("fun", lambda do |array|
