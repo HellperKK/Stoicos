@@ -32,6 +32,12 @@ stringMod["strip"] = NativeFunction.new("fun", lambda do |array|
   Value.new("string", first.strip)
 end)
 
+stringMod["split"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("string").value
+  Value.new("array", first.split(second))
+end)
+
 stringMod["uppercase"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   Value.new("string", first.uppercase)
@@ -54,13 +60,13 @@ stringMod["iter"] = NativeFunction.new("fun", lambda do |array|
   $vars.unit
 end)
 
-# A debugguer
-# stringMod["iteri"] = NativeFunction.new("fun", lambda do |array|
-#   first = look_at(array, 0).total_manip("string").value
-#   second = look_at(array, 1).total_manip("fun")
-#   first.split("").each_with_index{|item, index| second.call([Value.new("string", item), Value.new("int", index)])}
-#   $vars.unit
-# end)
+
+stringMod["iteri"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("fun")
+  first.split("").each_with_index{|item, index| second.call([Value.new("string", item), Value.new("int", index)])}
+  $vars.unit
+end)
 
 $vars.set_value("String", Value.new("struct", stringMod))
 
