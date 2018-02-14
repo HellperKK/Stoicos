@@ -135,7 +135,7 @@ def std_init
 	$vars.set_value("<=", NativeFunction.new("fun", lambda do |array|
 		first = look_at(array, 0).get.calc
 		second = look_at(array, 1).get.calc
-		Value.new("bool", (first.type <= second.type) || ((first.type == second.type) && (first.value <= second.value)))
+		Value.new("bool", (first.type < second.type) || ((first.type == second.type) && (first.value <= second.value)))
 	end))
 	$vars.set_value(">", NativeFunction.new("fun", lambda do |array|
 		first = look_at(array, 0).get.calc
@@ -145,7 +145,19 @@ def std_init
 	$vars.set_value(">=", NativeFunction.new("fun", lambda do |array|
 		first = look_at(array, 0).get.calc
 		second = look_at(array, 1).get.calc
-		Value.new("bool", (first.type <= second.type) || ((first.type == second.type) && (first.value >= second.value)))
+		Value.new("bool", (first.type > second.type) || ((first.type == second.type) && (first.value >= second.value)))
+	end))
+	$vars.set_value("<=>", NativeFunction.new("fun", lambda do |array|
+		first = look_at(array, 0).get.calc
+		second = look_at(array, 1).get.calc
+		if (first.type == second.type) && (first.value == second.value)
+			Value.new("int", 0)
+		elsif (first.type > second.type) || ((first.type == second.type) && (first.value > second.value))
+			Value.new("int", 1)
+		else
+			Value.new("int", -1)
+		end
+		Value.new("bool", )
 	end))
 
 	#Gestion block
