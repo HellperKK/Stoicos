@@ -4,7 +4,7 @@ def std_init
 	$types["int"] = Type.new(lambda{Value.new("int", 0)})
 	$types["float"] = Type.new(lambda{Value.new("float", 0.0)})
 	$types["string"] = Type.new(lambda{Value.new("string", "")})
-	$types["array"] = Type.new(lambda{Value.new("array", []])})
+	$types["array"] = Type.new(lambda{Value.new("array", [])})
 	$types["nom"] = Type.new(lambda{Variable.new("nom", "unit")})
 	$types["bool"] = Type.new(lambda{Value.new("bool", false)})
 	$types["struct"] = Type.new(lambda{Value.new("struct", Hash.new($vars.unit))})
