@@ -4,7 +4,7 @@ def std_init
 	$types["int"] = Type.new(lambda{Value.new("int", 0)})
 	$types["float"] = Type.new(lambda{Value.new("float", 0.0)})
 	$types["string"] = Type.new(lambda{Value.new("string", "")})
-	$types["array"] = Type.new(lambda{Value.new("array", element)})
+	$types["array"] = Type.new(lambda{Value.new("array", []])})
 	$types["nom"] = Type.new(lambda{Variable.new("nom", "unit")})
 	$types["bool"] = Type.new(lambda{Value.new("bool", false)})
 	$types["struct"] = Type.new(lambda{Value.new("struct", Hash.new($vars.unit))})
@@ -32,6 +32,10 @@ def std_init
 	$types["string"].set_conv("float", lambda{|element| Value.new("float", element.value.to_f)})
 	$types["string"].set_conv("nom", lambda{|element| Variable.new("nom", element.value)})
 	$types["string"].set_conv("bool", lambda{|element| Value.new("bool", element.value != "")})
+	$types["string"].set_conv("array", lambda{|element| Value.new("array", element.value.split(""))})
+
+	##Array
+	$types["array"].set_conv("string", lambda{|element| Value.new("string", element.value.join(""))})
 
 	##Block
 	$types["block"].set_conv("fun", lambda{|element| CustonFunction.new("fun", element, [])})
