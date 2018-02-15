@@ -53,13 +53,24 @@ stringMod["reverse"] = NativeFunction.new("fun", lambda do |array|
   Value.new("string", first.reverse)
 end)
 
+stringMod["map"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("fun")
+  Value.new("string",first.split("").map{|item| second.call([Value.new("string", item)])}.join(""))
+end)
+
+stringMod["mapi"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("fun")
+  Value.new("string",first.split("").each_with_index.map{|item, index| second.call([Value.new("string", item), Value.new("int", index)])}.join(""))
+end)
+
 stringMod["iter"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   second = look_at(array, 1).total_manip("fun")
   first.each_char{|item| second.call([Value.new("string", item)])}
   $vars.unit
 end)
-
 
 stringMod["iteri"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
