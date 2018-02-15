@@ -30,7 +30,7 @@ class Value
 		elsif ! ($types.include?(@type))
 			puts [self, @type, type].to_s
 		elsif ! ($types[@type].conversion.include?(type))
-			$types[type].defaut.call(self)
+			$types[type].defaut.call()
 		else
 			$types[@type].conversion[type].call(self)
 		end

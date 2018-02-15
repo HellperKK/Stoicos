@@ -1,4 +1,13 @@
-= tab [ 34 77 23 1 8]
+=begin
+= tab [34 77 23 1 8]
 println (Array.get tab 3)
 Array.iter (Array.reverse tab) println
 Array.iter (Array.sort tab <=>) println
+Array.iteri tab (function item index {(println index ":" item)})
+
+println "-----"
+=end
+
+= chaine "Hello"
+String.iteri chaine (function item index {(println index ":" item)})
+println (String.map chaine (function item {(^ item "!")}))

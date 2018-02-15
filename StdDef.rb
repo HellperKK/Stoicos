@@ -1,18 +1,18 @@
 def std_init
 	#Definitions des types
 	$types["unit"] = Type.new()
-	$types["int"] = Type.new(lambda{|element| Value.new("int", 0)})
-	$types["float"] = Type.new(lambda{|element| Value.new("float", 0.0)})
-	$types["string"] = Type.new(lambda{|element| Value.new("string", "")})
-	$types["array"] = Type.new(lambda{|element| Value.new("array", [element])})
-	$types["nom"] = Type.new(lambda{|element| Variable.new("nom", "unit")})
-	$types["bool"] = Type.new(lambda{|element| Value.new("bool", false)})
-	$types["struct"] = Type.new(lambda{|element| Value.new("struct", Hash.new($vars.unit))})
-	$types["proc"] = Type.new(lambda{|element| Proce.new("proc", [])})
-	$types["block"] = Type.new(lambda{|element| Blocke.new("block", [])})
-	$types["fun"] = Type.new(lambda{|element| NativeFunction.new("fun", lambda{|x|$vars.unit})})
-	$types["funa"] = Type.new(lambda{|element| ArrayFunction.new("funa", lambda{|x|$vars.unit})})
-	$types["nspace"] = Type.new(lambda{|element| NSpace.new("nspace", "unit", "")})
+	$types["int"] = Type.new(lambda{Value.new("int", 0)})
+	$types["float"] = Type.new(lambda{Value.new("float", 0.0)})
+	$types["string"] = Type.new(lambda{Value.new("string", "")})
+	$types["array"] = Type.new(lambda{Value.new("array", element)})
+	$types["nom"] = Type.new(lambda{Variable.new("nom", "unit")})
+	$types["bool"] = Type.new(lambda{Value.new("bool", false)})
+	$types["struct"] = Type.new(lambda{Value.new("struct", Hash.new($vars.unit))})
+	$types["proc"] = Type.new(lambda{Proce.new("proc", [])})
+	$types["block"] = Type.new(lambda{Blocke.new("block", [])})
+	$types["fun"] = Type.new(lambda{NativeFunction.new("fun", lambda{|x|$vars.unit})})
+	$types["funa"] = Type.new(lambda{ArrayFunction.new("funa", lambda{|x|$vars.unit})})
+	$types["nspace"] = Type.new(lambda{NSpace.new("nspace", "unit", "")})
 
 	#Definition des convertions
 	##Int
