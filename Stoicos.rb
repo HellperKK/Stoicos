@@ -10,37 +10,12 @@ def chercheFonc(tab)
 	#~ puts arguments.to_s
 	fonction.call(arguments)
 end
-def arr_zip(array)
-	if array.length < 2
-		[]
-	else
-		[array[0..1]] + arr_zip(array[2..-1])
-	end
-end
 def look_at(array, indice)
 	if indice <= (array.length-1)
 		array[indice]
 	else
 		$vars.unit
 	end
-end
-def calc(arg)
-	arg.calc
-end
-def cust_print(array)
-	element = array.map{|i| i.calc.to_string}
-	a = element.join(" ")
-	puts a
-	Chaine.new(a)
-end
-def cust_get(array)
-	element = array.fetch(0, Vide.new(nil)).calc.to_string
-	print element
-	Chaine.new($stdin.gets.strip)
-end
-def cust_break(array)
-	$break = false
-	Vide.new(nil)
 end
 ###########################################
 ##Parseurs
