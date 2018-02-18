@@ -1,13 +1,27 @@
-= tab [34 77 23 1 8]
-println tab
-println (Array.get tab 3)
-Array.iter (Array.reverse tab) println
-Array.iter (Array.sort tab <=>) println
-Array.iteri tab (function item index {(println item ":" index)})
+=begin
+return the nth number of the Fibbonacci sequence
+calculated recursively with an array that keep each intermediary result so
+each is only calculated once
+=end
 
-println "-----"
-
-
-= chaine "Hello"
-String.iteri chaine (function item index {(println item ":" index)})
-println (String.map (String.reverse chaine) (function item {(^ item "!")}))
+= fibbo (function number
+    {
+      (= tab (Array.make (+ number 1) unit))
+      (Array.set tab 0 0)
+      (Array.set tab 1 1)
+      (= aux (function x
+        {
+          (if (!= (Array.get tab x) unit)
+            {(Array.get tab x)}
+            {
+              (= temp (+ (aux (- x 1)) (aux (- x 2))))
+              (Array.set tab x temp)
+              temp
+            }
+          )
+        })
+      )
+      (aux number)
+    }
+  )
+println (fibbo 10)

@@ -127,6 +127,7 @@ def std_init
 		Value.new("bool", (first.type == second.type) && (first.value == second.value))
 	end))
 	$vars.set_value("!=", NativeFunction.new("fun", lambda do |array|
+		# puts array.to_s
 		first = look_at(array, 0).get.calc
 		second = look_at(array, 1).get.calc
 		Value.new("bool", (first.type != second.type) && (first.value != second.value))

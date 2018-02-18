@@ -120,6 +120,7 @@ end
 
 t1 = Time.now
 std_init
+std_init_bis
 #~ $break = true
 #~ $required = []
 principal = execute_file(ouvrir)
