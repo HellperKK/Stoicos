@@ -11,7 +11,7 @@ def chercheFonc(tab)
 	fonction.call(arguments)
 end
 def look_at(array, indice)
-	if indice <= (array.length-1)
+	if indice < (array.length) && indice >=0
 		array[indice]
 	else
 		$vars.unit

@@ -102,11 +102,7 @@ def std_init_bis
   arrayMod["get"] = NativeFunction.new("fun", lambda do |array|
     first = look_at(array, 0).total_manip("array").value
     second = look_at(array, 1).total_manip("int").value
-    if look_at(first, second) != nil
-      look_at(first, second)
-    else
-      $vars.unit
-    end
+    look_at(first, second)
   end)
 
   arrayMod["set"] = NativeFunction.new("fun", lambda do |array|
