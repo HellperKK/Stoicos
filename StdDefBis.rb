@@ -5,7 +5,7 @@ def std_init_bis
   stringMod["get"] = NativeFunction.new("fun", lambda do |array|
     first = look_at(array, 0).total_manip("string").value
     second = look_at(array, 1).total_manip("int").value
-    Value.new("string", first[second])
+    Value.new("string", look_at(first, second))
   end)
 
   stringMod["set"] = NativeFunction.new("fun", lambda do |array|
