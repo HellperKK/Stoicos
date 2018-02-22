@@ -1,26 +1,2 @@
-=begin
-Simple fizzbuzz
-=end
-
-= fizzbuzz (function number
-    {
-      (= chaine "")
-      (if (== 0 (% number 3)) {(= chaine (^ chaine "fizz"))})
-      (if (== 0 (% number 5)) {(= chaine (^ chaine "buzz"))})
-      (if (== chaine "") {(= chaine number)})
-      chaine
-    }
-  )
-= fizzcount (function max
-    {
-      (= aux (function i
-          {
-            (if (> i max) {} {(println (fizzbuzz i)) (aux (+ i 1))})
-          }
-        )
-      )
-      (aux 1)
-    }
-  )
-fizzcount 10
-#println (fizzbuzz 15)
+= chaine "coucou"
+println (String.get chaine 2)

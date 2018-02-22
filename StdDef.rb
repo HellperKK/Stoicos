@@ -35,7 +35,7 @@ def std_init
 	$types["string"].set_conv("array", lambda{|element| Value.new("array", element.value.split(""))})
 
 	##Array
-	$types["array"].set_conv("string", lambda{|element| Value.new("string", "[" + element.value.join(", ") + "]")})
+	$types["array"].set_conv("string", lambda{|element| Value.new("string", "[" + element.value.map{|i| i.total_manip("string").value}.join(", ") + "]")})
 
 	##Block
 	$types["block"].set_conv("fun", lambda{|element| CustonFunction.new("fun", element, [])})
