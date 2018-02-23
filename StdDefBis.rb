@@ -1,162 +1,174 @@
-def std_init_bis
-  ##Modif de string
-  stringMod = Hash.new($vars.unit)
+##Modif de string
+stringMod = Hash.new($vars.unit)
 
-  stringMod["get"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    second = look_at(array, 1).total_manip("int").value
-    Value.new("string", look_at(first, second))
-  end)
+stringMod["get"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("int").value
+  Value.new("string", look_at(first, second))
+end)
 
-  stringMod["set"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    second = look_at(array, 1).total_manip("int").value
-    second = look_at(array, 2).total_manip("string").value
-    first[second] = third
-    $vars.unit
-  end)
+stringMod["set"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("int").value
+  second = look_at(array, 2).total_manip("string").value
+  first[second] = third
+  $vars.unit
+end)
 
-  stringMod["slice"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    second = look_at(array, 1).total_manip("int").value
-    third = look_at(array, 2).total_manip("int").value
-    Value.new("string", first[second...third])
-  end)
+stringMod["slice"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("int").value
+  third = look_at(array, 2).total_manip("int").value
+  Value.new("string", first[second...third])
+end)
 
-  stringMod["sub"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    second = look_at(array, 1).total_manip("int").value
-    third = look_at(array, 2).total_manip("int").value
-    maximum = second + third
-    Value.new("string", first[second...maximum])
-  end)
+stringMod["sub"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("int").value
+  third = look_at(array, 2).total_manip("int").value
+  maximum = second + third
+  Value.new("string", first[second...maximum])
+end)
 
-  stringMod["length"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    Value.new("int", first.length)
-  end)
+stringMod["length"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  Value.new("int", first.length)
+end)
 
-  stringMod["strip"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    Value.new("string", first.strip)
-  end)
+stringMod["strip"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  Value.new("string", first.strip)
+end)
 
-  stringMod["split"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    second = look_at(array, 1).total_manip("string").value
-    Value.new("array", first.split(second))
-  end)
+stringMod["split"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("string").value
+  Value.new("array", first.split(second))
+end)
 
-  stringMod["uppercase"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    Value.new("string", first.uppercase)
-  end)
+stringMod["uppercase"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  Value.new("string", first.uppercase)
+end)
 
-  stringMod["lowercase"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    Value.new("string", first.lowercase)
-  end)
+stringMod["lowercase"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  Value.new("string", first.lowercase)
+end)
 
-  stringMod["reverse"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    Value.new("string", first.reverse)
-  end)
+stringMod["reverse"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  Value.new("string", first.reverse)
+end)
 
-  stringMod["map"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    second = look_at(array, 1).total_manip("fun")
-    Value.new("string",first.split("").map{|item| second.call([Value.new("string", item)])}.join(""))
-  end)
+stringMod["map"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("fun")
+  Value.new("string",first.split("").map{|item| second.call([Value.new("string", item)])}.join(""))
+end)
 
-  stringMod["mapi"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    second = look_at(array, 1).total_manip("fun")
-    Value.new("string",first.split("").each_with_index.map{|item, index| second.call([Value.new("string", item), Value.new("int", index)])}.join(""))
-  end)
+stringMod["mapi"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("fun")
+  Value.new("string",first.split("").each_with_index.map{|item, index| second.call([Value.new("string", item), Value.new("int", index)])}.join(""))
+end)
 
-  stringMod["iter"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    second = look_at(array, 1).total_manip("fun")
-    first.each_char{|item| second.call([Value.new("string", item)])}
-    $vars.unit
-  end)
+stringMod["iter"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("fun")
+  first.each_char{|item| second.call([Value.new("string", item)])}
+  $vars.unit
+end)
 
-  stringMod["iteri"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("string").value
-    second = look_at(array, 1).total_manip("fun")
-    first.split("").each_with_index{|item, index| second.call([Value.new("string", item), Value.new("int", index)])}
-    $vars.unit
-  end)
+stringMod["iteri"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("fun")
+  first.split("").each_with_index{|item, index| second.call([Value.new("string", item), Value.new("int", index)])}
+  $vars.unit
+end)
 
-  $vars.set_value("String", Value.new("struct", stringMod))
+stringMod["foldl"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1)
+  third = look_at(array, 2).total_manip("fun")
+  first.split("").map{|i| Value.new("string", i)}.inject(second){|memo, value| third.call([memo, value])}
+end)
 
-  ##Modif de string
-  arrayMod = Hash.new($vars.unit)
+$vars.set_value("String", Value.new("struct", stringMod))
 
-  arrayMod["make"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("int").value
-    second = look_at(array, 1).calc.get
-    Value.new("array", Array.new(first, second))
-  end)
+##Modif de string
+arrayMod = Hash.new($vars.unit)
 
-  arrayMod["get"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("array").value
-    second = look_at(array, 1).total_manip("int").value
-    look_at(first, second)
-  end)
+arrayMod["make"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("int").value
+  second = look_at(array, 1).calc.get
+  Value.new("array", Array.new(first, second))
+end)
 
-  arrayMod["set"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("array").value
-    second = look_at(array, 1).total_manip("int").value
-    third = look_at(array, 2).calc.get
-    first[second] = third
-    $vars.unit
-  end)
+arrayMod["get"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("int").value
+  look_at(first, second)
+end)
 
-  arrayMod["slice"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("array").value
-    second = look_at(array, 1).total_manip("int").value
-    third = look_at(array, 2).total_manip("int").value
-    Value.new("array", first[second...third])
-  end)
+arrayMod["set"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("int").value
+  third = look_at(array, 2).calc.get
+  first[second] = third
+  $vars.unit
+end)
 
-  arrayMod["sub"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("array").value
-    second = look_at(array, 1).total_manip("int").value
-    third = look_at(array, 2).total_manip("int").value
-    maximum = second + third
-    Value.new("array", first[second...maximum])
-  end)
+arrayMod["slice"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("int").value
+  third = look_at(array, 2).total_manip("int").value
+  Value.new("array", first[second...third])
+end)
 
-  arrayMod["length"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("array").value
-    Value.new("int", first.length)
-  end)
+arrayMod["sub"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("int").value
+  third = look_at(array, 2).total_manip("int").value
+  maximum = second + third
+  Value.new("array", first[second...maximum])
+end)
 
-  arrayMod["reverse"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("array").value
-    Value.new("array", first.reverse)
-  end)
+arrayMod["length"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  Value.new("int", first.length)
+end)
 
-  arrayMod["sort"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("array").value
-    second = look_at(array, 1).total_manip("fun")
-    Value.new("array", first.sort{|x, y| second.call([x, y]).total_manip("int").value})
-  end)
+arrayMod["reverse"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  Value.new("array", first.reverse)
+end)
 
-  arrayMod["iter"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("array").value
-    second = look_at(array, 1).total_manip("fun")
-    first.each{|item| second.call([item])}
-    $vars.unit
-  end)
+arrayMod["sort"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("fun")
+  Value.new("array", first.sort{|x, y| second.call([x, y]).total_manip("int").value})
+end)
 
-  arrayMod["iteri"] = NativeFunction.new("fun", lambda do |array|
-    first = look_at(array, 0).total_manip("array").value
-    second = look_at(array, 1).total_manip("fun")
-    first.each_with_index{|item, index| second.call([item, Value.new("int", index)])}
-    $vars.unit
-  end)
+arrayMod["iter"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("fun")
+  first.each{|item| second.call([item])}
+  $vars.unit
+end)
 
-  $vars.set_value("Array", Value.new("struct", arrayMod))
-end
+arrayMod["iteri"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("fun")
+  first.each_with_index{|item, index| second.call([item, Value.new("int", index)])}
+  $vars.unit
+end)
+
+arrayMod["foldl"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1)
+  third = look_at(array, 2).total_manip("fun")
+  first.inject(second){|memo, value| third.call([memo, value])}
+end)
+
+$vars.set_value("Array", Value.new("struct", arrayMod))
