@@ -1,3 +1,4 @@
+require "gosu"
 require_relative "VarManip"
 require_relative "Conversion"
 $vars = Vars.new
@@ -119,8 +120,8 @@ else
 end
 
 t1 = Time.now
-std_init
-std_init_bis
+# std_init
+# std_init_bis
 #~ $break = true
 #~ $required = []
 principal = execute_file(ouvrir)
