@@ -1,9 +1,9 @@
-require "gosu"
 require_relative "VarManip"
 require_relative "Conversion"
 $vars = Vars.new
 require_relative "StdDef"
 require_relative "StdDefBis"
+require_relative "GameDef"
 def chercheFonc(tab)
 	#~ puts tab.to_s
 	fonction = tab[0].total_manip("fun")
