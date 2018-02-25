@@ -68,7 +68,12 @@ class NSpace < Value
 	end
 	def get
 		begin
-			$vars.get_value(@value).value[@attr]
+			temp = $vars.get_value(@value).value
+			if temp.include?(@attr)
+				temp[@attr]
+			else
+				$vars.unit
+			end
 		rescue
 			$vars.get_value(@value)
 		end
