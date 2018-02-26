@@ -1,2 +1,6 @@
-= chaine "coucou"
-println (String.get chaine 2)
+= test "d"
+println (cond
+    [(== test 3) {"non"}]
+    [(== test 42) {"oui"}]
+    [true {"defaut"}]
+  )

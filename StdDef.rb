@@ -169,6 +169,18 @@ $vars.set_value("<=>", NativeFunction.new("fun", lambda do |array|
 end))
 
 #Gestion block
+$vars.set_value("cond", NativeFunction.new("fun", lambda do |array|
+	first = array.map{|i| i.total_manip("array").value}
+	first.each do |i|
+		second = look_at(i, 0).total_manip("bool").value
+		third = look_at(i, 1).total_manip("block")
+		if second
+			return third.calculate
+		end
+	end
+	$vars.unit
+end))
+
 $vars.set_value("if", NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).total_manip("bool")
 	second = look_at(array, 1).total_manip("block")
