@@ -185,10 +185,10 @@ $vars.set_value("cond", NativeFunction.new("fun", lambda do |array|
 end))
 
 $vars.set_value("if", NativeFunction.new("fun", lambda do |array|
-	first = look_at(array, 0).get.calculate.convert("bool")
+	first = look_at(array, 0).get.calculate.convert("bool").value
 	second = look_at(array, 1).total_manip("block")
 	third = look_at(array, 2).total_manip("block")
-	if first.value
+	if first
 		second.calculate
 	else
 		third.calculate
