@@ -53,4 +53,4 @@ end)
 
 $vars.set_value("Game", Value.new("struct", gameMod))
 
-puts Gosu::KbUp
+# puts Gosu::KbUp
