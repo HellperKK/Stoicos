@@ -1,5 +1,5 @@
 =begin
-return the nth number of the Fibbonacci sequence
+Return the nth number of the Fibbonacci sequence
 calculated recursively with an array that keep each intermediary result so
 each is only calculated once
 =end

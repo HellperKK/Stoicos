@@ -1,5 +1,5 @@
 =begin
-calculate factorial
+Calculate factorial
 =end
 
 = fact (function x

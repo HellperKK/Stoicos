@@ -1,5 +1,5 @@
 =begin
-show primes beneath
+Show primes beneath 100
 =end
 
 = is_prime (function nombre
