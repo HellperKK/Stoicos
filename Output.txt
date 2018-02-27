@@ -1,8 +1,6 @@
 =begin
-return the nth number of the Fibbonacci sequence
-calculated recursively with an array that keep each intermediary result so
-each is only calculated once
+show primes beneath
 =end
 
-= fibbo (function number { (= tab (Array.make (+ number 1) unit)) (Array.set tab 0 0) (Array.set tab 1 1) (= aux (function x { (if {(!= (Array.get tab x) unit)} {(Array.get tab x)} { (= temp (+ (aux (- x 1)) (aux (- x 2)))) (Array.set tab x temp) temp } ) }) ) (aux number) } )
-println (fibbo 10)
+= is_prime (function nombre { (= aux (function x { (cond [{(> (* x x) nombre)} {true}] [{(== (% nombre x) 0)} {false}] [true {(aux (+ x 1))}] ) }) ) (aux 2) } )
+Array.iteri (Array.make 98 unit) (function item index {(= plus (+ index 2)) (if (is_prime plus) {(println plus)})}))
