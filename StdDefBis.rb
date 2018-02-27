@@ -144,6 +144,18 @@ arrayMod["reverse"] = NativeFunction.new("fun", lambda do |array|
   Value.new("array", first.reverse)
 end)
 
+arrayMod["map"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("fun")
+  Value.new("array",first.map{|item| second.call([item])})
+end)
+
+arrayMod["mapi"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("fun")
+  Value.new("array",first.each_with_index.map{|item, index| second.call([item, Value.new("int", index)])})
+end)
+
 arrayMod["sort"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   second = look_at(array, 1).total_manip("fun")
