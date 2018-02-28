@@ -4,6 +4,7 @@ $vars = Vars.new
 require_relative "StdDef"
 require_relative "StdDefBis"
 require_relative "GameDef"
+require_relative "FileManager"
 def chercheFonc(tab)
 	#~ puts tab.to_s
 	fonction = tab[0].total_manip("fun")
@@ -116,15 +117,25 @@ args = ARGV
 if args != []
 	ouvrir = args[0]
 else
-	ouvrir = "Test.txt"
+	ouvrir = "./Main.txt"
 end
+
+if File.file?(ouvrir)
+	$chemin = FileManager.new(File.dirname(ouvrir), File.basename(ouvrir))
+elsif File.directory?(ouvrir)
+	$chemin = FileManager.new(ouvrir, "Main.txt")
+else
+	$chemin = FileManager.new(".", "Main.txt")
+end
+
+
 
 t1 = Time.now
 # std_init
 # std_init_bis
 #~ $break = true
 #~ $required = []
-principal = execute_file(ouvrir)
+principal = execute_file($chemin.main)
 contenu = principal.join("\n")
 f = File.open('Output.txt','w'){|i| i.write(contenu)}
 t2 = Time.now
