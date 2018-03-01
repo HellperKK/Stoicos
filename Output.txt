@@ -2,5 +2,7 @@
 show primes beneath
 =end
 
+= range (function min max { (println min max) (= ecart (- max min)) (Array.mapi (Array.make ecart unit) (function item index {(+ index min)})) } )
+
 = is_prime (function nombre { (= aux (function x { (cond [{(> (* x x) nombre)} {true}] [{(== (% nombre x) 0)} {false}] [true {(aux (+ x 1))}] ) }) ) (aux 2) } )
-Array.iteri (Array.make 98 unit) (function item index {(= plus (+ index 2)) (if (is_prime plus) {(println plus)})}))
+Array.iter (range 2 100) (function item {(if (is_prime item) {(println item)})}))
