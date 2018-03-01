@@ -62,7 +62,9 @@
 	)
 
 #debug List
+=begin
 = test (List.range 0 10)
 List.iter test (function x {(println x)})
 println
 List.iter (List.reverse test) (function x {(println x)})
+=end
