@@ -1,10 +1,11 @@
-require_relative "VarManip"
-require_relative "Conversion"
+require_relative "Src/VarManip"
+require_relative "Src/Conversion"
 $vars = Vars.new
-require_relative "StdDef"
-require_relative "StdDefBis"
-require_relative "GameDef"
-require_relative "FileManager"
+require_relative "Src/StdDef"
+require_relative "Src/StringDef"
+require_relative "Src/ArrayDef"
+require_relative "Src/GameDef"
+require_relative "Src/FileManager"
 def chercheFonc(tab)
 	#~ puts tab.to_s
 	fonction = tab[0].total_manip("fun")
