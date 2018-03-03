@@ -9,6 +9,9 @@ class GameWindow < Gosu::Window
     @showed = false
 	end
 	def update
+		if @input.include?(Gosu::KbEscape)
+			self.close!
+		end
 		@input = []
 	end
 	def draw
@@ -49,6 +52,16 @@ gameMod["key"] = NativeFunction.new("fun", lambda do |array|
   when "SPACE" then Value.new("int", Gosu::KbSpace)
   else Value.new("int", Gosu::KbSpace)
   end
+end)
+
+gameMod["pressed"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("int").value
+  Value.new("bool", $game.pressed?(first))
+end)
+
+gameMod["pressing"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("int").value
+  Value.new("bool", $game.pressing?(first))
 end)
 
 $vars.set_value("Game", Value.new("struct", gameMod))
