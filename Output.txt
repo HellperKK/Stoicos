@@ -1,1 +1,7 @@
-println (File.read "Test/TestText.txt")
+= init (function {(struct {(= x 32) (= y 32)})})
+
+= update (function state { (struct { (= x (% (+ state.x 1) 128)) (= y (% (+ state.y 1) 128)) } ) })
+
+= draw (function state {(Game.clean_screen) (Game.draw "Test/mouche.png" state.x state.y)})
+
+Game.start init update draw
