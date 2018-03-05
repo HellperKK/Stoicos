@@ -12,7 +12,7 @@ end
 class GameWindow < Gosu::Window
 	def initialize
 		super(640, 480, false)
-		self.caption = "JeuCartesVerehn"
+		self.caption = "Project"
 		@font = Gosu::Font.new(18)
 		@input = []
 		# @input = InputManager.new([Gosu::KbUp, Gosu::KbDown, Gosu::KbLeft, Gosu::KbRight, Gosu::KbSpace, Gosu::MsLeft], lambda{|i| button_down?(i)})
@@ -33,8 +33,6 @@ class GameWindow < Gosu::Window
   def start(init, update, draw)
 		@showed = true
 		@value = init.call([$vars.unit])
-		puts [@value].to_s
-		puts [init].to_s
 		@update = update
 		@draw = draw
 		self.show
