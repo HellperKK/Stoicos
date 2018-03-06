@@ -1,6 +1,8 @@
-= init (function {(struct {(= x 32) (= y 32)})})
+= build (function new_x new_y {(struct {(= x new_x) (= y new_y)})})
 
-= update (function state { (struct { (= x (% (+ state.x 1) 128)) (= y (% (+ state.y 1) 128)) } ) })
+= init (build 32 32)
+
+= update (function state { (= new_x state.x) (= new_y state.y) (if {(Game.pressing (Game.key "UP"))} {(= new_y (- new_y 1))}) (if {(Game.pressing (Game.key "DOWN"))} {(= new_y (+ new_y 1))}) (if {(Game.pressing (Game.key "LEFT"))} {(= new_x (- new_x 1))}) (if {(Game.pressing (Game.key "RIGHT"))} {(= new_x (+ new_x 1))}) (build new_x new_y) } )
 
 = draw (function state {(Game.clean_screen) (Game.draw "Test/mouche.png" state.x state.y)})
 
