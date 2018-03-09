@@ -115,12 +115,11 @@ end))
 $vars.set_value("/.", NativeFunction.new("fun", lambda do |array|
 	Value.new("float", array.map{|val| val.total_manip("float").value}.reduce(:/))
 end))
-
-#~ $vars.set_value("/", NativeFunction.new("fun", lambda do |array|
-	#~ first = look_at(array, 0).total_manip("int").value
-	#~ second = look_at(array, 1).total_manip("int").value
-	#~ Value.new("int", first / second)
-#~ end))
+$vars.set_value("**", NativeFunction.new("fun", lambda do |array|
+	first = look_at(array, 0).total_manip("float").value
+	second = look_at(array, 1).total_manip("float").value
+	Value.new("float", first ** second)
+end))
 
 #Gestion strings
 $vars.set_value("^", NativeFunction.new("fun", lambda do |array|
