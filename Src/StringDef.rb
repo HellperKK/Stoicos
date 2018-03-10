@@ -10,9 +10,9 @@ end)
 stringMod["set"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   second = look_at(array, 1).total_manip("int").value
-  second = look_at(array, 2).total_manip("string").value
+  third = look_at(array, 2).total_manip("string").value
   first[second] = third
-  $vars.unit
+  Value.new("string", first)
 end)
 
 stringMod["slice"] = NativeFunction.new("fun", lambda do |array|
@@ -46,14 +46,14 @@ stringMod["split"] = NativeFunction.new("fun", lambda do |array|
   Value.new("array", first.split(second))
 end)
 
-stringMod["uppercase"] = NativeFunction.new("fun", lambda do |array|
+stringMod["upcase"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
-  Value.new("string", first.uppercase)
+  Value.new("string", first.upcase)
 end)
 
-stringMod["lowercase"] = NativeFunction.new("fun", lambda do |array|
+stringMod["downcase"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
-  Value.new("string", first.lowercase)
+  Value.new("string", first.downcase)
 end)
 
 stringMod["reverse"] = NativeFunction.new("fun", lambda do |array|
