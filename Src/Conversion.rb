@@ -123,13 +123,13 @@ class ArrayFunction < Value
 		$vars.remove_stack
 		result
 	end
-	def convert(type)
-		if type != "fun"
-			super(type)
-		else
-			self
-		end
-	end
+	# def convert(type)
+	# 	if type != "fun"
+	# 		super(type)
+	# 	else
+	# 		self
+	# 	end
+	# end
 end
 
 class Proce < Value

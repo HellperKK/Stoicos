@@ -10,7 +10,7 @@ $types["struct"] = Type.new(lambda{Value.new("struct", Hash.new($vars.unit))})
 $types["proc"] = Type.new(lambda{Proce.new("proc", [])})
 $types["block"] = Type.new(lambda{Blocke.new("block", [])})
 $types["fun"] = Type.new(lambda{NativeFunction.new("fun", lambda{|x|$vars.unit})})
-$types["funa"] = Type.new(lambda{ArrayFunction.new("funa", lambda{|x|$vars.unit})})
+# $types["funa"] = Type.new(lambda{ArrayFunction.new("funa", lambda{|x|$vars.unit})})
 $types["nspace"] = Type.new(lambda{NSpace.new("nspace", "unit", "")})
 
 #Definition des convertions
@@ -207,7 +207,7 @@ end))
 
 $vars.set_value("funa", NativeFunction.new("fun", lambda do |array|
 	block = look_at(array, 0).total_manip("block")
-	ArrayFunction.new("funa", block)
+	ArrayFunction.new("fun", block)
 end))
 
 $vars.set_value("|>", NativeFunction.new("fun", lambda do |array|
