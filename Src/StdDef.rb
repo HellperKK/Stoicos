@@ -200,8 +200,8 @@ $vars.set_value("evalblock", NativeFunction.new("fun", lambda do |array|
 end))
 
 $vars.set_value("function", NativeFunction.new("fun", lambda do |array|
-	block = array.pop.total_manip("block")
-	args = array.map{|value| value.calc.convert("nom")}
+	args = array[0...-1].map{|value| value.calc.convert("nom")}
+	block = array[-1].total_manip("block")
 	CustonFunction.new("fun", block, args)
 end))
 
