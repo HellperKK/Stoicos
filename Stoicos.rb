@@ -4,6 +4,7 @@ $vars = Vars.new
 require_relative "Src/StdDef"
 require_relative "Src/StringDef"
 require_relative "Src/ArrayDef"
+require_relative "Src/MathDef"
 require_relative "Src/GameDef"
 require_relative "Src/FileManager"
 def chercheFonc(tab)
