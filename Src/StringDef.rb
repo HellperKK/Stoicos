@@ -63,7 +63,7 @@ end)
 
 stringMod["chars_code"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
-  Value.new("array", first.bytes.map{|i| Value.new(Int, i)})
+  Value.new("array", first.bytes.map{|i| Value.new("int", i)})
 end)
 
 stringMod["map"] = NativeFunction.new("fun", lambda do |array|
