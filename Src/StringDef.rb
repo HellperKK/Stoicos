@@ -61,6 +61,11 @@ stringMod["reverse"] = NativeFunction.new("fun", lambda do |array|
   Value.new("string", first.reverse)
 end)
 
+stringMod["chars_code"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  Value.new("array", first.bytes.map{|i| Value.new(Int, i)})
+end)
+
 stringMod["map"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   second = look_at(array, 1).total_manip("fun")

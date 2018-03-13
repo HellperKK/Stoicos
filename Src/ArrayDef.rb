@@ -13,6 +13,11 @@ arrayMod["get"] = NativeFunction.new("fun", lambda do |array|
   look_at(first, second)
 end)
 
+arrayMod["first"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  look_at(first, 0)
+end)
+
 arrayMod["set"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   second = look_at(array, 1).total_manip("int").value
