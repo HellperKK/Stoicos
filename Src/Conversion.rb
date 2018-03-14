@@ -183,7 +183,7 @@ def to_objet(chaine)
 		Value.new("bool", chaine == "true")
 	elsif chaine.split(".").length >= 2
 		vals = chaine.split(".")
-		NSpace.new("nspace", vals[0], vals[1])
+		NSpace.new("nom", vals[0], vals[1])
 	else
 		Variable.new("nom", chaine)
 	end

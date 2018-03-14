@@ -11,7 +11,7 @@ $types["proc"] = Type.new(lambda{Proce.new("proc", [])})
 $types["block"] = Type.new(lambda{Blocke.new("block", [])})
 $types["fun"] = Type.new(lambda{NativeFunction.new("fun", lambda{|x|$vars.unit})})
 # $types["funa"] = Type.new(lambda{ArrayFunction.new("funa", lambda{|x|$vars.unit})})
-$types["nspace"] = Type.new(lambda{NSpace.new("nspace", "unit", "")})
+# $types["nspace"] = Type.new(lambda{NSpace.new("nspace", "unit", "")})
 
 #Definition des convertions
 ##Int

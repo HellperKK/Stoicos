@@ -1,23 +1,6 @@
-=begin
-Exemple avec un sprite se deplacant avec les fleches
-=end
+File.import "Test/TestList.txt"
 
-= build (function new_x new_y {(struct {(= x new_x) (= y new_y)})})
-
-= init (build 32 32)
-
-= update (function state
-    {
-      (= new_x state.x)
-      (= new_y state.y)
-      (if {(Game.pressing (Game.key "UP"))} {(= new_y (- new_y 1))})
-      (if {(Game.pressing (Game.key "DOWN"))} {(= new_y (+ new_y 1))})
-      (if {(Game.pressing (Game.key "LEFT"))} {(= new_x (- new_x 1))})
-      (if {(Game.pressing (Game.key "RIGHT"))} {(= new_x (+ new_x 1))})
-      (build new_x new_y)
-    }
-  )
-
-= draw (function state {(Game.clean_screen) (Game.draw "Test/mouche.png" state.x state.y)})
-
-Game.start init update draw
+= test (List.range 0 10)
+List.iter test println
+println
+List.iter (List.reverse test) (function x {(println x)})
