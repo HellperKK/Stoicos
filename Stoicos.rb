@@ -8,10 +8,8 @@ require_relative "Src/MathDef"
 require_relative "Src/GameDef"
 require_relative "Src/FileManager"
 def chercheFonc(tab)
-	#~ puts tab.to_s
 	fonction = tab[0].total_manip("fun")
 	arguments = tab[1..-1].map{|i| i.calc}
-	#~ puts arguments.to_s
 	fonction.call(arguments)
 end
 def look_at(array, indice)
@@ -46,18 +44,6 @@ def find_matching(text, char, charbis, index=1, compteur=1)
 	else
 		find_matching(text, char, charbis, index+1, compteur)
 	end
-end
-
-def has_coma(line)
-	in_string = false
-	line.each_char do |c|
-		if c == "\""
-			in_string = ! in_string
-		elsif (! in_string) && (c == ",")
-			return true
-		end
-	end
-	return false
 end
 
 def parseur(line)
@@ -133,15 +119,9 @@ end
 
 
 t1 = Time.now
-# std_init
-# std_init_bis
-#~ $break = true
-#~ $required = []
 principal = execute_file($chemin.main)
 contenu = principal.join("\n")
 f = File.open('Output.txt','w'){|i| i.write(contenu)}
 t2 = Time.now
 print "\n"
 puts t2 - t1
-#~ puts $vars
-#puts "|#{$variables["probleme4"]}|"
