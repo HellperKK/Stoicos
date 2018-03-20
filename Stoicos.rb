@@ -19,6 +19,7 @@ def look_at(array, indice)
 		$vars.unit
 	end
 end
+
 ###########################################
 ##Parseurs
 ###########################################
@@ -98,6 +99,7 @@ def execute_file(name)
 	end
 	contenuTab
 end
+
 ###########################################
 ##Debut du programme
 ###########################################
@@ -115,8 +117,6 @@ elsif File.directory?(ouvrir)
 else
 	$chemin = FileManager.new(".", "Main.txt")
 end
-
-
 
 t1 = Time.now
 principal = execute_file($chemin.main)
