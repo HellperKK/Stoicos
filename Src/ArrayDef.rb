@@ -7,6 +7,12 @@ arrayMod["make"] = NativeFunction.new("fun", lambda do |array|
   Value.new("array", Array.new(first, second))
 end)
 
+arrayMod["make_range"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("int").value
+  second = look_at(array, 1).total_manip("int").value
+  Value.new("array", (first...second).map {|i| Value.new("int", i)})
+end)
+
 arrayMod["get"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   second = look_at(array, 1).total_manip("int").value
@@ -49,6 +55,12 @@ end)
 arrayMod["reverse"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   Value.new("array", first.reverse)
+end)
+
+arrayMod["filter"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("fun")
+  Value.new("array",first.select{|item| second.call([item]).total_manip("bool").value})
 end)
 
 arrayMod["map"] = NativeFunction.new("fun", lambda do |array|

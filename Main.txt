@@ -1,6 +1,5 @@
-File.import "Test/TestList.txt"
+= tab (Array.make_range 1 11)
 
-= test (List.range 0 10)
-List.iter test println
-println
-List.iter (List.reverse test) (function x {(println x)})
+= even (function x {(== 0 (% x 2))})
+
+Array.iter (Array.filter tab even) println
