@@ -62,7 +62,6 @@ $vars.set_value("print", NativeFunction.new("fun", lambda do |array|
 end))
 
 $vars.set_value("println", NativeFunction.new("fun", lambda do |array|
-	#~ puts array.to_ss
 	str = array.map{|val| val.total_manip("string").value}.join(" ")
 	puts str
 	Value.new("string", str)
@@ -126,6 +125,19 @@ $vars.set_value("^", NativeFunction.new("fun", lambda do |array|
 	Value.new("string", array.map{|val| val.total_manip("string").value}.join(""))
 end))
 
+#Gestion bool
+$vars.set_value("&&", NativeFunction.new("fun", lambda do |array|
+	first = look_at(array, 0).total_manip("bool").value
+	second = look_at(array, 1).total_manip("bool").value
+	Value.new("bool", first && second)
+end))
+
+$vars.set_value("||", NativeFunction.new("fun", lambda do |array|
+	first = look_at(array, 0).total_manip("bool").value
+	second = look_at(array, 1).total_manip("bool").value
+	Value.new("bool", first || second)
+end))
+
 #Gestion comparaisons
 $vars.set_value("==", NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).get.calc
@@ -133,7 +145,6 @@ $vars.set_value("==", NativeFunction.new("fun", lambda do |array|
 	Value.new("bool", (first.type == second.type) && (first.value == second.value))
 end))
 $vars.set_value("!=", NativeFunction.new("fun", lambda do |array|
-	# puts array.to_s
 	first = look_at(array, 0).get.calc
 	second = look_at(array, 1).get.calc
 	Value.new("bool", (first.type != second.type) && (first.value != second.value))
