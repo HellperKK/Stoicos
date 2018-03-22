@@ -1,0 +1,9 @@
+= divide (function num div {(== 0 (% num div))})
+
+println (Array.foldl (Array.make_range 1 1000) 0
+    (function memo value
+      {
+        (if {(|| (divide value 3) (divide value 5))} {(+ memo value)} {memo})
+      }
+    )
+  )
