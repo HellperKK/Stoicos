@@ -212,7 +212,7 @@ end))
 
 $vars.set_value("function", NativeFunction.new("fun", lambda do |array|
 	args = array[0...-1].map{|value| value.calc.convert("nom")}
-	block = array[-1].total_manip("block")
+	block = Array != [] ? array[-1].total_manip("block") : $vars.unit
 	CustonFunction.new("fun", block, args)
 end))
 
