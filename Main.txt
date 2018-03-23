@@ -1,5 +1,9 @@
-= tab (Array.make_range 1 11)
+= divide (function num div {(== 0 (% num div))})
 
-= even (function x {(== 0 (% x 2))})
-
-Array.iter (Array.filter tab even) println
+println (Array.foldl (Array.make_range 1 1000) 0
+    (function memo value
+      {
+        (if {(|| (divide value 3) (divide value 5))} {(+ memo value)} {memo})
+      }
+    )
+  )
