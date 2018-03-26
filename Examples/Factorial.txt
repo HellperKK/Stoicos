@@ -4,7 +4,7 @@ Calculate factorial
 
 = fact (function x
     {
-     (if (<= x 0) {1} {(* x (fact (- x 1)))})
+     (if {(<= x 0)} {1} {(* x (fact (- x 1)))})
     }
   )
 println (fact 4)

@@ -18,7 +18,7 @@ Simple fizzbuzz
     {
       (= aux (function i
           {
-            (if (> i max) {} {(println (fizzbuzz i)) (aux (+ i 1))})
+            (if {(> i max)} {} {(println (fizzbuzz i)) (aux (+ i 1))})
           }
         )
       )
