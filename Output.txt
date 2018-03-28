@@ -1,4 +1,5 @@
-= sum (function x {(Array.foldl x 0 +)})
 = divide (function num div {(== 0 (% num div))})
 
-println (Array.foldl (Array.make_range 1 1000) 0 (function memo value { (if {(|| (divide value 3) (divide value 5))} {(+ memo value)} {memo}) } ) )
+= problem2 (function max { (= aux (function acc first second { (cond [{(>= second max)} {acc}] [{(divide second 2)} {(aux (+ acc second) second (+ first second))}] [true {(aux acc second (+ first second))}] ) } ) ) (aux 0 1 1) } )
+
+println (problem2 4000000)
