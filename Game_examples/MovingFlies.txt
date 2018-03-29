@@ -1,0 +1,29 @@
+=begin
+Exemple de mouches se déplaçant au hasard
+=end
+
+= build (function new_x new_y {(struct {(= x new_x) (= y new_y)})})
+
+= move_rand (function x {(+ x (Math.randint -1 1))})
+
+= init (function
+    {
+      (= tab (Array.make 10 unit))
+      (Array.iteri tab (function item index {(Array.set tab index (build (Math.randint 0 640) (Math.randint 0 480)))}))
+      tab
+    }
+  )
+
+= update (function state
+    {
+      (Array.map state (function item {(build (move_rand item.x) (move_rand item.y))}))
+    }
+  )
+
+= draw (function state
+    {
+      (Array.iter state (function item {(Game.draw "Test/mouche.png" item.x item.y)}))
+    }
+  )
+
+Game.start init update draw
