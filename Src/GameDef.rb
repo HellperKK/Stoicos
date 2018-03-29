@@ -20,6 +20,7 @@ class GameWindow < Gosu::Window
     @showed = false
 	end
 	def update
+		@sprites = []
 		if @input.include?(Gosu::KbEscape)
 			self.close!
 		end
@@ -52,9 +53,9 @@ class GameWindow < Gosu::Window
     @showed
   end
 
-	def clean_screen
-		@sprites = []
-	end
+	# def clean_screen
+	# 	@sprites = []
+	# end
 	def add_sprite(name, x, y)
 		begin
 			@sprites << GameSprite.new("#{$chemin.path}/#{name}", x, y)
@@ -110,14 +111,14 @@ gameMod["pressing"] = NativeFunction.new("fun", lambda do |array|
 	end
 end)
 
-gameMod["clean_screen"] = NativeFunction.new("fun", lambda do |array|
-	if $game.showed?
-		$game.clean_screen
-		$vars.unit
-	else
-		$vars.unit
-	end
-end)
+# gameMod["clean_screen"] = NativeFunction.new("fun", lambda do |array|
+# 	if $game.showed?
+# 		$game.clean_screen
+# 		$vars.unit
+# 	else
+# 		$vars.unit
+# 	end
+# end)
 
 gameMod["draw"] = NativeFunction.new("fun", lambda do |array|
 	if $game.showed?
