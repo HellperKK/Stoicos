@@ -9,8 +9,7 @@ Exemple de mouches se déplaçant au hasard
 = init (function
     {
       (= tab (Array.make 10 unit))
-      (Array.iteri tab (function item index {(Array.set tab index (build (Math.randint 0 640) (Math.randint 0 480)))}))
-      tab
+      (Array.map tab (function item index {(build (Math.randint 0 640) (Math.randint 0 480))}))
     }
   )
 

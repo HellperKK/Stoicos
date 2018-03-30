@@ -18,6 +18,6 @@ Exemple avec un sprite se deplacant avec les fleches
     }
   )
 
-= draw (function state {(Game.clean_screen) (Game.draw "Test/mouche.png" state.x state.y)})
+= draw (function state {(Game.draw "Test/mouche.png" state.x state.y)})
 
 Game.start init update draw
