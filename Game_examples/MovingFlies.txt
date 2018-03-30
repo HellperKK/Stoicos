@@ -4,7 +4,7 @@ Exemple de mouches se déplaçant au hasard
 
 = build (function new_x new_y {(struct {(= x new_x) (= y new_y)})})
 
-= move_rand (function x {(+ x (Math.randint -1 1))})
+= move_rand (function value {(+ value (Math.randint -1 1))})
 
 = init (function
     {
