@@ -127,15 +127,11 @@ end))
 
 #Gestion bool
 $vars.set_value("&&", NativeFunction.new("fun", lambda do |array|
-	first = look_at(array, 0).total_manip("bool").value
-	second = look_at(array, 1).total_manip("bool").value
-	Value.new("bool", first && second)
+	Value.new("bool", array.map{|val| val.total_manip("bool").value}.inject{|memo, value| memo && value})
 end))
 
 $vars.set_value("||", NativeFunction.new("fun", lambda do |array|
-	first = look_at(array, 0).total_manip("bool").value
-	second = look_at(array, 1).total_manip("bool").value
-	Value.new("bool", first || second)
+	Value.new("bool", array.map{|val| val.total_manip("bool").value}.inject{|memo, value| memo || value})
 end))
 
 #Gestion comparaisons
