@@ -111,15 +111,6 @@ gameMod["pressing"] = NativeFunction.new("fun", lambda do |array|
 	end
 end)
 
-# gameMod["clean_screen"] = NativeFunction.new("fun", lambda do |array|
-# 	if $game.showed?
-# 		$game.clean_screen
-# 		$vars.unit
-# 	else
-# 		$vars.unit
-# 	end
-# end)
-
 gameMod["draw"] = NativeFunction.new("fun", lambda do |array|
 	if $game.showed?
 		first = look_at(array, 0).total_manip("string").value

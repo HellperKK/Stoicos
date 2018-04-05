@@ -45,9 +45,6 @@ $types["block"].set_conv("fun", lambda{|element| CustonFunction.new("fun", eleme
 ##Fun
 #$types["fun"].set_conv("block", lambda{|element| element.value})
 
-##Funa
-#$types["funa"].set_conv("block", lambda{|element| element.value})
-
 #Definition des valeurs de base
 #~ $vars.set_value("unit", Value.new("unit", nil))
 #~ $vars.set_value("true", Value.new("bool", true))
