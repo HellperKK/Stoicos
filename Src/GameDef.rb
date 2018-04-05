@@ -64,7 +64,7 @@ class GameWindow < Gosu::Window
 	def play_music(name)
 		begin
 			@music = Gosu::Song.new("#{$chemin.path}/#{name}")
-			@music.play
+			@music.play(true)
 		rescue
 
 		end
