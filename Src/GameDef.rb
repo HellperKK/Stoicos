@@ -18,6 +18,7 @@ class GameWindow < Gosu::Window
 		# @input = InputManager.new([Gosu::KbUp, Gosu::KbDown, Gosu::KbLeft, Gosu::KbRight, Gosu::KbSpace, Gosu::MsLeft], lambda{|i| button_down?(i)})
     @sprites = []
     @showed = false
+		@music = nil
 	end
 	def update
 		@sprites = []
@@ -52,15 +53,26 @@ class GameWindow < Gosu::Window
   def showed?
     @showed
   end
-
-	# def clean_screen
-	# 	@sprites = []
-	# end
 	def add_sprite(name, x, y)
 		begin
 			@sprites << GameSprite.new("#{$chemin.path}/#{name}", x, y)
 		rescue
 
+		end
+	end
+
+	def play_music(name)
+		begin
+			@music = Gosu::Song.new("#{$chemin.path}/#{name}")
+			@music.play
+		rescue
+
+		end
+	end
+
+	def stop_music
+		if @music != nil
+			@music.stop
 		end
 	end
 end
@@ -117,10 +129,23 @@ gameMod["draw"] = NativeFunction.new("fun", lambda do |array|
 		second = look_at(array, 1).total_manip("int").value
 		third = look_at(array, 2).total_manip("int").value
 		$game.add_sprite(first, second, third)
-		$vars.unit
-	else
-		$vars.unit
 	end
+	$vars.unit
+end)
+
+gameMod["play_music"] = NativeFunction.new("fun", lambda do |array|
+	if $game.showed?
+		first = look_at(array, 0).total_manip("string").value
+		$game.play_music(first)
+	end
+	$vars.unit
+end)
+
+gameMod["stop_music"] = NativeFunction.new("fun", lambda do |array|
+	if $game.showed?
+		$game.stop_music
+	end
+	$vars.unit
 end)
 
 $vars.set_value("Game", Value.new("struct", gameMod))
