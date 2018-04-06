@@ -10,8 +10,6 @@ $types["struct"] = Type.new(lambda{Value.new("struct", Hash.new($vars.unit))})
 $types["proc"] = Type.new(lambda{Proce.new("proc", [])})
 $types["block"] = Type.new(lambda{Blocke.new("block", [])})
 $types["fun"] = Type.new(lambda{NativeFunction.new("fun", lambda{|x|$vars.unit})})
-# $types["funa"] = Type.new(lambda{ArrayFunction.new("funa", lambda{|x|$vars.unit})})
-# $types["nspace"] = Type.new(lambda{NSpace.new("nspace", "unit", "")})
 
 #Definition des convertions
 ##Int
@@ -41,9 +39,6 @@ $types["array"].set_conv("string", lambda{|element| Value.new("string", "[" + el
 
 ##Block
 $types["block"].set_conv("fun", lambda{|element| CustonFunction.new("fun", element, [])})
-
-##Fun
-#$types["fun"].set_conv("block", lambda{|element| element.value})
 
 #Definition des valeurs de base
 #~ $vars.set_value("unit", Value.new("unit", nil))
