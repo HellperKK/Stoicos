@@ -199,8 +199,8 @@ $vars.set_value("evalblock", NativeFunction.new("fun", lambda do |array|
 end))
 
 $vars.set_value("function", NativeFunction.new("fun", lambda do |array|
-	args = Array != [] ? array[0...-1].map{|value| value.calc.convert("nom")} : $vars.unit
-	block = Array != [] ? array[-1].total_manip("block") : $vars.unit
+	args = array != [] ? array[0...-1].map{|value| value.calc.convert("nom")} : $vars.unit
+	block = array != [] ? array[-1].total_manip("block") : $vars.unit
 	CustonFunction.new("fun", block, args)
 end))
 
@@ -211,7 +211,7 @@ end))
 
 $vars.set_value("|>", NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).get.calculate
-	second = array[1..-1].map {|i| i.total_manip("fun")}
+	second = array != [] ? array[1..-1].map {|i| i.total_manip("fun")} : $vars.unit
 	second.inject(first){|memo, value| value.call([memo])}
 end))
 
