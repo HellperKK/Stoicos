@@ -90,12 +90,20 @@ $vars.set_value("*", NativeFunction.new("fun", lambda do |array|
 	Value.new("int", array.map{|val| val.total_manip("int").value}.reduce(:*))
 end))
 $vars.set_value("/", NativeFunction.new("fun", lambda do |array|
-	Value.new("int", array.map{|val| val.total_manip("int").value}.reduce(:/))
+	begin
+		Value.new("int", array.map{|val| val.total_manip("int").value}.reduce(:/))
+	rescue
+		Value.new("int", 1)
+	end
 end))
 $vars.set_value("%", NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).total_manip("int").value
 	second = look_at(array, 1).total_manip("int").value
-	Value.new("int", first % second)
+	begin
+		Value.new("int", first % second)
+	rescue
+		Value.new("int", 0)
+	end
 end))
 
 #Gestion flottants
