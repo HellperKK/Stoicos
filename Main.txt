@@ -1,29 +1,7 @@
-=begin
-Exemple avec un sprite se deplacant avec les fleches
-=end
+= test (struct {(= x 0) (= y 0)})
+println test.x
+println test.y
 
-= build (function new_x new_y {(struct {(= x new_x) (= y new_y)})})
-
-= init (function
-    {
-      (Game.play_music "Test/Boucle2.ogg")
-      (build 32 32)
-    }
-  )
-
-= update (function state
-    {
-      (= new_x state.x)
-      (= new_y state.y)
-      (if {(Game.pressing (Game.key "UP"))} {(= new_y (- new_y 1))})
-      (if {(Game.pressing (Game.key "DOWN"))} {(= new_y (+ new_y 1))})
-      (if {(Game.pressing (Game.key "LEFT"))} {(= new_x (- new_x 1))})
-      (if {(Game.pressing (Game.key "RIGHT"))} {(= new_x (+ new_x 1))})
-      (if {(Game.pressed (Game.key "SPACE"))} {(Game.stop_music)})
-      (build new_x new_y)
-    }
-  )
-
-= draw (function state {(Game.draw "Test/mouche.png" state.x state.y)})
-
-Game.start init update draw
+= testb (Struct.update test :x 1)
+println testb.x
+println testb.y
