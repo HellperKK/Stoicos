@@ -3,5 +3,12 @@ println test.x
 println test.y
 
 = testb (Struct.update test :x 1)
+= testt (Struct.update_fun test :x (function x {(+ x 41)}))
 println testb.x
 println testb.y
+println
+println testt.x
+println testt.y
+println
+println test.x
+println test.y
