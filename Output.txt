@@ -1,14 +1,15 @@
-= test (struct {(= x 0) (= y 0)})
-println test.x
-println test.y
+=begin
+Exemple de mouches se déplaçant au hasard
+=end
 
-= testb (Struct.update test :x 1)
-= testt (Struct.update_fun test :x (function x {(+ x 41)}))
-println testb.x
-println testb.y
-println
-println testt.x
-println testt.y
-println
-println test.x
-println test.y
+= build (function new_x new_y {(Struct.make {(= x new_x) (= y new_y)})})
+
+= move_rand (function value {(+ value (Math.randint -1 1))})
+
+= init (function { (= tab (Array.make 10 unit)) (Array.map tab (function item index {(build (Math.randint 0 640) (Math.randint 0 480))})) } )
+
+= update (function state { (Array.map state (function item {(build (move_rand item.x) (move_rand item.y))})) } )
+
+= draw (function state { (Array.iter state (function item {(Game.draw "Test/mouche.png" item.x item.y)})) } )
+
+Game.start init update draw

@@ -2,7 +2,7 @@
 Exemple de mouches se déplaçant au hasard
 =end
 
-= build (function new_x new_y {(struct {(= x new_x) (= y new_y)})})
+= build (function new_x new_y {(Struct.make {(= x new_x) (= y new_y)})})
 
 = move_rand (function value {(+ value (Math.randint -1 1))})
 

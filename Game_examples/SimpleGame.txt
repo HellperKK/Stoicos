@@ -2,7 +2,7 @@
 Exemple avec un sprite se deplacant avec les fleches
 =end
 
-= build (function new_x new_y {(struct {(= x new_x) (= y new_y)})})
+= build (function new_x new_y {(Struct.make {(= x new_x) (= y new_y)})})
 
 = init (function {(build 32 32)})
 
