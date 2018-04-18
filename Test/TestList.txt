@@ -1,7 +1,7 @@
 = List
-	(struct
+	(Struct.make
 		{
-			(= preppend (function value liste {(struct {(= tete value) (= queue liste)})}))
+			(= preppend (function value liste {(Struct.make {(= tete value) (= queue liste)})}))
 			(= make
 				(function size value
 					{
