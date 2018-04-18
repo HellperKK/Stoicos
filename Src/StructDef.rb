@@ -1,5 +1,14 @@
 structMod = Hash.new($vars.unit)
 
+structMod["make"] = NativeFunction.new("fun", lambda do |array|
+	block = look_at(array, 0).total_manip("block")
+	$vars.add_stack
+	block.calculate
+	resultat = $vars.get_stack
+	$vars.remove_stack
+	Value.new("struct", resultat)
+end)
+
 structMod["update"] = NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).total_manip("struct").value
 	second = look_at(array, 1).total_manip("symbol").value
