@@ -227,12 +227,3 @@ $vars.set_value("|>", NativeFunction.new("fun", lambda do |array|
 	second = array != [] ? array[1..-1].map {|i| i.total_manip("fun")} : []
 	second.inject(first){|memo, value| value.call([memo])}
 end))
-
-$vars.set_value("struct", NativeFunction.new("fun", lambda do |array|
-	block = look_at(array, 0).total_manip("block")
-	$vars.add_stack
-	block.calculate
-	resultat = $vars.get_stack
-	$vars.remove_stack
-	Value.new("struct", resultat)
-end))
