@@ -1,15 +1,9 @@
-=begin
-Exemple de mouches se déplaçant au hasard
-=end
+File.import "Test/TestList.txt"
 
-= build (function new_x new_y {(Struct.make {(= x new_x) (= y new_y)})})
+= test (List.range 0 10)
+List.iter test (function x {(println x)})
+println
+List.iter (List.reverse test) (function x {(println x "!")})
+println "hello"
 
-= move_rand (function value {(+ value (Math.randint -1 1))})
-
-= init (function { (= tab (Array.make 10 unit)) (Array.map tab (function item index {(build (Math.randint 0 640) (Math.randint 0 480))})) } )
-
-= update (function state { (Array.map state (function item {(build (move_rand item.x) (move_rand item.y))})) } )
-
-= draw (function state { (Array.iter state (function item {(Game.draw "Test/mouche.png" item.x item.y)})) } )
-
-Game.start init update draw
+println (File.read "Test/TestText.txt")
