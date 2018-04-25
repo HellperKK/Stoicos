@@ -180,7 +180,7 @@ def to_objet(chaine)
 	elsif chaine[0] == '{'
 		Blocke.new("block", parseur(chaine[1..-2]))
 	elsif chaine[0] == ':'
-		Blocke.new("symbol", chaine[1..-1])
+		Value.new("symbol", chaine[1..-1])
 	elsif ["true", "false"].include?(chaine)
 		Value.new("bool", chaine == "true")
 	elsif chaine.split(".").length >= 2
