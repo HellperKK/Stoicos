@@ -80,13 +80,15 @@ $vars.set_value("=", NativeFunction.new("fun", lambda do |array|
 end))
 
 $vars.set_value("assign", NativeFunction.new("fun", lambda do |array|
-	first = array.map{|i| i.total_manip("array").value}
-	first.each do |item|
-		second = look_at(item, 0).total_manip("symbol").value
-		third = look_at(item, 1).get.calc
-		$vars.set_value(second, third)
-	end
-	$vars.unit
+	first = look_at(array, 0).total_manip("array").value
+	second = look_at(item, 1).get.calc
+	first.each{|i| $vars.set_value(i, second)}
+end))
+
+$vars.set_value("assign_fun", NativeFunction.new("fun", lambda do |array|
+	first = look_at(array, 0).total_manip("array").value
+	second = look_at(item, 1).total_manip("fun")
+	first.each{|i| $vars.set_value(i, second.call([]))}
 end))
 
 #Gestion entiers
