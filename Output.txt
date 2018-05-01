@@ -1,9 +1,4 @@
-File.import "Test/TestList.txt"
-
-= test (List.range 0 10)
-List.iter test (function x {(println x)})
-println
-List.iter (List.reverse test) (function x {(println x "!")})
-println "hello"
-
-println (File.read "Test/TestText.txt")
+= a [1 2]
+= b (Array.push a 3)
+println a
+println b
