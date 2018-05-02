@@ -1,4 +1,4 @@
 = a [1 2]
-= b (Array.push a 3)
+= b (Array.pop a)
 println a
 println b
