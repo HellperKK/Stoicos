@@ -1,5 +1,5 @@
 =begin
-show primes beneath
+show primes under 100
 =end
 
 = range (function min max
