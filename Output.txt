@@ -1,4 +1,4 @@
-= a [1 2]
-= b (Array.pop a)
+= a [1 2 3]
+= b (Array.delete_at a 1)
 println a
 println b

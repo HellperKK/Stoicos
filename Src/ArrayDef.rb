@@ -53,6 +53,14 @@ arrayMod["pop"] = NativeFunction.new("fun", lambda do |array|
   Value.new("array", first)
 end)
 
+arrayMod["delete_at"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("int").value
+  first = first.clone
+  first.delete_at(second)
+  Value.new("array", first)
+end)
+
 arrayMod["slice"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   second = look_at(array, 1).total_manip("int").value
