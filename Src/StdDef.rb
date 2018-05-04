@@ -142,6 +142,12 @@ $vars.set_value("^", NativeFunction.new("fun", lambda do |array|
 	Value.new("string", array.map{|val| val.total_manip("string").value}.join(""))
 end))
 
+#Gestion arrays
+$vars.set_value("@", NativeFunction.new("fun", lambda do |array|
+	first = array.map{|val| val.total_manip("array").value}
+	Value.new("array", first.inject{|memo, value| memo + value})
+end))
+
 #Gestion bool
 $vars.set_value("&&", NativeFunction.new("fun", lambda do |array|
 	Value.new("bool", array.map{|val| val.total_manip("bool").value}.inject{|memo, value| memo && value})
