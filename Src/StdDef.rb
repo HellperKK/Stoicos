@@ -224,6 +224,12 @@ $vars.set_value("if", NativeFunction.new("fun", lambda do |array|
 	end
 end))
 
+$vars.set_value("times", NativeFunction.new("fun", lambda do |array|
+	first = look_at(array, 0).total_manip("int").value
+	second = look_at(array, 1).total_manip("fun")
+	first.times{second.call([])}
+end))
+
 #Divers
 $vars.set_value("evalblock", NativeFunction.new("fun", lambda do |array|
 	look_at(array, 0).total_manip("block").calculate
