@@ -1,2 +1,2 @@
-times 3 (function {(println "hip")})
+times 3 {(println "hip")}
 println "hourra"

@@ -226,8 +226,9 @@ end))
 
 $vars.set_value("times", NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).total_manip("int").value
-	second = look_at(array, 1).total_manip("fun")
-	first.times{second.call([])}
+	second = look_at(array, 1).total_manip("block")
+	first.times{second.calculate}
+	$vars.unit
 end))
 
 #Divers
