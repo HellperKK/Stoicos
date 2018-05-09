@@ -11,7 +11,7 @@ each is only calculated once
       (Array.set tab 1 1)
       (= aux (function x
         {
-          (if (!= (Array.get tab x) unit)
+          (if {(!= (Array.get tab x) unit)}
             {(Array.get tab x)}
             {
               (= temp (+ (aux (- x 1)) (aux (- x 2))))
