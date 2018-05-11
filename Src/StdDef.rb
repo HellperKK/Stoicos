@@ -252,3 +252,9 @@ $vars.set_value("|>", NativeFunction.new("fun", lambda do |array|
 	second = array != [] ? array[1..-1].map {|i| i.total_manip("fun")} : []
 	second.inject(first){|memo, value| value.call([memo])}
 end))
+
+$vars.set_value("convert", NativeFunction.new("fun", lambda do |array|
+	first = look_at(array, 0).get.calculate
+	second = look_at(array, 1).total_manip("string")
+	first.convert(second)
+end))
