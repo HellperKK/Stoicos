@@ -13,6 +13,9 @@ $types["block"] = Type.new(lambda{Blocke.new("block", [])})
 $types["fun"] = Type.new(lambda{NativeFunction.new("fun", lambda{|x|$vars.unit})})
 
 #Definition des convertions
+##Unit
+$types["unit"].set_conv("string", lambda{|element| Value.new("string", "unit")})
+
 ##Int
 $types["int"].set_conv("float", lambda{|element| Value.new("float", element.value.to_f)})
 $types["int"].set_conv("string", lambda{|element| Value.new("string", element.value.to_s)})
@@ -44,6 +47,13 @@ $types["array"].set_conv("string", lambda{|element| Value.new("string", "[" + el
 
 ##Block
 $types["block"].set_conv("fun", lambda{|element| CustonFunction.new("fun", element, [])})
+$types["block"].set_conv("string", lambda{|element| Value.new("string", "A block")})
+
+##Struct
+$types["struct"].set_conv("string", lambda{|element| Value.new("string", "A struct")})
+
+##Fun
+$types["fun"].set_conv("string", lambda{|element| Value.new("string", "A function")})
 
 #Definition des valeurs de base
 #~ $vars.set_value("unit", Value.new("unit", nil))
