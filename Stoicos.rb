@@ -8,10 +8,15 @@ require_relative "Src/MathDef"
 require_relative "Src/GameDef"
 require_relative "Src/StructDef"
 require_relative "Src/FileManager"
+
 def chercheFonc(tab)
-	fonction = tab[0].total_manip("fun")
-	arguments = tab[1..-1].map{|i| i.calc}
-	fonction.call(arguments)
+	begin
+		fonction = tab[0].total_manip("fun")
+		arguments = tab[1..-1].map{|i| i.calc}
+		fonction.call(arguments)
+	rescue
+		$vars.unit
+	end
 end
 def look_at(array, indice)
 	if indice < (array.length) && indice >= 0
