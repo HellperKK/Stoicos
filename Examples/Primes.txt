@@ -23,4 +23,4 @@ show primes under 100
       (aux 2)
     }
   )
-Array.iter (range 2 100) (function item {(if (is_prime item) {(println item)})}))
+Array.iter (range 2 100) (function item {(if {(is_prime item)} {(println item)})}))
