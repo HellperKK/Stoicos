@@ -1,0 +1,26 @@
+= smallest_factor (function nombre
+    {
+      (= aux (function x
+        {
+          (cond
+            [{(> (* x x) nombre)} {unit}]
+            [{(== (% nombre x) 0)} {x}]
+            [true {(aux (+ x 1))}]
+          )
+        })
+      )
+      (aux 2)
+    }
+  )
+
+= biggest_factor (function nombre
+    {
+      (= small (smallest_factor nombre))
+      (if {(== small unit)}
+        {nombre}
+        {(biggest_factor (/ nombre small))}
+      )
+    }
+  )
+
+println (biggest_factor 30)
