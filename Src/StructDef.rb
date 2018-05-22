@@ -3,6 +3,11 @@ structMod = Hash.new($vars.unit)
 structMod["build"] = NativeFunction.new("fun", lambda do |array|
 	symbols = array.map{|val| val.total_manip("symbol").value}
 	resultat = Hash.new($vars.unit)
+	resultat["make"] = NativeFunction.new("fun", lambda do |arraybis|
+		first = Hash.new($vars.unit)
+		symbols.each_with_index{|item, index| first[item] = look_at(arraybis, index)}
+		Value.new("struct", first)
+	end)
 	Value.new("struct", resultat)
 end)
 
