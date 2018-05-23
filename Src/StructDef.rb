@@ -10,8 +10,8 @@ structMod["build"] = NativeFunction.new("fun", lambda do |array|
 	end)
 	resultat["is"] = NativeFunction.new("fun", lambda do |arraybis|
 		first = look_at(arraybis, 0).total_manip("struct").value.keys
-		second = symbols.all?{|sym| fist.include?(sym)}
-		Value.new("struct", second)
+		second = symbols.all?{|sym| first.include?(sym)}
+		Value.new("bool", second)
 	end)
 	Value.new("struct", resultat)
 end)
