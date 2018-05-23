@@ -8,6 +8,11 @@ structMod["build"] = NativeFunction.new("fun", lambda do |array|
 		symbols.each_with_index{|item, index| first[item] = look_at(arraybis, index)}
 		Value.new("struct", first)
 	end)
+	resultat["is"] = NativeFunction.new("fun", lambda do |arraybis|
+		first = look_at(arraybis, 0).total_manip("struct").value.keys
+		second = symbols.all?{|sym| fist.include?(sym)}
+		Value.new("struct", second)
+	end)
 	Value.new("struct", resultat)
 end)
 
