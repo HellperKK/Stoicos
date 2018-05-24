@@ -1,2 +1,12 @@
-times 3 {(println "hip")}
-println "hourra"
+= Point (Struct.build :x :y)
+
+= Point3 (Struct.build :x :y :z)
+
+= test (Point.make 1 2)
+= testb (Point3.extends test 0)
+
+println test.x
+println test.y
+println testb.z
+
+println (Point.is test)

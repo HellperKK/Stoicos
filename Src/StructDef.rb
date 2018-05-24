@@ -13,6 +13,14 @@ structMod["build"] = NativeFunction.new("fun", lambda do |array|
 		second = symbols.all?{|sym| first.include?(sym)}
 		Value.new("bool", second)
 	end)
+	resultat["extends"] = NativeFunction.new("fun", lambda do |arraybis|
+		first = look_at(arraybis, 0).total_manip("struct").value.clone
+		second = look_at(arraybis, 1).get.calc
+		symbols.each do |i|
+			first[i] = second unless first.include?(i)
+		end
+		Value.new("struct", first)
+	end)
 	Value.new("struct", resultat)
 end)
 
