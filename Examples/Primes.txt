@@ -2,16 +2,16 @@
 show primes under 100
 =end
 
-= range (function min max
+= :range (function :min :max
     {
-      (= ecart (- max min))
-      (Array.mapi (Array.make ecart unit) (function item index {(+ index min)}))
+      (= :ecart (- max min))
+      (Array.mapi (Array.make ecart unit) (function :item :index {(+ index min)}))
     }
   )
 
-= is_prime (function nombre
+= :is_prime (function :nombre
     {
-      (= aux (function x
+      (= :aux (function :x
         {
           (cond
             [{(> (* x x) nombre)} {true}]
@@ -23,4 +23,5 @@ show primes under 100
       (aux 2)
     }
   )
-Array.iter (range 2 100) (function item {(if {(is_prime item)} {(println item)})}))
+
+Array.iter (range 2 100) (function :item {(if {(is_prime item)} {(println item)})}))
