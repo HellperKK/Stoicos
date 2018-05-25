@@ -12,7 +12,7 @@ require_relative "Src/FileManager"
 def chercheFonc(tab)
 	begin
 		fonction = tab[0].total_manip("fun")
-		arguments = tab[1..-1].map{|i| i.calc}
+		arguments = tab[1..-1].map{|i| i.calc.get}
 		fonction.call(arguments)
 	rescue
 		$vars.unit

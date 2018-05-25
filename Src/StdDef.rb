@@ -83,7 +83,7 @@ end))
 
 #Gestion variables
 $vars.set_value("=", NativeFunction.new("fun", lambda do |array|
-	nom = look_at(array, 0).convert("nom").value
+	nom = look_at(array, 0).convert("symbol").value
 	value = look_at(array, 1).get.calc
 	$vars.set_value(nom, value)
 	value
