@@ -4,17 +4,17 @@ calculated recursively with an array that keep each intermediary result so
 each is only calculated once
 =end
 
-= fibbo (function number
+= :fibbo (function :number
     {
-      (= tab (Array.make (+ number 1) unit))
+      (= :tab (Array.make (+ number 1) unit))
       (Array.set tab 0 0)
       (Array.set tab 1 1)
-      (= aux (function x
+      (= :aux (function :x
         {
           (if {(!= (Array.get tab x) unit)}
             {(Array.get tab x)}
             {
-              (= temp (+ (aux (- x 1)) (aux (- x 2))))
+              (= :temp (+ (aux (- x 1)) (aux (- x 2))))
               (Array.set tab x temp)
               temp
             }

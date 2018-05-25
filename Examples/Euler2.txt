@@ -1,9 +1,9 @@
-= divide (function num div {(== 0 (% num div))})
+= :divide (function :num :div {(== 0 (% num div))})
 
-= problem2 (function max
+= :problem2 (function :max
     {
-      (= aux
-        (function acc first second
+      (= :aux
+        (function :acc :first :second
           {
             (cond
               [{(>= second max)} {acc}]

@@ -2,9 +2,9 @@
 Simple fizzbuzz
 =end
 
-= divide (function number factor {(== 0 (% number factor))})
+= :divide (function :number :factor {(== 0 (% number factor))})
 
-= fizzbuzz (function number
+= :fizzbuzz (function :number
     {
       (cond
         [{(divide number 15)} {"fizzbuzz"}]
@@ -14,9 +14,9 @@ Simple fizzbuzz
       )
     }
   )
-= fizzcount (function max
+= :fizzcount (function :max
     {
-      (= aux (function i
+      (= :aux (function :i
           {
             (if {(> i max)} {} {(println (fizzbuzz i)) (aux (+ i 1))})
           }

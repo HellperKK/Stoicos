@@ -2,7 +2,7 @@
 Calculate factorial
 =end
 
-= fact (function x
+= :fact (function :x
     {
      (if {(<= x 0)} {1} {(* x (fact (- x 1)))})
     }

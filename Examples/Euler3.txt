@@ -1,6 +1,6 @@
-= smallest_factor (function nombre
+= :smallest_factor (function :nombre
     {
-      (= aux (function x
+      (= :aux (function :x
         {
           (cond
             [{(> (* x x) nombre)} {unit}]
@@ -13,9 +13,9 @@
     }
   )
 
-= biggest_factor (function nombre
+= :biggest_factor (function :nombre
     {
-      (= small (smallest_factor nombre))
+      (= :small (smallest_factor nombre))
       (if {(== small unit)}
         {nombre}
         {(biggest_factor (/ nombre small))}
