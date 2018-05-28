@@ -124,6 +124,18 @@ arrayMod["iteri"] = NativeFunction.new("fun", lambda do |array|
   $vars.unit
 end)
 
+arrayMod["any"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("fun")
+  Value.new("bool", first.any?{|x| second.call([x]).total_manip("bool").value})
+end)
+
+arrayMod["all"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("fun")
+  Value.new("bool", first.all?{|x| second.call([x]).total_manip("bool").value})
+end)
+
 arrayMod["foldl"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   second = look_at(array, 1)
