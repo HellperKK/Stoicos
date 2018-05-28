@@ -13,6 +13,7 @@ def chercheFonc(tab)
 	begin
 		fonction = tab[0].total_manip("fun")
 		arguments = tab[1..-1].map{|i| i.calc.get}
+		arguments = [] if arguments == nil
 		fonction.call(arguments)
 	rescue
 		$vars.unit
