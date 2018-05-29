@@ -30,6 +30,12 @@ stringMod["sub"] = NativeFunction.new("fun", lambda do |array|
   Value.new("string", first[second...maximum])
 end)
 
+stringMod["include"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("string").value
+  Value.new("bool", first.include?(second))
+end)
+
 stringMod["length"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   Value.new("int", first.length)

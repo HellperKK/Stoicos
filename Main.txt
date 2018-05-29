@@ -1,8 +1,2 @@
-= :tab [1 2 3]
-
-println (Array.any tab (function :x {(== x 1)}))
-
-= :include (function :tab :val {(Array.any tab (function :x {(== x val)}))})
-
-println (include tab 1)
-println (include tab 42)
+println (String.include "Hello" "He")
+println (String.include "Hello" "Her")
