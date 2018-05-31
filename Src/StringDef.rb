@@ -52,6 +52,14 @@ stringMod["split"] = NativeFunction.new("fun", lambda do |array|
   Value.new("array", first.split(second))
 end)
 
+stringMod["format"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("array").value.map{|i| i.total_manip("string").value}
+  resultat = first.clone
+  second.each{|i| resultat.sub!("{}", i)}
+  Value.new("string", resultat)
+end)
+
 stringMod["upcase"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   Value.new("string", first.upcase)
