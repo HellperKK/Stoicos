@@ -1,6 +1,12 @@
 ##Modif de string
 stringMod = Hash.new($vars.unit)
 
+stringMod["make"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  second = look_at(array, 1).total_manip("int").value
+  Value.new("string", first * second)
+end)
+
 stringMod["get"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   second = look_at(array, 1).total_manip("int").value

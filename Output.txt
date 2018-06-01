@@ -1,2 +1,1 @@
-println (String.include "Hello" "He")
-println (String.include "Hello" "Her")
+println (String.make "Ho! " 3)
