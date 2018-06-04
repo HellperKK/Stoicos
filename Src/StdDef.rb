@@ -95,6 +95,12 @@ $vars.set_value("assign", NativeFunction.new("fun", lambda do |array|
 	first.each{|i| $vars.set_value(i.total_manip("symbol").value, second)}
 end))
 
+$vars.set_value("bind", NativeFunction.new("fun", lambda do |array|
+	first = look_at(array, 0).total_manip("array").value.map{|i| i.total_manip("symbol").value}
+	second = look_at(array, 1).total_manip("array").value.map{|i| i.get.calc}
+	first.each_with_index{|item, index| $vars.set_value(item, second[index])}
+end))
+
 $vars.set_value("assign_fun", NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).total_manip("array").value
 	second = look_at(array, 1).total_manip("fun")
