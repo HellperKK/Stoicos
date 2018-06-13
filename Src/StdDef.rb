@@ -6,7 +6,7 @@ $types["string"] = Type.new(lambda{Value.new("string", "")})
 $types["symbol"] = Type.new(lambda{Value.new("symbol", "unit")})
 $types["array"] = Type.new(lambda{Value.new("array", [])})
 $types["nom"] = Type.new(lambda{Variable.new("nom", "unit")})
-$types["bool"] = Type.new(lambda{Value.new("bool", false)})
+$types["bool"] = Type.new(lambda{Value.new("bool", true)})
 $types["struct"] = Type.new(lambda{Value.new("struct", Hash.new($vars.unit))})
 $types["proc"] = Type.new(lambda{Proce.new("proc", [])})
 $types["block"] = Type.new(lambda{Blocke.new("block", [])})
@@ -20,13 +20,13 @@ $types["unit"].set_conv("string", lambda{|element| Value.new("string", "unit")})
 $types["int"].set_conv("float", lambda{|element| Value.new("float", element.value.to_f)})
 $types["int"].set_conv("string", lambda{|element| Value.new("string", element.value.to_s)})
 $types["int"].set_conv("nom", lambda{|element| Variable.new("nom", element.value.to_s)})
-$types["int"].set_conv("bool", lambda{|element| Value.new("bool", element.value != 0)})
+# $types["int"].set_conv("bool", lambda{|element| Value.new("bool", element.value != 0)})
 
 ##Float
 $types["float"].set_conv("int", lambda{|element| Value.new("int", element.value.to_i)})
 $types["float"].set_conv("string", lambda{|element| Value.new("string", element.value.to_s)})
 $types["float"].set_conv("nom", lambda{|element| Variable.new("nom", element.value.to_s)})
-$types["float"].set_conv("bool", lambda{|element| Value.new("bool", element.value != 0.0)})
+# $types["float"].set_conv("bool", lambda{|element| Value.new("bool", element.value != 0.0)})
 
 ##Bool
 $types["bool"].set_conv("string", lambda{|element| Value.new("string", element.value.to_s)})
@@ -35,7 +35,7 @@ $types["bool"].set_conv("string", lambda{|element| Value.new("string", element.v
 $types["string"].set_conv("int", lambda{|element| Value.new("int", element.value.to_i)})
 $types["string"].set_conv("float", lambda{|element| Value.new("float", element.value.to_f)})
 $types["string"].set_conv("nom", lambda{|element| Variable.new("nom", element.value)})
-$types["string"].set_conv("bool", lambda{|element| Value.new("bool", element.value != "")})
+# $types["string"].set_conv("bool", lambda{|element| Value.new("bool", element.value != "")})
 $types["string"].set_conv("array", lambda{|element| Value.new("array", element.value.split("").map{|i| Value.new("string", i)})})
 
 ##Symbol
@@ -54,6 +54,9 @@ $types["struct"].set_conv("string", lambda{|element| Value.new("string", "A stru
 
 ##Fun
 $types["fun"].set_conv("string", lambda{|element| Value.new("string", "A function")})
+
+##Unit
+$types["unit"].set_conv("bool", lambda{|element| Value.new("bool", false)})
 
 #Definition des valeurs de base
 #~ $vars.set_value("unit", Value.new("unit", nil))
