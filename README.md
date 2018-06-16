@@ -18,3 +18,7 @@ dans le fichier Stoicos.rb
 
 Sur windows la commande peut etre remplacee par
 > Stoicos.exe Chemin
+
+## Comment contribuer
+
+todo
