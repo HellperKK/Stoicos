@@ -124,13 +124,6 @@ class ArrayFunction < Value
 		$vars.remove_stack
 		result
 	end
-	# def convert(type)
-	# 	if type != "fun"
-	# 		super(type)
-	# 	else
-	# 		self
-	# 	end
-	# end
 end
 
 class Proce < Value
@@ -156,6 +149,15 @@ class Blocke < Value
 	end
 end
 
+class ArrayParse < Value
+	def initialize(type, value)
+		super(type, value)
+	end
+	def calc
+		Value.new("array", @value.map{|i| i.get.calc})
+	end
+end
+
 class Type
 	attr_reader :conversion, :defaut
 	def initialize(defaut=lambda{$vars.unit})
@@ -175,7 +177,8 @@ def to_objet(chaine)
 	elsif chaine[0] == '"'
 		Value.new("string", chaine[1..-2])
 	elsif chaine[0] == '['
-		Value.new("array", parseur(chaine[1..-2]).map{|i| i.get.calc})
+		ArrayParse.new("array_parse", parseur(chaine[1..-2]))
+		# Value.new("array", parseur(chaine[1..-2]).map{|i| i.get.calc})
 	elsif chaine[0] == '('
 		Proce.new("proc", parseur(chaine[1..-2]))
 	elsif chaine[0] == '{'
