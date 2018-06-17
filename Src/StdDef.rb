@@ -225,7 +225,8 @@ $vars.set_value("cond", NativeFunction.new("fun", lambda do |array|
 	first = array.map{|i| i.total_manip("array").value}
 	first.each do |item|
 		second = look_at(item, 0).get.calculate.convert("bool").value
-		third = look_at(item, 1).total_manip("block")
+		third = look_at(item, 1)
+		# third = look_at(item, 1).total_manip("block")
 		if second
 			return third.calculate
 		end
