@@ -25,4 +25,4 @@ Simple fizzbuzz
       (aux 1)
     }
   )
-fizzcount 100
+fizzcount 20

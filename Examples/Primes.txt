@@ -1,5 +1,5 @@
 =begin
-show primes under 100
+show primes under 30
 =end
 
 = :range (function :min :max
@@ -24,4 +24,4 @@ show primes under 100
     }
   )
 
-Array.iter (range 2 100) (function :item {(if {(is_prime item)} {(println item)})}))
+Array.iter (range 2 30) (function :item {(if {(is_prime item)} {(println item)})}))
