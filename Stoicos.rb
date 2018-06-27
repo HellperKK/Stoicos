@@ -20,11 +20,7 @@ def chercheFonc(tab)
 	end
 end
 def look_at(array, indice)
-	if indice < (array.length) && indice >= 0
-		array[indice]
-	else
-		$vars.unit
-	end
+	array.fetch(indice, $vars.unit)
 end
 
 ###########################################
