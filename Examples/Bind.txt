@@ -10,8 +10,8 @@ example of bind function use
         (Array.foldl tab [0 0]
           (function :memo :value
             {
-              (bind [:l :s] memo)
-              [(+ l 1) (+ s value)]
+              (bind [:len :s] memo)
+              [(+ len 1) (+ s value)]
             }
           )
         )
