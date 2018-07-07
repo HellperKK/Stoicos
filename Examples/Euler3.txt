@@ -1,13 +1,14 @@
 = :smallest_factor (function :nombre
     {
       (= :aux (function :x
-        {
-          (cond
-            [{(> (* x x) nombre)} {unit}]
-            [{(== (% nombre x) 0)} {x}]
-            [true {(aux (+ x 1))}]
-          )
-        })
+          {
+            (cond
+              [{(> (* x x) nombre)} {unit}]
+              [{(== (% nombre x) 0)} {x}]
+              [true {(aux (+ x 1))}]
+            )
+          }
+        )
       )
       (aux 2)
     }
