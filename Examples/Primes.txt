@@ -12,13 +12,14 @@ show primes under 30
 = :is_prime (function :nombre
     {
       (= :aux (function :x
-        {
-          (cond
-            [{(> (* x x) nombre)} {true}]
-            [{(== (% nombre x) 0)} {false}]
-            [true {(aux (+ x 1))}]
-          )
-        })
+          {
+            (cond
+              [{(> (* x x) nombre)} {true}]
+              [{(== (% nombre x) 0)} {false}]
+              [true {(aux (+ x 1))}]
+            )
+          }
+        )
       )
       (aux 2)
     }
