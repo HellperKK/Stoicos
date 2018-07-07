@@ -1,27 +1,14 @@
 =begin
-show primes under 100
+example of bind function use
 =end
 
-= :range (function :min :max
-    {
-      (= :ecart (- max min))
-      (Array.mapi (Array.make ecart unit) (function :item :index {(+ index min)}))
-    }
-  )
+= :value 10
 
-= :is_prime (function :nombre
-    {
-      (= :aux (function :x
-        {
-          (cond
-            [(> (* x x) nombre) true]
-            [(== (% nombre x) 0) false]
-            [true {(aux (+ x 1))}]
-          )
-        })
-      )
-      (aux 2)
-    }
-  )
+= :test (function {(println value)})
 
-Array.iter (range 2 100) (function :item {(if {(is_prime item)} {(println item)})}))
+= :testb (function {(println !value)})
+
+= :value 11
+
+test
+testb
