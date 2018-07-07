@@ -21,4 +21,6 @@ Sur windows la commande peut etre remplacee par
 
 ## Comment contribuer
 
-todo
+Pour l'instant le meilleur moyen de contribuer est dans l'utilisation du langage
+soit dans la création de code soit dans la lecture des codes exemples. Cela me
+permettra soit de corrger d'éventuels bugs soit de rajouter d'autres features.
