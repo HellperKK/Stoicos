@@ -1,14 +1,2 @@
-=begin
-example of bind function use
-=end
-
-= :value 10
-
-= :test (function {(println value)})
-
-= :testb (function {(println !value)})
-
-= :value 11
-
-test
-testb
+ceci est une lgine coupee en deux
+et voila avec ceci aussi

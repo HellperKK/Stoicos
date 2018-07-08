@@ -74,7 +74,12 @@ end
 def concatLine(texte)
 	tab = texte.split("\n")
 	(tab.length-1).downto(0) do |i|
-		if ((tab[i][0] == " ")||(tab[i][0] == "\t") )&&(i > 0)
+		if tab[i].strip[0] == "#"
+			tab.delete_at(i)
+		end
+	end
+	(tab.length-1).downto(1) do |i|
+		if ((tab[i][0] == " ")||(tab[i][0] == "\t"))
 			cont = tab[i].strip
 			tab[i-1] += " #{cont}"
 			tab.delete_at(i)
