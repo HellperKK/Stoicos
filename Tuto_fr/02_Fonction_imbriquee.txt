@@ -1,0 +1,33 @@
+=begin
+En stoicos toutes les fonction retournent une valeur.
+Pour l'instant on n'a vu que les "chaines de caracteres" (entre gillemets) mais
+il en existe bien d'autres.
+Dans les fonction qu'on a vu, input attend une entree utilisateur jusqu'a ce
+qu'il presse la touche entree. On pourrait vouloir recuperer ce contenu pour
+l'afficher.
+Pour utiliser le retour d'une fonction dans une autre fonction, il faut
+entourer le premier appel de parentheses et utiliser le tout comme argument de
+la seconde fonction. Par exemple :
+=end
+
+println "Bonjour" (input "Quel est votre nom ? ")
+
+=begin
+Tout d'abord, c'est ce qui est entre parenthèses qui est évalué, donc la
+fonction input. Puis le résultat est récupéré et println l'affiche.
+S'il y a plusieurs fonctions entre parentheses, alors elles sont executees
+de gauche a droite
+=end
+
+println "Bonjour" (input "Quel est votre prenom ? ") (input "Quel est votre nom ? ")
+
+=begin
+Enfin, on peut tres bien recuperer le retour d'une fonction pour une seconde
+dont on recupererais le retour pour une troisieme. L'imbrication de fonctions en
+arguments de fonction est quasi "infini". Par exemple
+=end
+
+println "Vous avez repondu" (input (input "Quelle question poser ? "))
+
+#Fin de programme
+input "Fin de programme. Presser entree"
