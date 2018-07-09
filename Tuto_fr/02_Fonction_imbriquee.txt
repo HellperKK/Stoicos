@@ -24,7 +24,9 @@ println "Bonjour" (input "Quel est votre prenom ? ") (input "Quel est votre nom 
 =begin
 Enfin, on peut tres bien recuperer le retour d'une fonction pour une seconde
 dont on recupererais le retour pour une troisieme. L'imbrication de fonctions en
-arguments de fonction est quasi "infini". Par exemple
+arguments de fonction est quasi "infini". Par exemple on peut utiliser le retour
+d'une fonction input comme question pour une autre fonction input eta fficher son
+retour, ce qui donne :
 =end
 
 println "Vous avez repondu" (input (input "Quelle question poser ? "))
