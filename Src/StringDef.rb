@@ -17,6 +17,7 @@ stringMod["set"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   second = look_at(array, 1).total_manip("int").value
   third = look_at(array, 2).total_manip("string").value
+  first = first.clone
   first[second] = third
   Value.new("string", first)
 end)
