@@ -82,6 +82,12 @@ arrayMod["length"] = NativeFunction.new("fun", lambda do |array|
   Value.new("int", first.length)
 end)
 
+arrayMod["join"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("string").value
+  Value.new("string", first.join(second))
+end)
+
 arrayMod["reverse"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   Value.new("array", first.reverse)
