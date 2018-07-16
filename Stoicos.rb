@@ -19,6 +19,7 @@ def chercheFonc(tab)
 		$vars.unit
 	end
 end
+
 def look_at(array, indice)
 	array.fetch(indice, $vars.unit)
 end
