@@ -186,7 +186,7 @@ def to_objet(chaine)
 	elsif chaine[0] == ':'
 		Value.new("symbol", chaine[1..-1])
 	elsif chaine[0] == '!'
-		$vars.get_value(chaine[1..-1])
+		to_objet(chaine[1..-1]).calc.get
 	elsif ["true", "false"].include?(chaine)
 		Value.new("bool", chaine == "true")
 	elsif chaine.split(".").length >= 2
