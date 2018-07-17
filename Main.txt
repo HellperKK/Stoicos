@@ -1,6 +1,7 @@
-ceci est une lgine
-  coupee en deux
-  #avec un commentaire
-et voila
-#ceci est commente
-  avec ceci aussi
+= :List (File.import_module "Test/TestListBis.txt")
+
+= :test (List.make 1 2 3 4)
+
+#debug test
+
+List.foldl test unit (function :memo :value {(println value)})

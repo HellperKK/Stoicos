@@ -1,0 +1,26 @@
+= :prepend (function :next :value
+    {
+      (Struct.make {(= :hd value) (= :tl next)})
+    }
+  )
+
+= :single (function :value {(!prepend unit value)})
+
+= :make (funa {(Array.foldl (Array.reverse args) unit !prepend)})
+
+= :foldl (function :liste :default :fun
+    {
+      (= :aux (function :ls :acc
+          {
+            (if {(== ls unit)}
+              {acc}
+              {(aux ls.tl (fun acc ls.hd))}
+            )
+          }
+        )
+      )
+      (aux liste default)
+    }
+  )
+
+= :iter (function :liste :fun {(!foldl liste unit (function :memo :value {(fun value)}))})
