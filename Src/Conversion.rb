@@ -117,7 +117,7 @@ class ArrayFunction < Value
 	end
 	def call(args)
 		$vars.add_stack
-		$vars.set_value("args", args)
+		$vars.set_value("args", Value.new("array", args))
 		#~ puts $vars
 		result = @value.calculate
 		#~ puts $vars
