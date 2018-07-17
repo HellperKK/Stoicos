@@ -23,4 +23,20 @@
     }
   )
 
-= :iter (function :liste :fun {(!foldl liste unit (function :memo :value {(fun value)}))})
+= :iter (function :liste :func {(!foldl liste unit (function :memo :value {(func value)}))})
+
+= :reverse (function :liste {(!foldl liste unit !prepend)})
+
+= :map (function :liste :func
+    {
+      (= :result (!foldl liste unit (function :memo :value {(!prepend memo (func value))})))
+      (!reverse result)
+    }
+  )
+
+= :filter (function :liste :func
+    {
+      (= :result (!foldl liste unit (function :memo :value {(if {(func value)} {(!prepend memo value)} {memo})})))
+      (!reverse result)
+    }
+  )
