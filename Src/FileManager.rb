@@ -30,6 +30,15 @@ fileMod["import"] = NativeFunction.new("fun", lambda do |array|
   $vars.unit
 end)
 
+fileMod["import_module"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  $vars.add_stack
+  $chemin.import(first)
+  resultat = $vars.get_stack
+	$vars.remove_stack
+  Value.new("struct", resultat)
+end)
+
 fileMod["read"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   begin
