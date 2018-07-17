@@ -186,7 +186,15 @@ def to_objet(chaine)
 	elsif chaine[0] == ':'
 		Value.new("symbol", chaine[1..-1])
 	elsif chaine[0] == '!'
-		to_objet(chaine[1..-1]).calc.get
+		nom = chaine[1..-1]
+		if nom.split(".").length >= 2
+			vals = nom.split(".")
+			NSpace.new("nom", vals[0], vals[1]).get
+		else
+			Variable.new("nom", nom).get
+		end
+	# elsif chaine[0] == '!'
+	# 	to_objet(chaine[1..-1]).get
 	elsif ["true", "false"].include?(chaine)
 		Value.new("bool", chaine == "true")
 	elsif chaine.split(".").length >= 2
