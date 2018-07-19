@@ -13,6 +13,16 @@ stringMod["get"] = NativeFunction.new("fun", lambda do |array|
   Value.new("string", look_at(first, second))
 end)
 
+stringMod["uncons"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  if first = ""
+    $vars.unit
+  else
+    second, third = first[0], first[1..-1]
+    Value.new("array", [Value.new("string" second), Value.new("string" third)])
+  end
+end)
+
 stringMod["set"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   second = look_at(array, 1).total_manip("int").value
