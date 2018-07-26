@@ -15,11 +15,11 @@ end)
 
 stringMod["uncons"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
-  if first = ""
+  if first == ""
     $vars.unit
   else
     second, third = first[0], first[1..-1]
-    Value.new("array", [Value.new("string" second), Value.new("string" third)])
+    Value.new("array", [Value.new("string", second), Value.new("string", third)])
   end
 end)
 
