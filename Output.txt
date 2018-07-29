@@ -1,8 +1,2 @@
-= :List (File.import_module "Test/TestListBis.txt")
-
-= :test (List.make 1 2 3 4)
-
-
-List.iter (List.filter test (function :x {(== 0 (% x 2))})) println
-println (List.foldl test 0 +)
-println (List.foldl test 1 *)
+= :test [1 2 3 4]
+Array.iter test println

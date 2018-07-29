@@ -3,6 +3,7 @@ Liste des types :
 Int -> present
 Float -> present
 String -> present
+Synbole -> present
 Variable -> present
 Boolean -> present
 Proc -> present

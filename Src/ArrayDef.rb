@@ -30,6 +30,15 @@ arrayMod["first"] = NativeFunction.new("fun", lambda do |array|
   look_at(first, 0)
 end)
 
+arrayMod["rest"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  if first == []
+    Value.new("array", [])
+  else
+    Value.new("array", first[1..-1])
+  end
+end)
+
 arrayMod["set"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   second = look_at(array, 1).total_manip("int").value
