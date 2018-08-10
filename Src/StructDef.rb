@@ -64,4 +64,10 @@ structMod["extend"] = NativeFunction.new("fun", lambda do |array|
 	Value.new("struct", first)
 end)
 
+structMod["concat"] = NativeFunction.new("fun", lambda do |array|
+	first = look_at(array, 0).total_manip("struct").value
+	second = look_at(array, 1).total_manip("struct").value
+	Value.new("struct", first.merge(second))
+end)
+
 $vars.set_value("Struct", Value.new("struct", structMod))

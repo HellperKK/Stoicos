@@ -19,6 +19,12 @@ arrayMod["make_range"] = NativeFunction.new("fun", lambda do |array|
   Value.new("array", (first...second).map {|i| Value.new("int", i)})
 end)
 
+arrayMod["concat"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("array").value
+  Value.new("array", first + second)
+end)
+
 arrayMod["get"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   second = look_at(array, 1).total_manip("int").value
