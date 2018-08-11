@@ -54,6 +54,15 @@ arrayMod["set"] = NativeFunction.new("fun", lambda do |array|
   Value.new("array", first)
 end)
 
+arrayMod["set_fun"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1).total_manip("int").value
+  third = look_at(array, 2).total_manip("fun")
+  first = first.clone
+  first[second] = third.call([first[second]])
+  Value.new("array", first)
+end)
+
 arrayMod["push"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   second = look_at(array, 1).calc.get
