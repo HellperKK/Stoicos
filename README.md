@@ -3,6 +3,11 @@
 Le Stoicos est un langage de programmation interprete en ruby.
 Il est base sur le fait d'utliser un lexer tres simple ce qui faiclite le travail de developpement.
 
+##Specifications
+Le stoicos est un langage de programmation imperatif à traits fonctionnel, dynamiquement
+typé et à conversion implicites. Son nom, vient de son caractère stoique, en effent il
+est conçu pour ignorer la plupart des erreurs pour tourner coûte que coûte. 
+
 ## Utilisation
 Ecrire le code dans un fichier txt et executer la commande que voici :
 `ruby Stoicos.rb Chemin`
