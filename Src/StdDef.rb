@@ -16,6 +16,7 @@ $types["fun"] = Type.new(lambda{NativeFunction.new("fun", lambda{|x|$vars.unit})
 #Definition des convertions
 ##Unit
 $types["unit"].set_conv("string", lambda{|element| Value.new("string", "unit")})
+$types["unit"].set_conv("bool", lambda{|element| Value.new("bool", false)})
 
 ##Int
 $types["int"].set_conv("float", lambda{|element| Value.new("float", element.value.to_f)})
