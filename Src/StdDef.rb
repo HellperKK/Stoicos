@@ -277,6 +277,6 @@ end))
 
 $vars.set_value("convert", NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).get.calculate
-	second = look_at(array, 1).total_manip("string")
+	second = look_at(array, 1).total_manip("string").value
 	first.convert(second)
 end))
