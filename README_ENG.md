@@ -21,7 +21,7 @@ If you don't want to make games you may want to comment the following line in st
 `require_relative "Src/GameDef"`
 
 For windows users you may also do :
-`Stoicos.exe Chemin`
+`Stoicos.exe Path`
 
 ## Documentation
 
@@ -30,4 +30,4 @@ A wiki is avaliable in french here : [ici](https://github.com/HellperKK/Stoicos/
 ## How to contribute
 
 The best way to contribute is to use the language so I can find and fix bugs or
-add features on demand. 
+add features on demand.
