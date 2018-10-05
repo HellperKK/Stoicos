@@ -1,12 +1,19 @@
 require "gosu"
 class GameSprite < Gosu::Image
+	attr_reader :name
+	attr_accessor :x, :y
 	def initialize(name, x, y)
 		super(name)
+		@name = name
 		@x = x
 		@y = y
 	end
 	def draw
 		super(@x, @y, 0)
+	end
+	def move(x, y)
+		@x = x
+		@y = y
 	end
 end
 class GameWindow < Gosu::Window
@@ -17,16 +24,18 @@ class GameWindow < Gosu::Window
 		@input = []
 		# @input = InputManager.new([Gosu::KbUp, Gosu::KbDown, Gosu::KbLeft, Gosu::KbRight, Gosu::KbSpace, Gosu::MsLeft], lambda{|i| button_down?(i)})
     @sprites = []
+		@next_sprites = []
     @showed = false
 		@music = nil
 	end
 	def update
-		@sprites = []
+		# @sprites = []
 		if @input.include?(Gosu::KbEscape)
 			self.close!
 		end
 		@value = @update.call([@value])
 		@draw.call([@value])
+		@sprites = @next_sprites
 		@input = []
 	end
 	def draw
@@ -55,7 +64,16 @@ class GameWindow < Gosu::Window
   end
 	def add_sprite(name, x, y)
 		begin
-			@sprites << GameSprite.new("#{$chemin.path}/#{name}", x, y)
+			index = @sprites.index{|x| x.name == name}
+			if index != nil
+				sprite = @sprites[index]
+				sprite.move(x, y)
+				@next_sprites << sprite
+				@sprites.delete_at(index)
+			else
+				@next_sprites << GameSprite.new("#{$chemin.path}/#{name}", x, y)
+			end
+			# @sprites << GameSprite.new("#{$chemin.path}/#{name}", x, y)
 		rescue
 
 		end
