@@ -1,15 +1,12 @@
 =begin
-Exemple de mouches se déplaçant au hasard
+Compteur de caracteres
 =end
 
-= :build (function :new_x :new_y {(Struct.make {(= :x new_x) (= :y new_y)})})
+= :phrase "portez ce vieux winsky au juge blond qui fume"
 
-= :move_rand (function :value {(+ value (Math.randint -1 1))})
+= :may_increment (function :x { (if {(== x unit)} {1} {(+ x 1)}) } )
 
-= :init (function { (= :tab (Array.make 10 unit)) (Array.map tab (function item index {(build (Math.randint 0 640) (Math.randint 0 480))})) } )
+= :dico (String.foldl phrase Struct.empty (function :memo :value {(Struct.extend_fun memo value may_increment)}))
 
-= :update (function :state { (Array.map state (function :item {(build (move_rand item.x) (move_rand item.y))})) } )
-
-= :draw (function :state { (Array.iter state (function :item {(Game.draw "Test/mouche.png" item.x item.y)})) } )
-
-Game.start init update draw
+println "Dans la phrase" phrase
+Struct.iter dico (function :item :index {(println "Le caractere" index "est present" item "fois")})
