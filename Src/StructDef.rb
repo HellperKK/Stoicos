@@ -24,6 +24,10 @@ structMod["build"] = NativeFunction.new("fun", lambda do |array|
 	Value.new("struct", resultat)
 end)
 
+structMod["empty"] = NativeFunction.new("fun", lambda do |array|
+	Value.new("struct", Hash.new())
+end)
+
 structMod["make"] = NativeFunction.new("fun", lambda do |array|
 	block = look_at(array, 0).total_manip("block")
 	$vars.add_stack
