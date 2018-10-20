@@ -37,6 +37,7 @@ $types["bool"].set_conv("string", lambda{|element| Value.new("string", element.v
 $types["string"].set_conv("int", lambda{|element| Value.new("int", element.value.to_i)})
 $types["string"].set_conv("float", lambda{|element| Value.new("float", element.value.to_f)})
 $types["string"].set_conv("nom", lambda{|element| Variable.new("nom", element.value)})
+$types["string"].set_conv("symbol", lambda{|element| Variable.new("symbol", element.value)})
 # $types["string"].set_conv("bool", lambda{|element| Value.new("bool", element.value != "")})
 $types["string"].set_conv("array", lambda{|element| Value.new("array", element.value.split("").map{|i| Value.new("string", i)})})
 
