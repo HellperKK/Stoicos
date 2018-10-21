@@ -10,7 +10,7 @@ Compteur de caracteres
     }
   )
 
-= :dico (String.foldl phrase (Struct.empty) (function :memo :value {(Struct.extend_fun memo value may_increment)}))
+= :dico (String.foldl phrase Struct.empty (function :memo :value {(Struct.extend_fun memo value may_increment)}))
 
 println "Dans la phrase" phrase
 Struct.iter dico (function :item :index {(println "Le caractere" index "est present" item "fois")})
