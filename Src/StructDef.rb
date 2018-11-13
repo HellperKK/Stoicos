@@ -1,7 +1,7 @@
 structMod = Hash.new($vars.unit)
 
 
-structMod["empty"] = Value.new("struct", Hash.new())
+structMod["empty"] = Value.new("struct", Hash.new($vars.unit))
 
 structMod["build"] = NativeFunction.new("fun", lambda do |array|
 	symbols = array.map{|val| val.total_manip("symbol").value}
