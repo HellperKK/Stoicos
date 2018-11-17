@@ -1,14 +1,7 @@
-=begin
-Compteur de caracteres
-=end
+Struct.open String
 
-= :phrase "portez ce vieux winsky au juge blond qui fume"
+debug String
+debug make
 
-= :may_increment (function :x { (if {(== x unit)} {1} {(+ x 1)}) } )
-
-= :dico (String.foldl phrase Struct.empty (function :memo :value {(Struct.extend_fun memo value may_increment)}))
-
-println "Dans la phrase" phrase
-Struct.iter dico (function :item :index {(println "Le caractere" index "est present" item "fois")})
-
-debug Struct.empty
+println (length "coucou")
+debug (make "cou" 2)

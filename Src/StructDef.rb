@@ -1,3 +1,4 @@
+# Modif de structure
 structMod = Hash.new($vars.unit)
 
 
@@ -86,6 +87,15 @@ structMod["iter"] = NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).total_manip("struct").value
 	second = look_at(array, 1).total_manip("fun")
 	first.each{|index, item| second.call([item, Value.new("symbol", index)])}
+	$vars.unit
+end)
+
+structMod["open"] = NativeFunction.new("fun", lambda do |array|
+	first = look_at(array, 0).total_manip("struct").value
+	first.each do |index, item|
+		# puts index
+		$vars.set_value(index, item)
+	end
 	$vars.unit
 end)
 
