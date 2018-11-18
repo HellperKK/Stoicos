@@ -3,7 +3,7 @@
 The stoicos is a programming language interpreted in ruby.
 It uses a simple lexer which makes it easier to develop.
 
-##Specifications
+## Specifications
 The stoicos is an imperative programming language with functionnal traits, dynamic typing
 and implicit conversions. Its name come from the fact that the interpreted will stay
 stoic againts any type of bug and keep running at any cost.
