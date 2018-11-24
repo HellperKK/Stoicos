@@ -1,7 +1,4 @@
 Struct.open String
 
-debug String
-debug make
-
 println (length "coucou")
-debug (make "cou" 2)
+println (make "cou" 2)
