@@ -161,7 +161,7 @@ end
 
 class Type
 	attr_reader :conversion, :defaut
-	def initialize(defaut=lambda{$vars.unit})
+	def initialize(defaut)
 		@conversion = Hash.new()
 		@defaut = defaut
 	end

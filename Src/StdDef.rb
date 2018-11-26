@@ -1,5 +1,5 @@
 #Definitions des types
-$types["unit"] = Type.new()
+$types["unit"] = Type.new(lambda{$vars.unit})
 $types["int"] = Type.new(lambda{Value.new("int", 0)})
 $types["float"] = Type.new(lambda{Value.new("float", 0.0)})
 $types["string"] = Type.new(lambda{Value.new("string", "")})
