@@ -13,7 +13,7 @@ $types["proc"] = Type.new(lambda{Proce.new("proc", [])})
 $types["block"] = Type.new(lambda{Blocke.new("block", [])})
 $types["fun"] = Type.new(lambda{NativeFunction.new("fun", lambda{|x|$vars.unit})})
 
-#Definition des convertions
+#Definition des conversions
 ##Unit
 $types["unit"].set_conv("string", lambda{|element| Value.new("string", "unit")})
 $types["unit"].set_conv("bool", lambda{|element| Value.new("bool", false)})
