@@ -52,6 +52,13 @@ class Value
 	def to_s
 		@value.to_s
 	end
+	def ==(other)
+		(self.type == other.type) && (self.value == other.value)
+	end
+	def !=(other)
+		puts "test2"
+		(self.type != other.type) && (self.value != other.value)
+	end
 end
 
 class Variable < Value
