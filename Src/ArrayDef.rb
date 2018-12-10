@@ -170,6 +170,12 @@ arrayMod["iteri"] = NativeFunction.new("fun", lambda do |array|
   $vars.unit
 end)
 
+arrayMod["include"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("array").value
+  second = look_at(array, 1)
+  Value.new("bool", first.include?(second))
+end)
+
 arrayMod["any"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   second = look_at(array, 1).total_manip("fun")
