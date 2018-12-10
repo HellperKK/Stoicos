@@ -193,7 +193,7 @@ def to_objet(chaine)
 		Blocke.new("block", parseur(chaine[1..-2]))
 	elsif chaine[0] == ':'
 		Value.new("symbol", chaine[1..-1])
-	elsif chaine[0] == '!'
+	elsif chaine[0] == '#'
 		nom = chaine[1..-1]
 		if nom.split(".").length >= 2
 			vals = nom.split(".")
