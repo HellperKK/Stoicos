@@ -56,8 +56,7 @@ class Value
 		(self.type == other.type) && (self.value == other.value)
 	end
 	def !=(other)
-		puts "test2"
-		(self.type != other.type) && (self.value != other.value)
+		(self.type != other.type) || (self.value != other.value)
 	end
 end
 
@@ -66,6 +65,7 @@ class Variable < Value
 		super(type, value)
 	end
 	def get
+		# puts @value
 		$vars.get_value(@value)
 	end
 end

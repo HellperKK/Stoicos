@@ -134,3 +134,4 @@ f = File.open('Output.txt','w'){|i| i.write(contenu)}
 t2 = Time.now
 print "\n"
 puts t2 - t1
+# puts $vars.get_stack.each{|key, value| puts "#{key} #{value}"}

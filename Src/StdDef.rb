@@ -186,7 +186,6 @@ $vars.set_value("==", NativeFunction.new("fun", lambda do |array|
 	Value.new("bool", first == second)
 end))
 $vars.set_value("!=", NativeFunction.new("fun", lambda do |array|
-	puts "test"
 	first = look_at(array, 0).get.calc
 	second = look_at(array, 1).get.calc
 	Value.new("bool", first != second)
