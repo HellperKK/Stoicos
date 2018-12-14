@@ -8,6 +8,7 @@ require_relative "Src/MathDef"
 require_relative "Src/GameDef"
 require_relative "Src/StructDef"
 require_relative "Src/FileManager"
+require_relative "Src/MapDef"
 
 def chercheFonc(tab)
 	begin
@@ -15,13 +16,18 @@ def chercheFonc(tab)
 		arguments = tab[1..-1].map{|i| i.calc.get}
 		arguments = [] if arguments == nil
 		fonction.call(arguments)
-	rescue
+	rescue StandardError => e
+		puts "there has been an accident ! #{e.message}"
 		$vars.unit
 	end
 end
 
 def look_at(array, indice)
 	array.fetch(indice, $vars.unit)
+end
+
+def same_size(array, arrayb)
+	array.each_with_index.map{|e, i| look_at(arrayb, i)}
 end
 
 ###########################################
