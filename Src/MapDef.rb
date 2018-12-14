@@ -20,6 +20,12 @@ mapMod["from_pairs"] = NativeFunction.new("fun", lambda do |array|
   Value.new("map", map)
 end)
 
+mapMod["get"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("map").value
+  second = look_at(array, 1)
+  first[second]
+end)
+
 mapMod["pairs"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("map").value
   tab = first.to_a.map{|p| Value.new("array", p)}
