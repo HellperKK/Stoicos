@@ -18,6 +18,8 @@ def chercheFonc(tab)
 		fonction.call(arguments)
 	rescue StandardError => e
 		puts "there has been an accident ! #{e.message}"
+		# puts tab.to_s
+		# puts e.backtrace.inspect
 		$vars.unit
 	end
 end
