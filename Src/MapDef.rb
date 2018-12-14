@@ -26,6 +26,24 @@ mapMod["get"] = NativeFunction.new("fun", lambda do |array|
   first[second]
 end)
 
+mapMod["set"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("map").value
+  second = look_at(array, 1)
+  third = look_at(array, 2)
+  first = first.clone
+  first[second] = third
+  Value.new("map", first)
+end)
+
+mapMod["set_fun"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("map").value
+  second = look_at(array, 1)
+  third = look_at(array, 2).total_manip("fun")
+  first = first.clone
+  first[second] = third.call([first[second]])
+  Value.new("map", first)
+end)
+
 mapMod["pairs"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("map").value
   tab = first.to_a.map{|p| Value.new("array", p)}

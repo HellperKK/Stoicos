@@ -1,3 +1,8 @@
 = :hash (Map.from_pairs ["Jean" 1] ["John" 2] ["Paul" 3])
+println (Map.get hash "Paul")
 
+= :hash (Map.set hash "Paul" 7)
+println (Map.get hash "Paul")
+
+= :hash (Map.set_fun hash "Paul" (function :x {(+ x 1)}))
 println (Map.get hash "Paul")
