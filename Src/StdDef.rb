@@ -9,6 +9,7 @@ $types["nom"] = Type.new(lambda{Variable.new("nom", "unit")})
 $types["array_parse"] = Type.new(lambda{ArrayParse.new("array_parse", [])})
 $types["bool"] = Type.new(lambda{Value.new("bool", true)})
 $types["struct"] = Type.new(lambda{Value.new("struct", Hash.new($vars.unit))})
+$types["map"] = Type.new(lambda{Value.new("struct", Hash.new($vars.unit))})
 $types["proc"] = Type.new(lambda{Proce.new("proc", [])})
 $types["block"] = Type.new(lambda{Blocke.new("block", [])})
 $types["fun"] = Type.new(lambda{NativeFunction.new("fun", lambda{|x|$vars.unit})})
@@ -58,8 +59,8 @@ $types["struct"].set_conv("string", lambda{|element| Value.new("string", "A stru
 ##Fun
 $types["fun"].set_conv("string", lambda{|element| Value.new("string", "A function")})
 
-##Unit
-$types["unit"].set_conv("bool", lambda{|element| Value.new("bool", false)})
+##Map
+$types["map"].set_conv("string", lambda{|element| Value.new("string", element.value.to_a.map{|p| p.map{|i| i.total_manip("string").value}}.to_s)})
 
 #Definition des valeurs de base
 #~ $vars.set_value("unit", Value.new("unit", nil))
@@ -104,7 +105,8 @@ end))
 $vars.set_value("bind", NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).total_manip("array").value.map{|i| i.total_manip("symbol").value}
 	second = look_at(array, 1).total_manip("array").value.map{|i| i.get.calc}
-	first.each_with_index{|item, index| $vars.set_value(item, second[index])}
+	tab = same_size(first, second)
+	first.each_with_index{|item, index| $vars.set_value(item, tab[index])}
 end))
 
 $vars.set_value("assign_fun", NativeFunction.new("fun", lambda do |array|
