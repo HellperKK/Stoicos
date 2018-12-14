@@ -26,4 +26,14 @@ mapMod["pairs"] = NativeFunction.new("fun", lambda do |array|
   Value.new("array", tab)
 end)
 
+mapMod["keys"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("map").value.keys
+  Value.new("array", first)
+end)
+
+mapMod["values"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("map").value.values
+  Value.new("array", first)
+end)
+
 $vars.set_value("Map", Value.new("struct", mapMod))
