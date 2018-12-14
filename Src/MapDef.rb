@@ -60,4 +60,13 @@ mapMod["values"] = NativeFunction.new("fun", lambda do |array|
   Value.new("array", first)
 end)
 
+mapMod["iter"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("map").value
+  second = look_at(array, 1).total_manip("fun")
+  first.each do |key, value|
+    second.call([value, key])
+  end
+  $vars.unit
+end)
+
 $vars.set_value("Map", Value.new("struct", mapMod))
