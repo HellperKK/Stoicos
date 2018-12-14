@@ -1,8 +1,16 @@
-= :hash (Map.from_pairs ["Jean" 1] ["John" 2] ["Paul" 3])
-println (Map.get hash "Paul")
+=begin
+Compteur de caracteres
+=end
 
-= :hash (Map.set hash "Paul" 7)
-println (Map.get hash "Paul")
+= :phrase "portez ce vieux winsky au juge blond qui fume"
 
-= :hash (Map.set_fun hash "Paul" (function :x {(+ x 1)}))
-println (Map.get hash "Paul")
+= :may_increment (function :x
+    {
+      (if {(== x unit)} {1} {(+ x 1)})
+    }
+  )
+
+= :dico (String.foldl phrase Map.empty (function :memo :value {(Map.set_fun memo value may_increment)}))
+
+println "Dans la phrase" phrase
+Map.iter dico (function :item :index {(println "Le caractere" index "est present" item "fois")})
