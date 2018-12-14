@@ -1,1 +1,3 @@
-println (Array.include [1 2 3] 34)
+= :hash (Map.from_pairs ["Jean" 1] ["John" 2] ["Paul" 3])
+
+println (Map.pairs hash)
