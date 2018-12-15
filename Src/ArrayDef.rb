@@ -51,6 +51,7 @@ arrayMod["set"] = NativeFunction.new("fun", lambda do |array|
   third = look_at(array, 2).calc.get
   first = first.clone
   first[second] = third
+  first = first.map{|e| e == nil ? $vars.unit : e }
   Value.new("array", first)
 end)
 
