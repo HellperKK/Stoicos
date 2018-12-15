@@ -170,6 +170,11 @@ $vars.set_value("||", NativeFunction.new("fun", lambda do |array|
 	Value.new("bool", array.map{|val| val.total_manip("bool").value}.inject{|memo, value| memo || value})
 end))
 
+$vars.set_value("!", NativeFunction.new("fun", lambda do |array|
+	first = look_at(array, 0).total_manip("bool").value
+	Value.new("bool", ! first)
+end))
+
 #Gestion comparaisons
 $vars.set_value("==", NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).get.calc

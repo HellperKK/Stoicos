@@ -1,6 +1,1 @@
-= :variable 1
-= :fun1 (function {(println variable)})
-= :fun2 (function {(println @variable)})
-= :variable 2
-fun1
-fun2
+println (|| false false)
