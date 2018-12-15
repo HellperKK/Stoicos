@@ -127,6 +127,11 @@ arrayMod["join"] = NativeFunction.new("fun", lambda do |array|
   Value.new("string", first.join(second))
 end)
 
+arrayMod["concat"] = NativeFunction.new("fun", lambda do |array|
+	first = array.map{|val| val.total_manip("array").value}
+	Value.new("array", first.inject{|memo, value| memo + value})
+end)
+
 arrayMod["reverse"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("array").value
   Value.new("array", first.reverse)

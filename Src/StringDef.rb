@@ -77,6 +77,10 @@ stringMod["format"] = NativeFunction.new("fun", lambda do |array|
   Value.new("string", resultat)
 end)
 
+stringMod["concat"] = NativeFunction.new("fun", lambda do |array|
+	Value.new("string", array.map{|val| val.total_manip("string").value}.join(""))
+end)
+
 stringMod["upcase"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
   Value.new("string", first.upcase)
