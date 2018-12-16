@@ -35,6 +35,12 @@ mapMod["set"] = NativeFunction.new("fun", lambda do |array|
   Value.new("map", first)
 end)
 
+mapMod["include"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("map").value
+  second = look_at(array, 1)
+  Value.new("bool", first.include?(second))
+end)
+
 mapMod["set_fun"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("map").value
   second = look_at(array, 1)

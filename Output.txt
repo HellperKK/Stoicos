@@ -1,1 +1,3 @@
-println (|| false false)
+= :map (Map.from_pairs ["Jean" 1] ["John" 2] ["Paul" 3])
+
+println (Map.include map "Joseph")
