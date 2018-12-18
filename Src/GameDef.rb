@@ -9,6 +9,17 @@ class GameSprite < Gosu::Image
 		super(@x, @y, 0)
 	end
 end
+class GameText
+	def initialize(size, x, y, text)
+		@font = Gosu::Font.new(size)
+		@x = x
+		@y = y
+		@text = text
+	end
+	def draw
+		@font.draw_text(@text, @x, @y, 0)
+	end
+end
 class GameWindow < Gosu::Window
 	def initialize
 		super(640, 480, false)
@@ -54,12 +65,17 @@ class GameWindow < Gosu::Window
   def showed?
     @showed
   end
+
 	def add_sprite(name, x, y)
 		begin
 			@sprites << GameSprite.new("#{$chemin.path}/#{name}", x, y)
 		rescue
 
 		end
+	end
+
+	def add_text(text, x, y)
+		@sprites << GameText.new(32, x, y, text)
 	end
 
 	def play_music(name)
@@ -130,6 +146,16 @@ gameMod["draw"] = NativeFunction.new("fun", lambda do |array|
 		second = look_at(array, 1).total_manip("int").value
 		third = look_at(array, 2).total_manip("int").value
 		$game.add_sprite(first, second, third)
+	end
+	$vars.unit
+end)
+
+gameMod["draw_text"] = NativeFunction.new("fun", lambda do |array|
+	if $game.showed?
+		first = look_at(array, 0).total_manip("string").value
+		second = look_at(array, 1).total_manip("int").value
+		third = look_at(array, 2).total_manip("int").value
+		$game.add_text(first, second, third)
 	end
 	$vars.unit
 end)

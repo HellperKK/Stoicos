@@ -1,3 +1,23 @@
-= :map (Map.from_pairs ["Jean" 1] ["John" 2] ["Paul" 3])
+= :init (function
+    {
+      ["Hello" 0 0]
+    }
+  )
 
-println (Map.include map "Joseph")
+= :update (function :state
+    {
+      (bind [:text :x :y] state)
+      (= :x (% (+ x 1) 640))
+      (= :y (% (+ y 1) 480))
+      [text x y]
+    }
+  )
+
+= :draw (function :state
+    {
+      (bind [:text :x :y] state)
+      (Game.draw_text text x y)
+    }
+  )
+
+Game.start init update draw
