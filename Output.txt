@@ -1,3 +1,10 @@
 = :stru (Struct.from_pairs [:x 12] [:y 24] )
 
 Struct.iter stru println
+
+= :x 12
+= :y 24
+
+= :stru (Struct.from_keys :x :y)
+
+Struct.iter stru println

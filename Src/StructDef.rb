@@ -38,6 +38,15 @@ structMod["from_pairs"] = NativeFunction.new("fun", lambda do |array|
   Value.new("struct", map)
 end)
 
+structMod["from_keys"] = NativeFunction.new("fun", lambda do |array|
+  first = array.map{|e| e.total_manip("symbol").value}
+  map = Hash.new($vars.unit)
+  first.each do |element|
+    map[element] = $vars.get_value(element)
+  end
+  Value.new("struct", map)
+end)
+
 structMod["make"] = NativeFunction.new("fun", lambda do |array|
 	block = look_at(array, 0).total_manip("block")
 	$vars.add_stack
