@@ -1,23 +1,6 @@
-= :init (function
-    {
-      ["Hello" 0 0]
-    }
+= :stru (Struct.from_pairs
+    [:x 12]
+    [:y 24]
   )
 
-= :update (function :state
-    {
-      (bind [:text :x :y] state)
-      (= :x (% (+ x 1) 640))
-      (= :y (% (+ y 1) 480))
-      [text x y]
-    }
-  )
-
-= :draw (function :state
-    {
-      (bind [:text :x :y] state)
-      (Game.draw_text text x y)
-    }
-  )
-
-Game.start init update draw
+Struct.iter stru println
