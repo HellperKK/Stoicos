@@ -53,13 +53,21 @@ class Value
 		@value.to_s
 	end
 	def ==(other)
-		(self.type == other.type) && (self.value == other.value)
+		if Value === other
+			(self.type == other.type) && (self.value == other.value)
+		else
+			super(other)
+		end
 	end
 	def eql?(other)
-		(self.type == other.type) && (self.value == other.value)
+		self == other
 	end
 	def !=(other)
-		(self.type != other.type) || (self.value != other.value)
+		if Value === other
+			(self.type != other.type) || (self.value != other.value)
+		else
+			super(other)
+		end
 	end
 	def hash
 		@value.hash
