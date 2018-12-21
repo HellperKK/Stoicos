@@ -27,14 +27,14 @@ class GameSprite
 	end
 end
 class GameText
-	def initialize(size, x, y, text)
-		@font = Gosu::Font.new(size)
+	@@font = Gosu::Font.new(32)
+	def initialize(x, y, text)
 		@x = x
 		@y = y
 		@text = text
 	end
 	def draw
-		@font.draw_text(@text, @x, @y, 0)
+		@@font.draw_text(@text, @x, @y, 0)
 	end
 end
 class GameWindow < Gosu::Window
@@ -92,7 +92,7 @@ class GameWindow < Gosu::Window
 	end
 
 	def add_text(text, x, y)
-		@sprites << GameText.new(32, x, y, text)
+		@sprites << GameText.new(x, y, text)
 	end
 
 	def play_music(name)
