@@ -1,12 +1,29 @@
 require "gosu"
-class GameSprite < Gosu::Image
+# class GameSprite < Gosu::Image
+# 	def initialize(name, x, y)
+# 		super(name)
+# 		@x = x
+# 		@y = y
+# 	end
+# 	def draw
+# 		super(@x, @y, 0)
+# 	end
+# end
+class GameSprite
+	@@sprites = Hash.new
 	def initialize(name, x, y)
-		super(name)
+		@name = name
 		@x = x
 		@y = y
+		manageSprite
 	end
 	def draw
-		super(@x, @y, 0)
+		@@sprites[@name].draw(@x, @y, 0)
+	end
+	def manageSprite
+		unless @@sprites.include?(@name)
+			@@sprites[@name] = Gosu::Image.new(@name)
+		end
 	end
 end
 class GameText
@@ -145,7 +162,11 @@ gameMod["draw"] = NativeFunction.new("fun", lambda do |array|
 		first = look_at(array, 0).total_manip("string").value
 		second = look_at(array, 1).total_manip("int").value
 		third = look_at(array, 2).total_manip("int").value
-		$game.add_sprite(first, second, third)
+		if File.exist?(first)
+			$game.add_sprite(first, second, third)
+		else
+			raise "I'm trying tro draw a file that don't exist : #{first}"
+		end
 	end
 	$vars.unit
 end)
