@@ -60,7 +60,9 @@ arrayMod["set_fun"] = NativeFunction.new("fun", lambda do |array|
   second = look_at(array, 1).total_manip("int").value
   third = look_at(array, 2).total_manip("fun")
   first = first.clone
-  first[second] = third.call([first[second]])
+  before = look_at(first, second)
+  first[second] = third.call([before])
+  first = first.map{|e| e == nil ? $vars.unit : e}
   Value.new("array", first)
 end)
 
