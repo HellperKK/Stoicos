@@ -95,6 +95,16 @@ class GameWindow < Gosu::Window
 		@sprites << GameText.new(x, y, text)
 	end
 
+	def play_sound(name)
+		puts "test"
+		begin
+			sound = Gosu::Sample.new("#{$chemin.path}/#{name}")
+			sound.play
+		rescue
+
+		end
+	end
+
 	def play_music(name)
 		begin
 			@music = Gosu::Song.new("#{$chemin.path}/#{name}")
@@ -177,6 +187,14 @@ gameMod["draw_text"] = NativeFunction.new("fun", lambda do |array|
 		second = look_at(array, 1).total_manip("int").value
 		third = look_at(array, 2).total_manip("int").value
 		$game.add_text(first, second, third)
+	end
+	$vars.unit
+end)
+
+gameMod["play_sound"] = NativeFunction.new("fun", lambda do |array|
+	if $game.showed?
+		first = look_at(array, 0).total_manip("string").value
+		$game.play_sound(first)
 	end
 	$vars.unit
 end)
