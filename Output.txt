@@ -1,11 +1,11 @@
 =begin
-Exemple avec une mouche qui tourne autour d'un point
+Moving a sprite with arrow keys
 =end
 
-= :init (function { 0 } )
+= :init (function { [32 32] } )
 
-= :update (function :state { (if {(== state 0)} {(Game.play_sound "Test/10coins1.wav")}) (% (+ state 1) 60) } )
+= :update (function :state { (bind [:new_x :new_y] state) (if {(Game.pressing (Game.key "UP"))} {(= :new_y (- new_y 1))}) (if {(Game.pressing (Game.key "DOWN"))} {(= :new_y (+ new_y 1))}) (if {(Game.pressing (Game.key "LEFT"))} {(= :new_x (- new_x 1))}) (if {(Game.pressing (Game.key "RIGHT"))} {(= :new_x (+ new_x 1))}) [new_x new_y] } )
 
-= :draw (function :state { unit } )
+= :draw (function :state { (bind [:x :y] state) (Game.draw "Test/mouche.png" x y) } )
 
 Game.start init update draw
