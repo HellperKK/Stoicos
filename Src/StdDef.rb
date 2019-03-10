@@ -3,6 +3,7 @@ $types["unit"] = Type.new(lambda{$vars.unit})
 $types["int"] = Type.new(lambda{Value.new("int", 0)})
 $types["float"] = Type.new(lambda{Value.new("float", 0.0)})
 $types["string"] = Type.new(lambda{Value.new("string", "")})
+$types["stringIns"] = Type.new(lambda{Value.new("stringIns", "")})
 $types["symbol"] = Type.new(lambda{Value.new("symbol", "unit")})
 $types["array"] = Type.new(lambda{Value.new("array", [])})
 $types["nom"] = Type.new(lambda{Variable.new("nom", "unit")})
@@ -16,51 +17,58 @@ $types["fun"] = Type.new(lambda{NativeFunction.new("fun", lambda{|x|$vars.unit})
 
 #Definition des conversions
 ##Unit
-$types["unit"].set_conv("string", lambda{|element| Value.new("string", "unit")})
+$types["unit"].set_conv("stringIns", lambda{|element| Value.new("stringIns", "unit")})
 $types["unit"].set_conv("bool", lambda{|element| Value.new("bool", false)})
 
 ##Int
 $types["int"].set_conv("float", lambda{|element| Value.new("float", element.value.to_f)})
 $types["int"].set_conv("string", lambda{|element| Value.new("string", element.value.to_s)})
+$types["int"].set_conv("stringIns", lambda{|element| Value.new("stringIns", element.value.to_s)})
 $types["int"].set_conv("nom", lambda{|element| Variable.new("nom", element.value.to_s)})
 # $types["int"].set_conv("bool", lambda{|element| Value.new("bool", element.value != 0)})
 
 ##Float
 $types["float"].set_conv("int", lambda{|element| Value.new("int", element.value.to_i)})
 $types["float"].set_conv("string", lambda{|element| Value.new("string", element.value.to_s)})
+$types["float"].set_conv("stringIns", lambda{|element| Value.new("stringIns", element.value.to_s)})
 $types["float"].set_conv("nom", lambda{|element| Variable.new("nom", element.value.to_s)})
 # $types["float"].set_conv("bool", lambda{|element| Value.new("bool", element.value != 0.0)})
 
 ##Bool
 $types["bool"].set_conv("string", lambda{|element| Value.new("string", element.value.to_s)})
+$types["bool"].set_conv("stringIns", lambda{|element| Value.new("stringIns", element.value.to_s)})
 
 ##String
 $types["string"].set_conv("int", lambda{|element| Value.new("int", element.value.to_i)})
 $types["string"].set_conv("float", lambda{|element| Value.new("float", element.value.to_f)})
 $types["string"].set_conv("nom", lambda{|element| Variable.new("nom", element.value)})
 $types["string"].set_conv("symbol", lambda{|element| Variable.new("symbol", element.value)})
+$types["string"].set_conv("stringIns", lambda{|element| Variable.new("stringIns", "\"" + element.value + "\"")})
 # $types["string"].set_conv("bool", lambda{|element| Value.new("bool", element.value != "")})
 $types["string"].set_conv("array", lambda{|element| Value.new("array", element.value.split("").map{|i| Value.new("string", i)})})
 
 ##Symbol
 $types["symbol"].set_conv("string", lambda{|element| Value.new("string", element.value)})
+$types["symbol"].set_conv("stringIns", lambda{|element| Value.new("stringIns", ":" + element.value)})
 $types["symbol"].set_conv("nom", lambda{|element| Variable.new("nom", element.value)})
 
 ##Array
-$types["array"].set_conv("string", lambda{|element| Value.new("string", "[" + element.value.map{|i| i.total_manip("string").value}.join(", ") + "]")})
+$types["array"].set_conv("string", lambda{|element| Value.new("string", element.value.map{|i| i.total_manip("string").value}.join("\n"))})
+$types["array"].set_conv("stringIns", lambda{|element| Value.new("stringIns", "[" + element.value.map{|i| i.total_manip("stringIns").value}.join(", ") + "]")})
 
 ##Block
 $types["block"].set_conv("fun", lambda{|element| CustonFunction.new("fun", element, [])})
-$types["block"].set_conv("string", lambda{|element| Value.new("string", "A block")})
+$types["block"].set_conv("stringIns", lambda{|element| Value.new("stringIns", "A block")})
 
 ##Struct
-$types["struct"].set_conv("string", lambda{|element| Value.new("string", "A struct")})
+$types["struct"].set_conv("stringIns", lambda{|element| Value.new("stringIns", "A struct")})
 
 ##Fun
-$types["fun"].set_conv("string", lambda{|element| Value.new("string", "A function")})
+$types["fun"].set_conv("stringIns", lambda{|element| Value.new("stringIns", "A function")})
 
 ##Map
 $types["map"].set_conv("string", lambda{|element| Value.new("string", element.value.to_a.map{|p| p.map{|i| i.total_manip("string").value}}.to_s)})
+$types["map"].set_conv("stringIns", lambda{|element| Value.new("string", element.value.to_a.map{|p| p.map{|i| i.total_manip("stringIns").value}}.to_s)})
 
 #Definition des valeurs de base
 #~ $vars.set_value("unit", Value.new("unit", nil))
@@ -79,6 +87,11 @@ $vars.set_value("println", NativeFunction.new("fun", lambda do |array|
 	str = array.map{|val| val.total_manip("string").value}.join(" ")
 	puts str
 	Value.new("string", str)
+end))
+$vars.set_value("inspect", NativeFunction.new("fun", lambda do |array|
+	str = array.map{|val| val.total_manip("stringIns").value}.join(" ")
+	puts str
+	$vars.unit
 end))
 $vars.set_value("debug", NativeFunction.new("fun", lambda do |array|
 	puts array.map{|i| i.get}.to_s

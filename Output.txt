@@ -1,11 +1,3 @@
-=begin
-Moving a sprite with arrow keys
-=end
-
-= :init (function { [32 32] } )
-
-= :update (function :state { (bind [:new_x :new_y] state) (if {(Game.pressing (Game.key "UP"))} {(= :new_y (- new_y 1))}) (if {(Game.pressing (Game.key "DOWN"))} {(= :new_y (+ new_y 1))}) (if {(Game.pressing (Game.key "LEFT"))} {(= :new_x (- new_x 1))}) (if {(Game.pressing (Game.key "RIGHT"))} {(= :new_x (+ new_x 1))}) [new_x new_y] } )
-
-= :draw (function :state { (bind [:x :y] state) (Game.draw "Test/mouche.png" x y) } )
-
-Game.start init update draw
+println "---"
+println :hello
+inspect :hello
