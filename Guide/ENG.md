@@ -27,12 +27,14 @@ Then create a .txt file named `Main.txt` still in the same folder and fill it wi
 Moving a sprite with arrow keys
 =end
 
+#Generate the initial state of the game
 = :init (function
     {
       [32 32]
     }
   )
 
+#Updates the state of the game and return a new one
 = :update (function :state
     {
       (bind [:new_x :new_y] state)
@@ -52,6 +54,7 @@ Moving a sprite with arrow keys
     }
   )
 
+#Draws sprites depending of the state of the game
 = :draw (function :state
     {
       (bind [:x :y] state)
