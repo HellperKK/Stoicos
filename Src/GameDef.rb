@@ -11,6 +11,7 @@ require "gosu"
 # end
 class GameSprite
 	@@sprites = Hash.new
+	attr_reader :name, :x, :y
 	def initialize(name, x, y)
 		@name = name
 		@x = x
@@ -45,18 +46,19 @@ class GameWindow < Gosu::Window
 		@input = []
 		# @input = InputManager.new([Gosu::KbUp, Gosu::KbDown, Gosu::KbLeft, Gosu::KbRight, Gosu::KbSpace, Gosu::MsLeft], lambda{|i| button_down?(i)})
     @sprites = []
-		@next_sprites = []
+		@new_sprites = []
     @showed = false
 		@music = nil
 	end
 	def update
-		@sprites = []
+		@new_sprites = []
 		if @input.include?(Gosu::KbEscape)
 			self.close!
 		end
 		@value = @update.call([@value])
 		@draw.call([@value])
 		@input = []
+		@sprites = @new_sprites
 	end
 	def draw
     @sprites.each{|i| i.draw}
@@ -83,11 +85,28 @@ class GameWindow < Gosu::Window
     @showed
   end
 
+	# def add_sprite(name, x, y)
+	# 	begin
+	# 		@sprites << GameSprite.new("#{$chemin.path}/#{name}", x, y)
+	# 	rescue
+	#
+	# 	end
+	# end
+
 	def add_sprite(name, x, y)
 		begin
-			@sprites << GameSprite.new("#{$chemin.path}/#{name}", x, y)
+			pred = nil
+			pred = @sprites.find_index{|spr| (spr.x == x) && (spr.y == y) && (spr.name == $chemin.relative(name))}
+			if pred != nil
+				#puts "Valid"
+				@new_sprites << @sprites[pred]
+				@pred.delete_at(pred)
+			else
+				#puts "InValid"
+				@new_sprites << GameSprite.new("#{$chemin.path}/#{name}", x, y)
+			end
 		rescue
-
+			#puts e
 		end
 	end
 
