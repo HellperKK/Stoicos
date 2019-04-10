@@ -1,13 +1,15 @@
 =begin
-Exemple avec un sprite se deplacant avec les fleches
+Exemple de mouches se déplaçant au hasard
 =end
 
 = :build (function :new_x :new_y {(Struct.make {(= :x new_x) (= :y new_y)})})
 
-= :init (function {(build 32 32)})
+= :move_rand (function :value {(+ value (Math.randint -1 1))})
 
-= :update (function :state { (= :new_x state.x) (= :new_y state.y) (if {(Game.pressing (Game.key "UP"))} {(= :new_y (- new_y 1))}) (if {(Game.pressing (Game.key "DOWN"))} {(= :new_y (+ new_y 1))}) (if {(Game.pressing (Game.key "LEFT"))} {(= :new_x (- new_x 1))}) (if {(Game.pressing (Game.key "RIGHT"))} {(= :new_x (+ new_x 1))}) (build new_x new_y) } )
+= :init (function { (= :tab (Array.make 150 unit)) (Array.map tab (function item index {(build (Math.randint 0 640) (Math.randint 0 480))})) } )
 
-= :draw (function :state {(Game.draw "Test/mouche.png" state.x state.y)})
+= :update (function :state { (Array.map state (function :item {(build (move_rand item.x) (move_rand item.y))})) } )
+
+= :draw (function :state { (Array.iter state (function :item {(Game.draw "Test/mouche.png" item.x item.y)})) } )
 
 Game.start init update draw
