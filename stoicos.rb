@@ -1,4 +1,5 @@
-require_relative "lexer.rb"
+require_relative "src/lexer.rb"
+require_relative "src/fileManager.rb"
 
 args = ARGV
 if args != []
