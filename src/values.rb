@@ -8,6 +8,9 @@ class Value
 	def total_manip(type)
 		self.get.calc.convert(type)
 	end
+	def type?(type)
+		@type == type
+	end
 	def convert(type)
 		if @type == type
 			self
