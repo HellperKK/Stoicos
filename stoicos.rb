@@ -11,9 +11,9 @@ end
 if File.file?(ouvrir)
 	$chemin = FileManager.new(File.dirname(ouvrir), File.basename(ouvrir))
 elsif File.directory?(ouvrir)
-	$chemin = FileManager.new(ouvrir, "Main.txt")
+	$chemin = FileManager.new(ouvrir, "main.txt")
 else
-	$chemin = FileManager.new(".", "Main.txt")
+	$chemin = FileManager.new(".", "main.txt")
 end
 
 texte = File.open($chemin.main, "r"){|file| file.read}
