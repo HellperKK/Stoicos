@@ -1,6 +1,10 @@
 require_relative "src/values.rb"
 require_relative "src/lexer.rb"
 require_relative "src/fileManager.rb"
+require_relative "src/eval.rb"
+require_relative "src/variables.rb"
+
+$vars = Vars.new
 
 args = ARGV
 if args != []
@@ -19,3 +23,7 @@ end
 
 texte = File.open($chemin.main, "r"){|file| file.read}
 tokens = lex(texte)
+tokens.each do |i|
+	i.calc
+end
+puts tokens.to_s
