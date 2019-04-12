@@ -136,10 +136,10 @@ class Proce < Value
 		super(line_num, type, value)
 	end
 	def calc
-		chercheFonc(@value)
+		eval(@value)
 	end
 	def calculate
-		chercheFonc(@value)
+		eval(@value)
 	end
 end
 

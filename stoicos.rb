@@ -10,7 +10,7 @@ args = ARGV
 if args != []
 	ouvrir = args[0]
 else
-	ouvrir = "./Main.txt"
+	ouvrir = "./main.txt"
 end
 
 if File.file?(ouvrir)

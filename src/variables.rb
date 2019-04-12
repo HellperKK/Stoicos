@@ -5,7 +5,7 @@ class Vars
 	end
 
 	def unit
-		Value.new("unit", nil)
+		Value.new(0, "unit", nil)
 	end
 
 	def initial_hash
