@@ -46,7 +46,6 @@ def clean(texte)
 end
 
 def to_token(chaine, line_num)
-	puts chaine
 	if /^\d+$/.match?(chaine)
 		Value.new(line_num, "int", chaine.to_i)
 	elsif /^\d+\.\d+$/.match?(chaine)
@@ -72,7 +71,6 @@ end
 
 
 def lex(texte, line_num=1)
-	puts texte
   cleaned = clean(texte)
 	tokens = []
 	while cleaned != ""
@@ -100,12 +98,11 @@ def lex(texte, line_num=1)
 			tokens.push(to_token(elem.strip, line_num))
 			cleaned = cleaned[(point + 1)..-1]
 		rescue => error
-			puts error.message
-			puts error.backtrace
-			#puts error.message + " on line " + line_num.to_s
+			# puts error.message
+			# puts error.backtrace
+			puts error.message + " on line " + line_num.to_s
 			exit
 		end
 	end
-	puts tokens.to_s
 	tokens
 end
