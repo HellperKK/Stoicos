@@ -45,11 +45,36 @@ def clean(texte)
 	lines.join("\n")
 end
 
-def lex(texte)
+def to_token(chaine, line_num)
+	puts chaine
+	if /^\d+$/.match?(chaine)
+		Value.new(line_num, "int", chaine.to_i)
+	elsif /^\d+\.\d+$/.match?(chaine)
+		Value.new(line_num, "float", chaine.to_f)
+	elsif chaine[0] == '"'
+		Value.new(line_num, "string", chaine[1..-2])
+	elsif chaine[0] == '['
+		ArrayParse.new(line_num, "array_parse", lex(chaine[1..-2], line_num))
+	elsif chaine[0] == '('
+		Proce.new(line_num, "proc", lex(chaine[1..-2], line_num))
+	elsif chaine[0] == '{'
+		Blocke.new(line_num, "block", lex(chaine[1..-2], line_num))
+	elsif /:[A-Za-z0-9\+\*\/\-%_&\|=<>\.]+/.match?(chaine)
+		Value.new(line_num, "symbol", chaine[1..-1])
+	elsif ["true", "false"].include?(chaine)
+		Value.new(line_num, "bool", chaine == "true")
+	elsif /[A-Za-z0-9\+\*\/\-%_&\|=<>\.]+/.match?(chaine)
+		Variable.new(line_num, "nom", chaine)
+	else
+		raise "uknown token"
+	end
+end
+
+
+def lex(texte, line_num=1)
+	puts texte
   cleaned = clean(texte)
 	tokens = []
-	line_num = 1
-	puts "test"
 	while cleaned != ""
 		begin
 			if cleaned[0] == '"'
@@ -65,21 +90,22 @@ def lex(texte)
 				cleaned = cleaned[1..-1]
 				next
 			elsif ! /\s/.match(cleaned)
-				tokens.push(cleaned)
+				tokens.push(to_token(cleaned, line_num))
 				break
 			else
 				point = find_next_match(cleaned, /\s/) - 1
 			end
 			elem = cleaned[0..point]
 			line_num += elem.count("\n")
-			tokens.push(elem.strip)
+			tokens.push(to_token(elem.strip, line_num))
 			cleaned = cleaned[(point + 1)..-1]
-			# tokens << to_objet(line[0..point])
-			# to_objet(line[0..point]) + parseur(line[(point + 1)..-1])
 		rescue => error
-			puts error.message + " on line " + line_num.to_s
+			puts error.message
+			puts error.backtrace
+			#puts error.message + " on line " + line_num.to_s
 			exit
 		end
 	end
 	puts tokens.to_s
+	tokens
 end

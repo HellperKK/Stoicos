@@ -1,3 +1,4 @@
+require_relative "src/values.rb"
 require_relative "src/lexer.rb"
 require_relative "src/fileManager.rb"
 
