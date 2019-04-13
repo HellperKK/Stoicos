@@ -63,7 +63,7 @@ def to_token(chaine, line_num)
 	elsif ["true", "false"].include?(chaine)
 		Value.new(line_num, "bool", chaine == "true")
 	elsif /[A-Za-z0-9\+\*\/\-%_&\|=<>\.]+/.match?(chaine)
-		Variable.new(line_num, "nom", chaine)
+		Ident.new(line_num, "nom", chaine)
 	else
 		raise "uknown token"
 	end
@@ -99,7 +99,7 @@ def lex(texte, line_num=1)
 			cleaned = cleaned[(point + 1)..-1]
 		rescue => error
 			# puts error.message
-			# puts error.backtrace
+			puts error.backtrace
 			puts error.message + " on line " + line_num.to_s
 			exit
 		end

@@ -60,7 +60,7 @@ class Value
 	end
 end
 
-class Variable < Value
+class Ident < Value
 	def get
 		# puts @value
 		$vars.get_value(@value)
