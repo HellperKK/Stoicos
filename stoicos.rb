@@ -6,6 +6,8 @@ require_relative "src/variables.rb"
 
 $vars = Vars.new
 
+require_relative "src/stdDef.rb"
+
 args = ARGV
 if args != []
 	ouvrir = args[0]
