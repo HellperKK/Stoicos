@@ -47,25 +47,25 @@ end
 
 def to_token(chaine, line_num)
 	if /^\d+$/.match?(chaine)
-		Value.new(line_num, "int", chaine.to_i)
+		Value.new("int", chaine.to_i)
 	elsif /^\d+\.\d+$/.match?(chaine)
-		Value.new(line_num, "float", chaine.to_f)
+		Value.new("float", chaine.to_f)
 	elsif chaine[0] == '"'
-		Value.new(line_num, "string", chaine[1..-2])
+		Value.new("string", chaine[1..-2])
 	elsif chaine[0] == '['
-		ArrayParse.new(line_num, "array_parse", lex(chaine[1..-2], line_num))
+		ArrayParse.new("array_parse", lex(chaine[1..-2], line_num))
 	elsif chaine[0] == '('
-		Proce.new(line_num, "proc", lex(chaine[1..-2], line_num))
+		Proce.new("proc", lex(chaine[1..-2], line_num))
 	elsif chaine[0] == '{'
-		Blocke.new(line_num, "block", lex(chaine[1..-2], line_num))
-	elsif /:[A-Za-z0-9\+\*\/\-%_&\|=<>\.]+/.match?(chaine)
-		Value.new(line_num, "symbol", chaine[1..-1])
+		Blocke.new("block", lex(chaine[1..-2], line_num))
+	elsif /^:[A-Za-z0-9\+\*\/\-%_&\|=<>\.!]+$/.match?(chaine)
+		Value.new("symbol", chaine[1..-1])
 	elsif ["true", "false"].include?(chaine)
-		Value.new(line_num, "bool", chaine == "true")
-	elsif /[A-Za-z0-9\+\*\/\-%_&\|=<>\.]+/.match?(chaine)
-		Ident.new(line_num, "nom", chaine)
+		Value.new("bool", chaine == "true")
+	elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>\.!]+$/.match?(chaine)
+		Ident.new("nom", chaine)
 	else
-		raise "uknown token"
+		raise "uknown token --> #{chaine}"
 	end
 end
 
@@ -99,7 +99,7 @@ def lex(texte, line_num=1)
 			cleaned = cleaned[(point + 1)..-1]
 		rescue => error
 			# puts error.message
-			puts error.backtrace
+			# puts error.backtrace
 			puts error.message + " on line " + line_num.to_s
 			exit
 		end

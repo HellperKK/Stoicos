@@ -1,9 +1,8 @@
 class Value
 	attr_reader :value, :type
-	def initialize(line_num, type, value)
+	def initialize(type, value)
 		@type = type
 		@value = value
-		@line_num = line_num
 	end
 	def total_manip(type)
 		self.get.calc.convert(type)
@@ -68,8 +67,8 @@ class Ident < Value
 end
 
 class NSpace < Value
-	def initialize(line_num, type, value, attr)
-		super(line_num, type, value)
+	def initialize(type, value, attr)
+		super(type, value)
 		@attr = attr
 	end
 	def get
@@ -87,17 +86,17 @@ class NSpace < Value
 end
 
 class NativeFunction < Value
-	def initialize(line_num, type, value)
-		super(line_num, type, value)
+	def initialize(type, value)
+		super(type, value)
 	end
 	def call(value)
 		@value.call(value)
 	end
 end
 
-class CustonFunction < Value
-	def initialize(line_num, type, value, args)
-		super(line_num, type, value)
+class CustomFunction < Value
+	def initialize(type, value, args)
+		super(type, value)
 		@args = args
 	end
 	def call(value)
@@ -117,8 +116,8 @@ class CustonFunction < Value
 end
 
 class ArrayFunction < Value
-	def initialize(line_num, type, value)
-		super(line_num, type, value)
+	def initialize(type, value)
+		super(type, value)
 	end
 	def call(args)
 		$vars.add_stack
@@ -132,8 +131,8 @@ class ArrayFunction < Value
 end
 
 class Proce < Value
-	def initialize(line_num, type, value)
-		super(line_num, type, value)
+	def initialize(type, value)
+		super(type, value)
 	end
 	def calc
 		eval(@value)
@@ -144,7 +143,7 @@ class Proce < Value
 end
 
 class Blocke < Value
-	def initialize(line_num, type, value)
+	def initialize(type, value)
 		super(type, value)
 	end
 	def calculate
@@ -155,8 +154,8 @@ class Blocke < Value
 end
 
 class ArrayParse < Value
-	def initialize(line_num, type, value)
-		super(line_num, type, value)
+	def initialize(type, value)
+		super(type, value)
 	end
 	def calc
 		Value.new("array", @value.map{|i| i.get.calc})
