@@ -94,8 +94,8 @@ def lex(texte, line_num=1)
 				point = find_next_match(cleaned, /\s/) - 1
 			end
 			elem = cleaned[0..point]
-			line_num += elem.count("\n")
 			tokens.push(to_token(elem.strip, line_num))
+			line_num += elem.count("\n")
 			cleaned = cleaned[(point + 1)..-1]
 		rescue => error
 			# puts error.message
