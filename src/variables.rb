@@ -4,10 +4,6 @@ class Vars
 		@vars = [self.initial_hash]
 	end
 
-	def unit
-		Value.new("unit", nil)
-	end
-
 	def initial_hash
 		Hash.new
 	end
@@ -48,7 +44,7 @@ class Vars
 				return @vars[i][nom].value
 			end
 		end
-		self.unit
+		raise "value not found"
 	end
 
 	def add_stack
@@ -72,9 +68,10 @@ class Variable
 	def initialize(value, cons)
 		@value = value
 		@cons = cons
+		@type = "dynamic"
 	end
 	def set_value(value)
 		raise "Illegal constant set" if @cons
-		@value = value
+		@value = value.convert(@type)
 	end
 end

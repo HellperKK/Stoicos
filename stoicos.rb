@@ -25,7 +25,12 @@ end
 
 texte = File.open($chemin.main, "r"){|file| file.read}
 tokens = lex(texte)
-tokens.each do |i|
-	i.calc
+tokens.each_with_index do |i, ind|
+	begin
+		i.calc
+	rescue => error
+		puts error.message + " value number " + ind.+(1).to_s
+		exit
+	end
 end
-puts tokens.to_s
+#puts tokens.to_s

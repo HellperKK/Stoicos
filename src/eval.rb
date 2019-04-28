@@ -10,5 +10,7 @@ def eval(tokens)
     else
       raise "Uncalllable function"
     end
+  else
+    raise "Absent function"
   end
 end

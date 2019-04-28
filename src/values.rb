@@ -77,7 +77,7 @@ class NSpace < Value
 			if temp.include?(@attr)
 				temp[@attr]
 			else
-				$vars.unit
+				raise "Inextistant attribute #{@attr} in #{@value}"
 			end
 		rescue
 			$vars.get_value(@value)
@@ -99,19 +99,18 @@ class CustomFunction < Value
 		super(type, value)
 		@args = args
 	end
-	def call(value)
+	def call(values)
 		$vars.add_stack
-		if value.length < @args.length
-			arguments = value + Array.new(@args.length - value.length, $vars.unit)
+		if values.length == @args.length
+			@args.zip(arguments){|pair| $vars.set_value(pair[0].value, pair[1].get.calc)}
+			#~ puts $vars
+			result = @value.calculate
+			#~ puts $vars
+			$vars.remove_stack
+			result
 		else
-			arguments = value[0...@args.length]
+			raise "bad argument number (#{values.length} instead of #{@args.length})"
 		end
-		@args.zip(arguments){|pair| $vars.set_value(pair[0].value, pair[1].get.calc)}
-		#~ puts $vars
-		result = @value.calculate
-		#~ puts $vars
-		$vars.remove_stack
-		result
 	end
 end
 
@@ -122,9 +121,7 @@ class ArrayFunction < Value
 	def call(args)
 		$vars.add_stack
 		$vars.set_value("args", Value.new("array", args))
-		#~ puts $vars
 		result = @value.calculate
-		#~ puts $vars
 		$vars.remove_stack
 		result
 	end
@@ -162,6 +159,7 @@ class ArrayParse < Value
 	end
 end
 
+=begin
 class Type
 	attr_reader :conversion, :defaut
 	def initialize(defaut)
@@ -172,3 +170,4 @@ class Type
 		@conversion[type] = lam
 	end
 end
+=end
