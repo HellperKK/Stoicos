@@ -11,7 +11,6 @@ end
 
 def find_next_match(text, reg)
 	index = 1
-	#puts text
 	while index < text.length
 		if reg.match?(text[index])
 			return index
