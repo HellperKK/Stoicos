@@ -47,3 +47,18 @@ Values that holds a list a values to be evaluated (like in conditionals or funct
 
 #### NativeFunction
 Mostly for the functions defined in the standard library.
+
+#### CustomFunction
+For functions created by the user with a fixed number of arguments.
+
+#### ArrayFunction
+Like CustomFunction but ha only on argument which is a array of every arguments passed to the function.
+
+#### Struct
+Value that holds a hash of string as keys and tokens as values. Used a lot for modules.
+
+#### Nspace
+Token like Identifier that refers to an attribute of a struc in a variable using the syntax `Var.attribute`.
+
+#### Map
+Simple representation of hash.
