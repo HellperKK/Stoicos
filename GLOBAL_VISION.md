@@ -62,3 +62,12 @@ Token like Identifier that refers to an attribute of a struc in a variable using
 
 #### Map
 Simple representation of hash.
+
+### Variables
+For the moment variable are stored in an array of hashes of type (String, Token). Each Hash represents a stack ans a new hash is added at the end of the array when a CustomFunction or an ArrayFunction is called. The look-up algorithm that search for a variable will go through the array in reverse until a stack containing the variable is found and return the corresponding value.
+
+Variable of a parent stack can then be used but not modified. when putting a value into a variable it will only modify the current stack, creating a variable if needed.
+
+A variables can be constant so that assigning it a value will only throw an exception. It can also be assigned a type.
+
+Looking defining variables dynamically is nice but can lead to some weird bugs in some cases. The version 3 adds a `@` prefixed token that is replaced by its value at parse time but it is a very specific fix.
