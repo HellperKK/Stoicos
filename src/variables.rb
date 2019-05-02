@@ -58,6 +58,7 @@ class Vars
 	def remove_stack
 		@vars.pop
 	end
+	
 	def to_s
 		@vars[-1].to_s
 	end
@@ -72,6 +73,7 @@ class Variable
 	end
 	def set_value(value)
 		raise "Illegal constant set" if @cons
-		@value = value.convert(@type)
+		value = value.convert(@type) unless @type == "dynamic"
+		@value = value
 	end
 end
