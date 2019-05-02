@@ -14,53 +14,53 @@ For this reason, assigning a value to a variable may be `= :foo bar` and not `= 
 ### List of Tokens
 Here's the list :
 
-#### Number
+**Number** :
 Represent any number. So both integers and floats count.
 In version 3 they were separated but this led to having each numeric operator duplicated for each type, which is not compatible with the idea of making it beginner friendly.
 
-#### String
+**String** :
 Simple representation of strings.
 
-#### Booleans
+**Booleans** :
 Simple representation of booleans.
 
-#### Symbol
+**Symbol** :
 Like a string but is mainly used to reference a name, like a variable.
 
-#### Array
+**Array** :
 Simple representation of arrays.
 
-#### ArrayParse
+**ArrayParse** :
 Created at lex time when using the [] syntax, it exist so the real array it made only at runtime.
 
-#### Unit
+**Unit** :
 Special value that represent nothing
 
-#### Identifier
+**Identifier** :
 Value meant to represent the content of a variable
 
-#### Proce
+**Proce** :
 Value that represent a function call. Meant to be automatically called when used.
 
-#### Block
+**Block** :
 Values that holds a list a values to be evaluated (like in conditionals or functions). Will return the last evaluated value when so.
 
-#### NativeFunction
+**NativeFunction** :
 Mostly for the functions defined in the standard library.
 
-#### CustomFunction
+**CustomFunction** :
 For functions created by the user with a fixed number of arguments.
 
-#### ArrayFunction
+**ArrayFunction** :
 Like CustomFunction but ha only on argument which is a array of every arguments passed to the function.
 
-#### Struct
+**Struct** :
 Value that holds a hash of string as keys and tokens as values. Used a lot for modules.
 
-#### Nspace
+**Nspace** :
 Token like Identifier that refers to an attribute of a struc in a variable using the syntax `Var.attribute`.
 
-#### Map
+**Map** :
 Simple representation of hash.
 
 ### Variables
