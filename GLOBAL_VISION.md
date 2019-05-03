@@ -9,7 +9,7 @@ It was at first a way to make the language easy to develop and has been kept so 
 
 For example `FOO` will always be a variable (actually it will refer only to its content) and `:FOO` will always be a symbol.
 I think that keeping the same meaning makes it clearer to reason about since you don't have to know the context to understand what is happening.
-For this reason, assigning a value to a variable may be `= :foo bar` and not `= foo bar`
+For this reason, assigning a value to a variable is `= :foo bar` and not `= foo bar`
 
 ### List of Tokens
 Here's the list :
@@ -70,4 +70,4 @@ Variable of a parent stack can then be used but not modified. when putting a val
 
 A variables can be constant so that assigning it a value will only throw an exception. It can also be assigned a type.
 
-Looking defining variables dynamically is nice but can lead to some weird bugs in some cases. The version 3 adds a `@` prefixed token that is replaced by its value at parse time but it is a very specific fix.
+Looking defining variables dynamically is nice but can lead to some weird bugs in some cases. The version 3 adds a `@` prefixed token that is replaced by its value at lex time but it is a very specific fix.
