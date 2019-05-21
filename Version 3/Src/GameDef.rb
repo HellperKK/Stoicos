@@ -111,7 +111,7 @@ class GameWindow < Gosu::Window
 	end
 
 	def add_text(text, x, y)
-		@sprites << GameText.new(x, y, text)
+		@new_sprites << GameText.new(x, y, text)
 	end
 
 	def play_sound(name)
