@@ -10,7 +10,7 @@ end)
 arrayMod["make_fun"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("int").value
   second = look_at(array, 1).total_manip("fun")
-  Value.new("array", Array.new(first, second.call([])))
+  Value.new("array", Array.new(first){second.call([])})
 end)
 
 arrayMod["make_range"] = NativeFunction.new("fun", lambda do |array|
