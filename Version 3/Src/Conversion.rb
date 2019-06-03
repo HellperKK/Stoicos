@@ -196,15 +196,23 @@ def to_objet(chaine)
 		Value.new("int", chaine.to_i)
 	elsif chaine.to_f.to_s == chaine
 		Value.new("float", chaine.to_f)
-	elsif chaine[0] == '"'
+	elsif /^".*"$/.match?(chaine)
 		Value.new("string", chaine[1..-2])
-	elsif chaine[0] == '['
+	elsif chaine[0] == '"'
+		Value.new("string", chaine[1..-1])
+	elsif /^\[.*\]$/.match?(chaine)
 		ArrayParse.new("array_parse", parseur(chaine[1..-2]))
+	elsif chaine[0] == '['
+		ArrayParse.new("array_parse", parseur(chaine[1..-1]))
 		# Value.new("array", parseur(chaine[1..-2]).map{|i| i.get.calc})
-	elsif chaine[0] == '('
+	elsif /^\(.*\)$/.match?(chaine)
 		Proce.new("proc", parseur(chaine[1..-2]))
-	elsif chaine[0] == '{'
+	elsif chaine[0] == '('
+		Proce.new("proc", parseur(chaine[1..-1]))
+	elsif /^\{.*\}$/.match?(chaine)
 		Blocke.new("block", parseur(chaine[1..-2]))
+	elsif chaine[0] == '{'
+		Blocke.new("block", parseur(chaine[1..-1]))
 	elsif chaine[0] == ':'
 		Value.new("symbol", chaine[1..-1])
 	elsif chaine[0] == '@'
