@@ -11,16 +11,17 @@ class Value
 		@type == type
 	end
 	def convert(type)
-		if @type == type
-			self
-		elsif ! ($types.include?(@type))
-			puts [self, @type, type].to_s
-			self
-		elsif ! ($types[@type].conversion.include?(type))
-			$types[type].defaut.call()
-		else
-			$types[@type].conversion[type].call(self)
-		end
+		self
+		# if @type == type
+		# 	self
+		# elsif ! ($types.include?(@type))
+		# 	puts [self, @type, type].to_s
+		# 	self
+		# elsif ! ($types[@type].conversion.include?(type))
+		# 	$types[type].defaut.call()
+		# else
+		# 	$types[@type].conversion[type].call(self)
+		# end
 	end
 	def calc
 		self
