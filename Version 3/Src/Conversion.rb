@@ -191,15 +191,19 @@ class Type
 	end
 end
 
+def string_manage(str)
+	str.gsub(/\\"/, '"').gsub(/\\\\/, '\\')
+end
+
 def to_objet(chaine)
 	if chaine.to_i.to_s == chaine
 		Value.new("int", chaine.to_i)
 	elsif chaine.to_f.to_s == chaine
 		Value.new("float", chaine.to_f)
-	elsif /^".*"$/.match?(chaine)
-		Value.new("string", chaine[1..-2])
+	elsif /^"(\\"|[^"])*"$/.match?(chaine)
+		Value.new("string", string_manage(chaine[1..-2]))
 	elsif chaine[0] == '"'
-		Value.new("string", chaine[1..-1])
+		Value.new("string", string_manage(chaine[1..-1]))
 	elsif /^\[.*\]$/.match?(chaine)
 		ArrayParse.new("array_parse", parseur(chaine[1..-2]))
 	elsif chaine[0] == '['

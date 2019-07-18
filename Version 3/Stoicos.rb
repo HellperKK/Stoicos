@@ -35,6 +35,16 @@ end
 ###########################################
 ##Parseurs
 ###########################################
+def find_string(text)
+	reg = /^"(\\"|[^"])*"/
+	if reg.match?(text)
+		puts reg.match(text)[0]
+		return reg.match(text)[0].length
+	else
+		return text.length
+	end
+end
+
 def find_second(text, char, index=1)
 	if index == text.length
 		raise "outRange"
@@ -67,7 +77,7 @@ def parseur(line)
 		begin
 			case line[0]
 			#~ when "'" then point = find_second(line, "'")
-			when '"' then point = find_second(line, '"')
+			when '"' then point = find_string(line)
 			when "(" then point = find_matching(line, ")", "(")
 			when "[" then point = find_matching(line, "]", "[")
 			when "{" then point = find_matching(line, "}", "{")
