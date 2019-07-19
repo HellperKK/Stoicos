@@ -192,6 +192,7 @@ class Type
 end
 
 def string_manage(str)
+	return  eval %Q{"#{str}"}
 	str.gsub(/\\"/, '"').gsub(/\\\\/, '\\')
 end
 
