@@ -38,7 +38,6 @@ end
 def find_string(text)
 	reg = /^"(\\"|[^"])*"/
 	if reg.match?(text)
-		puts reg.match(text)[0]
 		return reg.match(text)[0].length
 	else
 		return text.length
@@ -150,6 +149,6 @@ principal = execute_file($chemin.main)
 contenu = principal.join("\n")
 f = File.open('Output.txt','w'){|i| i.write(contenu)}
 t2 = Time.now
-print "\n"
-puts t2 - t1
+# print "\n"
+# puts t2 - t1
 # puts $vars.get_stack.each{|key, value| puts "#{key} #{value}"}
