@@ -218,22 +218,26 @@ def to_objet(chaine)
 		Blocke.new("block", parseur(chaine[1..-2]))
 	elsif chaine[0] == '{'
 		Blocke.new("block", parseur(chaine[1..-1]))
-	elsif chaine[0] == ':'
+	elsif /^:[A-Za-z0-9\+\*\/\-%_&\|=<>!]+$/.match?(chaine)
 		Value.new("symbol", chaine[1..-1])
 	elsif chaine[0] == '@'
 		nom = chaine[1..-1]
-		if nom.split(".").length >= 2
-			vals = nom.split(".")
-			NSpace.new("nom", vals[0], vals[1]).get
+		if /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(nom)
+			vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(nom)
+			NSpace.new("nom", vals[1], vals[2])
+		elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>!]+$/.match?(nom)
+			Variable.new("nom", nom)
 		else
-			Variable.new("nom", nom).get
+			$vars.unit
 		end
 	elsif ["true", "false"].include?(chaine)
 		Value.new("bool", chaine == "true")
-	elsif chaine.split(".").length >= 2
-		vals = chaine.split(".")
-		NSpace.new("nom", vals[0], vals[1])
-	else
+	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
+		vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)
+		NSpace.new("nom", vals[1], vals[2])
+	elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>!]+$/.match?(chaine)
 		Variable.new("nom", chaine)
+	else
+		$vars.unit
 	end
 end

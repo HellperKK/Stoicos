@@ -1,1 +1,3 @@
-println "\"Hello\\ \nworld\""
+= :test (input "What is your name ? ")
+
+println "Hello" test "!"

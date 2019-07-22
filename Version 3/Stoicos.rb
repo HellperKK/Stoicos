@@ -38,9 +38,9 @@ end
 def find_string(text)
 	reg = /^"(\\"|[^"])*"/
 	if reg.match?(text)
-		return reg.match(text)[0].length
+		return reg.match(text)[0].length - 1
 	else
-		return text.length
+		return text.length - 1
 	end
 end
 
