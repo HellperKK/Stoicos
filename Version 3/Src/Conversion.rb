@@ -224,9 +224,9 @@ def to_objet(chaine)
 		nom = chaine[1..-1]
 		if /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(nom)
 			vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(nom)
-			NSpace.new("nom", vals[1], vals[2])
+			NSpace.new("nom", vals[1], vals[2]).get
 		elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>!]+$/.match?(nom)
-			Variable.new("nom", nom)
+			Variable.new("nom", nom).get
 		else
 			$vars.unit
 		end
