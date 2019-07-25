@@ -5,7 +5,7 @@ It is currently going from version 3 to 4. It has just started so if you want to
 
 # Credit
 A big thanks to all these laguages that inspired me to make the stoicos the way it is :
-- Ocaml
+- OCaml
 - Python
 - Ruby
 - Racket
