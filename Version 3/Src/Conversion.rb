@@ -84,6 +84,22 @@ class Variable < Value
 	end
 end
 
+class Access < Value
+	def initialize(type, value, attr)
+		super(type, value)
+		@attr = attr
+	end
+	def get
+		begin
+			temp = $vars.get_value(@value).total_manip("array").value
+			key = @attr.total_manip("int").value
+			look_at(temp, key)
+		rescue StandardError => e
+			$vars.get_value(@value)
+		end
+	end
+end
+
 class NSpace < Value
 	def initialize(type, value, attr)
 		super(type, value)
@@ -235,6 +251,9 @@ def to_objet(chaine)
 	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
 		vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)
 		NSpace.new("nom", vals[1], vals[2])
+	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\[(.+)\]$/.match?(chaine)
+		capt = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\[(.+)\]$/.match(chaine)
+		Access.new("nom", capt[1], to_objet(capt[2]))
 	elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>!]+$/.match?(chaine)
 		Variable.new("nom", chaine)
 	else

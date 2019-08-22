@@ -1,3 +1,4 @@
-= :test (input "What is your name ? ")
+= :arr [0 1 2 3]
 
-println "Hello" test "!"
+println "old acces" (Array.get arr 0)
+println "new acces" arr[0]
