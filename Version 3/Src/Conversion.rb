@@ -254,6 +254,8 @@ def to_objet(chaine)
 	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\[(.+)\]$/.match?(chaine)
 		capt = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\[(.+)\]$/.match(chaine)
 		Access.new("nom", capt[1], to_objet(capt[2]))
+	elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>!]+\.$/.match?(chaine)
+		Variable.new("nom", chaine)
 	elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>!]+$/.match?(chaine)
 		Variable.new("nom", chaine)
 	else
