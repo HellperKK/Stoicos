@@ -112,6 +112,7 @@ $vars.set_value("assign", NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).total_manip("array").value
 	second = look_at(array, 1).get.calc
 	first.each{|i| $vars.set_value(i.total_manip("symbol").value, second)}
+	$vars.unit
 end))
 
 $vars.set_value("bind", NativeFunction.new("fun", lambda do |array|
@@ -119,12 +120,14 @@ $vars.set_value("bind", NativeFunction.new("fun", lambda do |array|
 	second = look_at(array, 1).total_manip("array").value.map{|i| i.get.calc}
 	tab = same_size(first, second)
 	first.each_with_index{|item, index| $vars.set_value(item, tab[index])}
+	$vars.unit
 end))
 
 $vars.set_value("assign_fun", NativeFunction.new("fun", lambda do |array|
 	first = look_at(array, 0).total_manip("array").value
 	second = look_at(array, 1).total_manip("fun")
 	first.each{|i| $vars.set_value(i.total_manip("symbol").value, second.call([]))}
+	$vars.unit
 end))
 
 #Gestion entiers
