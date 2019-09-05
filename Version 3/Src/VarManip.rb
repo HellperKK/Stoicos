@@ -21,10 +21,26 @@ class Vars
 		contenu
 	end
 
-	def delete(nom)
-		a = @vars[nom]
-		@vars[-1].delete(nom)
+	def unsafe_set_root_value(nom, contenu)
+		@vars[0][nom] = contenu
+		contenu
 	end
+
+	def unsafe_set_value(nom, contenu)
+		long = @vars.length - 1
+		long.downto(0) do |i|
+			if @vars[i].include?(nom)
+				@vars[i][nom] = contenu
+				return contenu
+			end
+		end
+		contenu
+	end
+
+	# def delete(nom)
+	# 	a = @vars[nom]
+	# 	@vars[-1].delete(nom)
+	# end
 
 	def get_value(nom)
 		long = @vars.length - 1
