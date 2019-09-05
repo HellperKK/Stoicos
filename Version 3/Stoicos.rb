@@ -9,6 +9,7 @@ require_relative "Src/GameDef"
 require_relative "Src/StructDef"
 require_relative "Src/FileManager"
 require_relative "Src/MapDef"
+require_relative "Src/UnsafeDef"
 
 def chercheFonc(tab)
 	begin
