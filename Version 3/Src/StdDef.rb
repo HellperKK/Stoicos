@@ -106,7 +106,6 @@ $vars.set_value("=", NativeFunction.new("fun", lambda do |array|
 	nom = look_at(array, 0).convert("symbol").value
 	value = look_at(array, 1).get.calc
 	$vars.set_value(nom, value)
-	value
 end))
 
 $vars.set_value("assign", NativeFunction.new("fun", lambda do |array|
