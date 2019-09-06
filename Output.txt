@@ -1,4 +1,0 @@
-= :test 0
-= :fun (function { (println "sur test") (debug test) (Unsafe.set! :test 10) (debug test) (println "sur testb") (Unsafe.set! :testb 10) (debug testb) (Unsafe.global! :testb 0) (debug testb) (Unsafe.set! :testb 10) (debug testb) })
-
-fun
