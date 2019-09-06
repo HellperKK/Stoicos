@@ -1,4 +1,0 @@
-= :arr [0 1 2 3]
-debug +.
-println "old acces" (Array.get arr 0)
-println "new acces" arr[0]

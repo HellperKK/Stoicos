@@ -22,7 +22,6 @@ class FileManager
   end
 end
 
-=begin
 fileMod = Hash.new($vars.unit)
 
 fileMod["import"] = NativeFunction.new("fun", lambda do |array|
@@ -57,4 +56,3 @@ fileMod["write"] = NativeFunction.new("fun", lambda do |array|
 end)
 
 $vars.set_value("File", Value.new("struct", fileMod))
-=end
