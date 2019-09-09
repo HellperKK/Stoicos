@@ -254,10 +254,18 @@ def to_objet(chaine)
 	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\[(.+)\]$/.match?(chaine)
 		capt = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\[(.+)\]$/.match(chaine)
 		Access.new("nom", capt[1], to_objet(capt[2]))
-	elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>!]+\.$/.match?(chaine)
+	elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>!]+\.?$/.match?(chaine)
 		Variable.new("nom", chaine)
-	elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>!]+$/.match?(chaine)
-		Variable.new("nom", chaine)
+	elsif /^\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
+		name = /^\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)[1]
+		NativeFunction.new("fun", lambda do |array|
+			first = look_at(array, 0).total_manip("struct").value
+			begin
+				first[name]
+			rescue
+				first
+			end
+		end)
 	else
 		$vars.unit
 	end
