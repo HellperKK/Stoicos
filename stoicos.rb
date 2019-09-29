@@ -30,6 +30,14 @@ def look_at(array, indice)
 	array.fetch(indice, $vars.unit)
 end
 
+def look_at_value(value, indice)
+	begin
+		value.value.fetch(indice, $vars.unit)
+	rescue
+		value
+	end
+end
+
 def same_size(array, arrayb)
 	array.each_with_index.map{|e, i| look_at(arrayb, i)}
 end
