@@ -71,9 +71,9 @@ $types["map"].set_conv("string", lambda{|element| Value.new("string", element.va
 $types["map"].set_conv("stringIns", lambda{|element| Value.new("string", element.value.to_a.map{|p| p.map{|i| i.total_manip("stringIns").value}}.to_s)})
 
 #Definition des valeurs de base
-#~ $vars.set_value("unit", Value.new("unit", nil))
-#~ $vars.set_value("true", Value.new("bool", true))
-#~ $vars.set_value("false", Value.new("bool", false))
+$vars.set_value("unit", Value.new("unit", nil))
+$vars.set_value("true", Value.new("bool", true))
+$vars.set_value("false", Value.new("bool", false))
 
 #Definition des fonctions de base
 #Gestion console

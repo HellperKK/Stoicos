@@ -246,8 +246,6 @@ def to_objet(chaine)
 		else
 			$vars.unit
 		end
-	elsif ["true", "false"].include?(chaine)
-		Value.new("bool", chaine == "true")
 	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
 		vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)
 		NSpace.new("nom", vals[1], vals[2])
