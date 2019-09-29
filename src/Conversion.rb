@@ -90,13 +90,9 @@ class Access < Value
 		@attr = attr
 	end
 	def get
-		begin
-			temp = $vars.get_value(@value).total_manip("array").value
-			key = @attr.total_manip("int").value
-			look_at(temp, key)
-		rescue StandardError => e
-			$vars.get_value(@value)
-		end
+		temp = $vars.get_value(@value).total_manip("array")
+		key = @attr.total_manip("int").value
+		look_at_value(temp, key)
 	end
 end
 
@@ -106,16 +102,21 @@ class NSpace < Value
 		@attr = attr
 	end
 	def get
-		begin
-			temp = $vars.get_value(@value).value
-			if temp.include?(@attr)
-				temp[@attr]
-			else
-				$vars.unit
-			end
-		rescue
-			$vars.get_value(@value)
-		end
+		temp = $vars.get_value(@value)
+		look_at_value(temp, @attr)
+	end
+end
+
+class MethodCall < Value
+	def initialize(type, value, attr)
+		super(type, value)
+		@attr = attr
+	end
+	def get
+		temp = $vars.get_value(@value)
+		NativeFunction.new("fun", lambda do |array|
+			look_at_value(temp, @attr).call([temp] + array)
+		end)
 	end
 end
 
@@ -241,6 +242,9 @@ def to_objet(chaine)
 		if /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(nom)
 			vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(nom)
 			NSpace.new("nom", vals[1], vals[2]).get
+		elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)#([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
+			vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)#([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)
+			MethodCall.new("nom", vals[1], vals[2]).get
 		elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>!]+$/.match?(nom)
 			Variable.new("nom", nom).get
 		else
@@ -249,6 +253,9 @@ def to_objet(chaine)
 	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
 		vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)
 		NSpace.new("nom", vals[1], vals[2])
+	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)#([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
+		vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)#([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)
+		MethodCall.new("nom", vals[1], vals[2])
 	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\[(.+)\]$/.match?(chaine)
 		capt = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\[(.+)\]$/.match(chaine)
 		Access.new("nom", capt[1], to_objet(capt[2]))
