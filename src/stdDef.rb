@@ -271,8 +271,13 @@ $vars.set_value("evalblock", NativeFunction.new("fun", lambda do |array|
 end))
 
 $vars.set_value("function", NativeFunction.new("fun", lambda do |array|
-	args = array != [] ? array[0...-1].map{|value| value.calc.convert("symbol")} : []
-	block = array != [] ? array[-1].total_manip("block") : $vars.unit
+	if look_at(array, 0).type == "array"
+		args = look_at(array, 0).value
+		block = look_at(array, 1)
+	else
+		args = array != [] ? array[0...-1].map{|value| value.calc.convert("symbol")} : []
+		block = array != [] ? array[-1].total_manip("block") : $vars.unit
+	end
 	CustonFunction.new("fun", block, args)
 end))
 
