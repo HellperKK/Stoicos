@@ -1,0 +1,64 @@
+= :open (function [:self] {
+    (if {(! self.opened)}
+      {(Struct.update self :opened true)}
+      {self}
+    )
+  })
+
+= :close (function [:self] {
+    (if {self.opened}
+      {(Struct.update self :opened true)}
+      {self}
+    )
+  })
+
+= :fill (function [:self :qte]
+    {
+      (if {self.opened}
+        {
+          (Struct.update self :qte
+            (if {(> (+ self.qte qte) self.qte_max)}
+              {self.qte_max}
+              {(+ qte self.qte)}
+            )
+          )
+        }
+        {self}
+      )
+    }
+  )
+
+= :unfill (function [:self :qte]
+      {(if {self.opened}
+        {
+          (Struct.update self :qte
+            (if {(< (- self.qte qte) 0)}
+              {0}
+              {(- self.qte qte)}
+            )
+          )
+        }
+        {self}
+      )
+    }
+  )
+
+= :bouteille_modele (Struct.from_pairs
+    [:qte 0]
+    [:qte_max 100]
+    [:opened false]
+    [:open open]
+    [:close close]
+    [:fill fill]
+    [:unfill unfill]
+  )
+
+println bouteille_modele.opened
+
+= :test (bouteille_modele#open)
+println test.opened
+println test.qte
+= :test2 (test#fill 20)
+println test2.qte
+= :test3 (test2#unfill 10)
+println test3.qte
