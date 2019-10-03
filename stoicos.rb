@@ -102,7 +102,7 @@ end
 def concatLine(texte)
 	tab = texte.split("\n")
 	(tab.length-1).downto(0) do |i|
-		if tab[i].strip[0] == "#"
+		if tab[i].strip[0] == ";"
 			tab.delete_at(i)
 		end
 	end
