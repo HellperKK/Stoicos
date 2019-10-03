@@ -120,6 +120,18 @@ class MethodCall < Value
 	end
 end
 
+class CurriedFunction < Value
+	def initialize(type, value)
+		super(type, value)
+	end
+	def call(value)
+		fun = $vars.get_value(@value)
+		NativeFunction.new("fun", lambda do |array|
+			fun.call(value + array)
+		end)
+	end
+end
+
 class NativeFunction < Value
 	def initialize(type, value)
 		super(type, value)
@@ -256,6 +268,9 @@ def to_objet(chaine)
 	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)#([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
 		vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)#([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)
 		MethodCall.new("nom", vals[1], vals[2])
+	elsif /^#([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
+		vals = /^#([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)
+		CurriedFunction.new("fun", vals[1])
 	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\[(.+)\]$/.match?(chaine)
 		capt = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\[(.+)\]$/.match(chaine)
 		Access.new("nom", capt[1], to_objet(capt[2]))
