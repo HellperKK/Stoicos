@@ -2,12 +2,12 @@
 
 = :test (List.make 1 2 3 4)
 
-#debug test
+;debug test
 
-#List.foldl test unit (function :memo :value {(println value)})
-#List.iter test println
-#List.iter (List.reverse test) println
-#List.iter (List.map test (function :x {(+ x 1)})) println
+;List.foldl test unit (function :memo :value {(println value)})
+;List.iter test println
+;List.iter (List.reverse test) println
+;List.iter (List.map test (function :x {(+ x 1)})) println
 List.iter (List.filter test (function :x {(== 0 (% x 2))})) println
 println (List.foldl test 0 +)
 println (List.foldl test 1 *)

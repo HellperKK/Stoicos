@@ -5,10 +5,10 @@ println "Coucou"
 = foisDeux (function a {(+ a a)})
 println (foisDeux 21)
 
-#println (if (== 1 1) {"Oui"} {"Non"})
+;println (if (== 1 1) {"Oui"} {"Non"})
 
-= fois 
-	(function a b 
+= fois
+	(function a b
 		{
 			(if (== b 0)
 				{0}
@@ -16,8 +16,8 @@ println (foisDeux 21)
 			)
 		}
 	)
-= pow 
-	(function a b 
+= pow
+	(function a b
 		{
 			(if (== b 0)
 				{1}
@@ -28,10 +28,10 @@ println (foisDeux 21)
 println (fois 2 4)
 println (pow 2 4)
 
-= times 
-	(function a b 
+= times
+	(function a b
 		{
-			(= aux (function x 
+			(= aux (function x
 				{
 					(if (> x 0) {(b) (aux (- x 1))} {})
 				})
@@ -39,13 +39,13 @@ println (pow 2 4)
 			(aux a)
 		}
 	)
-	
+
 times 3 (function {(println "Hip")})
 
-= List 
+= List
 	(struct
 		{
 			(=  make_empty (function {(struct {(= tete unit) (= queue unit)})}))
-			
+
 		}
 	)
