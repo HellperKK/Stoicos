@@ -1,12 +1,7 @@
-require_relative "src/values.rb"
-require_relative "src/lexer.rb"
-require_relative "src/fileManager.rb"
-require_relative "src/eval.rb"
-require_relative "src/variables.rb"
-
-$vars = Vars.new
-
-require_relative "src/stdDef.rb"
+require_relative "src/parsing/ParseRule.rb"
+require_relative "src/parsing/Token.rb"
+require_relative "src/parsing/Lexer.rb"
+require_relative "src/FileManager.rb"
 
 args = ARGV
 if args != []
@@ -24,13 +19,6 @@ else
 end
 
 texte = File.open($chemin.main, "r"){|file| file.read}
-tokens = lex(texte)
-tokens.each_with_index do |i, ind|
-	begin
-		i.calc
-	rescue => error
-		puts error.message + " value number " + ind.+(1).to_s
-		exit
-	end
-end
-#puts tokens.to_s
+puts texte
+tokens = $lexer.lex(texte)
+puts tokens.to_s
