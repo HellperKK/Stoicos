@@ -9,7 +9,7 @@ class LexRule
 
   def match?(string)
     @result = @reg.match(string)
-    @result != nil
+    (@result != nil) && (@result.offset(0)[0] == 0)
   end
 
   def capture_length
