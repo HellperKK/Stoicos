@@ -1,4 +1,4 @@
-require_relative "src/parsing/ParseRule.rb"
+require_relative "src/parsing/LexRule.rb"
 require_relative "src/parsing/Token.rb"
 require_relative "src/parsing/Lexer.rb"
 require_relative "src/FileManager.rb"
@@ -19,6 +19,5 @@ else
 end
 
 texte = File.open($chemin.main, "r"){|file| file.read}
-puts texte
 tokens = $lexer.lex(texte)
 puts tokens.to_s
