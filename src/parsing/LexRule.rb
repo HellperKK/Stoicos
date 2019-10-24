@@ -1,4 +1,4 @@
-class ParseRule
+class LexRule
   attr_reader :result
 
   def initialize(reg, lam)
