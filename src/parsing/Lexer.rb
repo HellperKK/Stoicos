@@ -68,12 +68,16 @@ $lexer.add_rule(/^#/) do ||
 	Token.new("Hash")
 end
 
-$lexer.add_rule(/^\}/) do ||
-	Token.new("CloseCurly")
+$lexer.add_rule(/^@/) do ||
+	Token.new("Arobase")
 end
 
 $lexer.add_rule(/^("(\\"|[^"])*")/) do |str|
 	Token.new("String", str[1...-1])
+end
+
+$lexer.add_rule(/^([0-9]+(\.[0-9]*)?)/) do |ident|
+	Token.new("Number", ident)
 end
 
 $lexer.add_rule(/^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)/) do |ident|

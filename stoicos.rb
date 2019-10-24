@@ -20,4 +20,4 @@ end
 
 texte = File.open($chemin.main, "r"){|file| file.read}
 tokens = $lexer.lex(texte)
-puts tokens.to_s
+tokens.each{|tok| puts [tok].to_s}
