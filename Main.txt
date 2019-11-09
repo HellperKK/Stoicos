@@ -1,5 +1,8 @@
-println "Hello world"
-println (+. 1 2)
-= :test (Struct.from_pairs [:x 1] [:y 2])
-debug test
-println (.x test)
+= :a "coucou"
+= :b "a"
+= :coucou "b"
+
+println a
+println b
+println $b
+println $$b

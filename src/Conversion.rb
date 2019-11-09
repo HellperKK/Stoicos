@@ -96,6 +96,15 @@ class Access < Value
 	end
 end
 
+class Macroliser < Value
+	def initialize(type, value)
+		super(type, value)
+	end
+	def get
+		to_objet(@value.total_manip("string").value).get
+	end
+end
+
 class NSpace < Value
 	def initialize(type, value, attr)
 		super(type, value)
@@ -276,6 +285,8 @@ def to_objet(chaine)
 		Access.new("nom", capt[1], to_objet(capt[2]))
 	elsif /^[A-Za-z0-9\+\*\/\-%_&\|=<>!]+\.?$/.match?(chaine)
 		Variable.new("nom", chaine)
+	elsif /^\$(.+)$/.match?(chaine)
+		Macroliser.new("nom", to_objet(/^\$(.+)$/.match(chaine)[1]))
 	elsif /^\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
 		name = /^\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)[1]
 		NativeFunction.new("fun", lambda do |array|
