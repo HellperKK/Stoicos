@@ -1,7 +1,6 @@
 class Lexer
 	def initialize
 		@rules = []
-		@pos = 0
 	end
 
 	def add_rule(reg)

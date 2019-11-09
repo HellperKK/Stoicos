@@ -1,6 +1,4 @@
 class LexRule
-  attr_reader :result
-
   def initialize(reg, lam)
     @reg = reg
     @lam = lam
@@ -9,6 +7,7 @@ class LexRule
 
   def match?(string)
     @result = @reg.match(string)
+    # There is a result and the whole match starts at 0
     (@result != nil) && (@result.offset(0)[0] == 0)
   end
 
