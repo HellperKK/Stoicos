@@ -1,8 +1,2 @@
-= :a "coucou"
-= :b "a"
-= :coucou "b"
-
-println a
-println b
-println $b
-println $$b
+File.require "Test/TestRequire.rb"
+test

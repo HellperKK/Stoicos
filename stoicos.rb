@@ -12,6 +12,10 @@ require_relative "Src/MapDef"
 require_relative "Src/UnsafeDef"
 $vars.add_stack
 
+def requireBis(path)
+	require_relative $chemin.relative(path)
+end
+
 def chercheFonc(tab)
 	begin
 		fonction = tab[0].total_manip("fun")

@@ -4,6 +4,16 @@ class FileManager
     @path = path
     @files = [file]
   end
+  def require(file)
+    unless @files.include?(file)
+      begin
+        requireBis("#{@path}/#{file}")
+        @files << file
+      rescue
+
+      end
+    end
+  end
   def import(file)
     unless @files.include?(file)
       begin
@@ -23,6 +33,12 @@ class FileManager
 end
 
 fileMod = Hash.new($vars.unit)
+
+fileMod["require"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  requireBis(first)
+  $vars.unit
+end)
 
 fileMod["import"] = NativeFunction.new("fun", lambda do |array|
   first = look_at(array, 0).total_manip("string").value
