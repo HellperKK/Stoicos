@@ -111,8 +111,13 @@ class NSpace < Value
 		@attr = attr
 	end
 	def get
-		temp = $vars.get_value(@value)
-		look_at_value(temp, @attr)
+		temp = $vars.get_value(@value).value
+		begin
+			res = temp.dig(*@attr)
+			res == nil ? temp : res
+		rescue
+			temp
+		end
 	end
 end
 
@@ -271,9 +276,9 @@ def to_objet(chaine)
 		else
 			$vars.unit
 		end
-	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
-		vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)
-		NSpace.new("nom", vals[1], vals[2])
+	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)((\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+))+)$/.match?(chaine)
+		vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)((\.([A-Za-z0-9\+\*\/\-%_&\|=<>!]+))+)$/.match(chaine)
+		NSpace.new("nom", vals[1], vals[2][1..-1].split("."))
 	elsif /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)#([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match?(chaine)
 		vals = /^([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)#([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)$/.match(chaine)
 		MethodCall.new("nom", vals[1], vals[2])
