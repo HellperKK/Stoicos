@@ -1,8 +1,6 @@
 class VariableManager
 	class << self
-		attr_reader :vars
-
-		@vars = self.new
+		attr_accessor :vars
 	end
 
 	attr_reader :vars

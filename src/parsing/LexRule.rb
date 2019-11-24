@@ -16,6 +16,7 @@ class LexRule
   end
 
   def capture
+    # puts [self].to_s
     @lam.call(*@result.captures)
   end
 end

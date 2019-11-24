@@ -1,7 +1,2 @@
-; test
-(= :factorial (function [:x]
-  {(if (== x 0)
-    {1} ;default stop return
-    {(factorial (- x 1))}
-  )}
-))
+; hello world
+(println "Hello world")
