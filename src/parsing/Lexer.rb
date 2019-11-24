@@ -1,7 +1,7 @@
 class Lexer
 	def initialize
 		@rules = []
-		add_rule(/;.*$/) do ||
+		add_rule(/;.*/) do ||
 			nil
 		end
 
