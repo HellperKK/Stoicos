@@ -1,6 +1,10 @@
 class Lexer
 	def initialize
 		@rules = []
+		add_rule(/;.*$/) do ||
+			nil
+		end
+
 		add_rule(/\(([^()]*\g<0>*[^()]*)\)/) do |code|
 			toks = Lexer.new.lex(code.strip)
 			FunCall.new("FunCall", toks)
@@ -20,10 +24,6 @@ class Lexer
 
 		add_rule(/([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)/) do |ident|
 			Ident.new("Identifier", ident)
-		end
-
-		add_rule(/;.*\n/) do ||
-			nil
 		end
 
 		add_rule(/^\s+/) do ||
