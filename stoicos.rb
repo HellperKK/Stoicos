@@ -1,5 +1,4 @@
 require_relative "src/parsing/LexRule.rb"
-require_relative "src/parsing/Token.rb"
 require_relative "src/parsing/Lexer.rb"
 require_relative "src/FileManager.rb"
 
