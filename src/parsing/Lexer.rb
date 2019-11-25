@@ -26,6 +26,10 @@ class Lexer
 			Ident.new("Identifier", ident)
 		end
 
+		add_rule(/:([A-Za-z0-9\+\*\/\-%_&\|=<>!]+)/) do |ident|
+			Value.new("Symbol", ident)
+		end
+
 		add_rule(/^\s+/) do ||
 			nil
 		end
