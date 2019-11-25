@@ -16,6 +16,22 @@ VariableManager.vars = VariableManager.new
 
 require_relative "src/stdDef.rb"
 
+def look_at(array, indice)
+	array.fetch(indice, VariableManager.vars.get_value("unit"))
+end
+
+def look_at_value(value, indice)
+	begin
+		value.value.fetch(indice, $vars.unit)
+	rescue
+		value
+	end
+end
+
+def same_size(array, arrayb)
+	array.each_with_index.map{|e, i| look_at(arrayb, i)}
+end
+
 args = ARGV
 if args != []
 	ouvrir = args[0]
