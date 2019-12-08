@@ -16,6 +16,8 @@ VariableManager.vars = VariableManager.new
 
 require_relative "src/stdDef.rb"
 
+VariableManager.vars.add_stack
+
 def look_at(array, indice)
 	array.fetch(indice, VariableManager.vars.get_value("unit"))
 end
