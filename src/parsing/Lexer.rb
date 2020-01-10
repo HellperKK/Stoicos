@@ -10,6 +10,16 @@ class Lexer
 			FunCall.new("FunCall", toks)
 		end
 
+		add_rule(/\[([^\[\]]*\g<0>*[^\[\]]*)\]/) do |code|
+			toks = ArrayBase.new.lex(code.strip)
+			ArrayBase.new("ArrayBase", toks)
+		end
+
+		# add_rule(/\{([^{}]*\g<0>*[^{}]*)\}/) do |code|
+		# 	toks = Lexer.new.lex(code.strip)
+		# 	FunCall.new("FunCall", toks)
+		# end
+
 		# $lexer.add_rule(/^([A-Za-z0-9\+\*\/\-%_&\|=<>!]*\[[^\[\]]*\g<0>*[^\[\]]*\])/) do ||
 		# 	Token.new("ArrayAcces")
 		# end

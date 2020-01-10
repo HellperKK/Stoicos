@@ -1,10 +1,10 @@
 ; hello world
 (println "Hello world")
 (println
- "Hello"
- "World"
- "John"
- "!"
+  "Hello"
+  "World"
+  "John"
+  "!"
 )
 (def :nom "John")
-(println "Hello" nom)
+(println "Hello" nom nom)
