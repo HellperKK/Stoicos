@@ -1,2 +1,11 @@
-File.require "Test/TestRequire.rb"
-test
+= :count (function [:max] {
+    (= :c 0)
+    (= :aux (function [] {
+      (= :c (+ c 1))
+      (println c)
+      (if (< c max) {(aux)})
+    }))
+    (aux)
+  })
+
+count 10

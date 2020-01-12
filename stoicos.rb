@@ -158,11 +158,17 @@ else
 	$chemin = FileManager.new(".", "Main.txt")
 end
 
-t1 = Time.now
-principal = execute_file($chemin.main)
-contenu = principal.join("\n")
-f = File.open('Output.txt','w'){|i| i.write(contenu)}
-t2 = Time.now
+# t1 = Time.now
+begin
+	principal = execute_file($chemin.main)
+rescue Exception => e
+	puts e
+	puts "Press enter to close the window"
+	$stdin.gets
+end
+# contenu = principal.join("\n")
+# f = File.open('Output.txt','w'){|i| i.write(contenu)}
+# t2 = Time.now
 # print "\n"
 # puts t2 - t1
 # puts $vars.get_stack.each{|key, value| puts "#{key} #{value}"}
