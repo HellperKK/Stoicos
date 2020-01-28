@@ -79,7 +79,6 @@ class Variable < Value
 		super(type, value)
 	end
 	def get
-		# puts @value
 		$vars.get_value(@value)
 	end
 end
@@ -111,13 +110,8 @@ class NSpace < Value
 		@attr = attr
 	end
 	def get
-		temp = $vars.get_value(@value).value
-		begin
-			res = temp.dig(*@attr)
-			res == nil ? temp : res
-		rescue
-			temp
-		end
+		temp = $vars.get_value(@value)
+		dig_at_value(temp, @attr)
 	end
 end
 

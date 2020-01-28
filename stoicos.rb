@@ -42,6 +42,15 @@ def look_at_value(value, indice)
 	end
 end
 
+def dig_at_value(value, indices)
+	begin
+		res = value.value.dig(*indices)
+		res == nil ? value : res
+	rescue
+		value
+	end
+end
+
 def same_size(array, arrayb)
 	array.each_with_index.map{|e, i| look_at(arrayb, i)}
 end
@@ -82,6 +91,25 @@ def find_matching(text, char, charbis, index=1, compteur=1)
 	end
 end
 
+def find_space(line)
+	compteur = 0
+	while line[compteur] != " "
+		if compteur == line.length
+			raise "outRange"
+		end
+
+		case line[compteur]
+		#~ when "'" then point = find_second(line, "'")
+		when '"' then point += find_string(line[compteur..-1])
+		when "(" then point += find_matching(line[compteur..-1], ")", "(")
+		when "[" then point += find_matching(line[compteur..-1], "]", "[")
+		when "{" then compteur += find_matching(line[compteur..-1], "}", "{")
+		else compteur += 1
+		end
+	end
+	compteur
+end
+
 def parseur(line)
 	line = line.strip
 	if line == ""
@@ -94,7 +122,7 @@ def parseur(line)
 			when "(" then point = find_matching(line, ")", "(")
 			when "[" then point = find_matching(line, "]", "[")
 			when "{" then point = find_matching(line, "}", "{")
-			else point = find_second(line, " ") - 1
+			else point = find_space(line) - 1
 			end
 			[to_objet(line[0..point])] + parseur(line[(point + 1)..-1])
 		rescue
