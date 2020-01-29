@@ -100,13 +100,14 @@ def find_space(line)
 
 		case line[compteur]
 		#~ when "'" then point = find_second(line, "'")
-		when '"' then point += find_string(line[compteur..-1])
-		when "(" then point += find_matching(line[compteur..-1], ")", "(")
-		when "[" then point += find_matching(line[compteur..-1], "]", "[")
+		when '"' then compteur += find_string(line[compteur..-1])
+		when "(" then compteur += find_matching(line[compteur..-1], ")", "(")
+		when "[" then compteur += find_matching(line[compteur..-1], "]", "[")
 		when "{" then compteur += find_matching(line[compteur..-1], "}", "{")
 		else compteur += 1
 		end
 	end
+	# puts line[0..compteur]
 	compteur
 end
 
@@ -161,6 +162,7 @@ def execute_file(name)
 		else
 			unless (i == "") || (i[0] == "#") || (not lire)
 				tab = parseur(i)
+				# tab.each{|i| puts [i].to_s}
 				chercheFonc(tab)
 			end
 		end
