@@ -19,6 +19,7 @@ In fact, there are still some changes coming to the language which are the main 
 ## So you want to write a game?
 
 ### Your first game
+
 To start making a game, create a new directory, then download the last release of Stoicos.exe and place at its root. Then add a picture of your choice named `sprite.png` at the same place.
 Then create a .txt file named `Main.txt` still in the same folder and fill it with that code :
 
@@ -117,4 +118,31 @@ println (+ 14 28)
 The firts two lines are simple to explain. The first tells "print in the console the string `Hello world!`". The second one is "Add `14` to `24`".
 The last sentence is however more complex as it introduces a new token. It works like a list except the tokens it contains are encolsed in parenthesis instead of square brackets. The reason for this is that, in addition to the action a sentence performs, there is always a value that is returned. We cant then use that value in a new sentence and do that a many times as we want. So what that sentence is about is adding 14 to 28 and printing the result to the console.
 
-In fact, parenthesis are a bit used like in mathematics, both to decribe priority and to separte child sentences from parent ones
+In fact, parenthesis are a bit used like in mathematics, both to decribe priority and to separte child sentences from parent ones.
+
+### Long sentences
+
+As sentences can contain virtualy an unlimited number of subsentences, they can grow really fast. If they where limited to only on line. I would get really hard to read. For this reason, any line that starts with a space or a tabulation is considered to be part of the ine above. For example :
+
+```
+= :update (function :state
+    {
+      (bind [:new_x :new_y] state)
+      (if {(Game.pressing (Game.key "UP"))}
+        {(= :new_y (- new_y 1))})
+
+      (if {(Game.pressing (Game.key "DOWN"))}
+        {(= :new_y (+ new_y 1))})
+
+      (if {(Game.pressing (Game.key "LEFT"))}
+        {(= :new_x (- new_x 1))})
+
+      (if {(Game.pressing (Game.key "RIGHT"))}
+        {(= :new_x (+ new_x 1))})
+
+      [new_x new_y]  
+    }
+  )
+```
+
+This whole chunk of text is only one sentence contaning a lot of child sentences. If it was reduced to on line, it would be very long and very hard to understand. That also tells us one thing : the way we write our code is important, so either other or even us can easiy see what it does.
