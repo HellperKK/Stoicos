@@ -145,4 +145,26 @@ As sentences can contain virtualy an unlimited number of subsentences, they can 
   )
 ```
 
-This whole chunk of text is only one sentence contaning a lot of child sentences. If it was reduced to on line, it would be very long and very hard to understand. That also tells us one thing : the way we write our code is important, so either other or even us can easiy see what it does.
+This whole chunk of text is only one sentence contaning a lot of child sentences. If it was reduced to on line, it would be very long and very hard to understand. That also tells us one thing : the way we write our code is important, so either others or even us can easiy see what it does.
+
+### Comments
+
+Finally, because sometimes the code itself cannont explain everything, it is possible to add comments, that is to say, elements of texts that are not read by the interpreter and are only meant for humans to read. Mainly, comments are made by adding a `;` at the begginig of the line and everything after will be treated as a comment untill there is a new line.
+
+For example :
+
+```
+; this is a comment
+```
+
+You can also make block comment like this :
+
+```
+=begin
+This is a block comment
+This is a comment
+This is too
+=end
+```
+
+But this form is less recommended that the one with `;`
