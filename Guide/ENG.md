@@ -11,15 +11,15 @@ It is a functional programming language in a Lisp-like style with some imperativ
 
 The project started in october 2015. It has been slowly growing since and and is at the moment transiting between the version 3 and 4.
 
-The first version was merely a test. It served to decide some of the language's basis but wasn't easy nor pleasant to use. The second version fixed part of those problems a made the syntax more cleared. Finally, the third added more flexibility with more advanced features.
+The first version was merely a test. It served to decide some of the language's basis but wasn't easy nor pleasant to use. The second version fixed part of those problems and made the syntax clearer. Finally, the third added more flexibility with more advanced features.
 
-In fact, there are still some changes coming to the language which are the main reason for the development of a fourth version, as some elements have yet to be upgraded.
+In fact, there are still some changes coming to the language which are the main reasons for the development of a fourth version, as some elements have yet to be upgraded.
 
 
 ## So you want to write a game?
 
 ### Your first game
-To start making a game, create a new directory, then download Stoicos.exe and place at its root. Then add a picture of your choice named `sprite.png` at the same place.
+To start making a game, create a new directory, then download the last release of Stoicos.exe and place at its root. Then add a picture of your choice named `sprite.png` at the same place.
 Then create a .txt file named `Main.txt` still in the same folder and fill it with that code :
 
 ```
@@ -27,14 +27,14 @@ Then create a .txt file named `Main.txt` still in the same folder and fill it wi
 Moving a sprite with arrow keys
 =end
 
-#Generate the initial state of the game
+; Generate the initial state of the game
 = :init (function
     {
       [32 32]
     }
   )
 
-#Updates the state of the game and return a new one
+; Updates the state of the game and return a new one
 = :update (function :state
     {
       (bind [:new_x :new_y] state)
@@ -54,7 +54,7 @@ Moving a sprite with arrow keys
     }
   )
 
-#Draws sprites depending of the state of the game
+; Draws sprites depending of the state of the game
 = :draw (function :state
     {
       (bind [:x :y] state)
@@ -75,16 +75,18 @@ So, learning how the Stoicos works is as easy as answering a simple yet quite de
 
 ## Speeches made of words
 
-As in natural language we use everyday the Stoicos' building bricks are words, but not exactly the kind of words we use traditionally, so to avoid any confusion we will call them the way they are called in the programming world which is `token`.
+### Tokens
+
+As in natural languages we use everyday the Stoicos' building bricks are words, but not exactly the kind of words we use traditionally, so to avoid any confusion we will call them the way they are called in the programming world which is `token`.
 
 Tokens are like complex words that can contain any type of character (even spaces !). That feature allow them to to behave using more specialized rules. Here is a few of stoicos' tokens :
 
 - **Integers** are made using only digit from 0 to 9 and an optionnal `-` for negation.
-- **Floats** are like integers but allowing a `.` to separate  decimals.
+- **Floats** are like integers but allow a `.` to separate  decimals.
 - **Booleans** are only the words `true` and `false`
-- **Strings** are any characters surrounded by two `"`.
+- **Strings** are any characters surrounded by two `"`. You can insert special characters using a `\`
 - **Symbols** are a `:` followed by a list of characters (not space authorized).
-- **Arrays** are a group of others symbols separated by spaces and surrounded by `[`and `]`
+- **Arrays** are a group of symbols separated by spaces and surrounded by `[`and `]`
 
 So for example :
 
@@ -95,4 +97,24 @@ So for example :
 - :hello and :my_name_is_Paul are `Symbols`
 - [1 2 3 45] and [156 156.23 true "Hello" :hello [1 2 3 45]] are `Arrays`
 
+### Values
+I have to mention that not all token are present above. The only ones that I presented are special tokens that can also be seen as values. The difference between tokens and values is that tokens are elements that can be descripbed with letters, where values are pieces of data that are meant to be computed by the program. To simplify, some tokens represents non-value elements and some values cannot be described by a token. In both cases, we will cover them later.
+
 ## Words that build sentences
+
+### Simple sentences
+
+Words are usefull, but they can't have a meaning alone. It is the way thet are ordered that give that meaning. In Stoicos, each line is a sentence that is read that way : the first token is an action (we could say like a verb) and the rest is a list of parameter that are necessary for the action to perform. These token may be seen as the context in which the action is performing.
+
+For example :
+
+```
+println "Hello world!"
++ 14 28
+println (+ 14 28)
+```
+
+The firts two lines are simple to explain. The first tells "print in the console the string `Hello world!`". The second one is "Add `14` to `24`".
+The last sentence is however more complex as it introduces a new token. It works like a list except the tokens it contains are encolsed in parenthesis instead of square brackets. The reason for this is that, in addition to the action a sentence performs, there is always a value that is returned. We cant then use that value in a new sentence and do that a many times as we want. So what that sentence is about is adding 14 to 28 and printing the result to the console.
+
+In fact, parenthesis are a bit used like in mathematics, both to decribe priority and to separte child sentences from parent ones
