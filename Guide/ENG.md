@@ -155,6 +155,12 @@ For example :
 
 ```
 ; this is a comment
+
+; here "John" is commented
+println
+    "Hello"
+    ; "John"
+    "World"
 ```
 
 You can also make block comment like this :
@@ -167,4 +173,4 @@ This is too
 =end
 ```
 
-But this form is less recommended that the one with `;`
+But this form is less recommended than the one with `;`
