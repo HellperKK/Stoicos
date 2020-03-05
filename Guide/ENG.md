@@ -115,10 +115,10 @@ println "Hello world!"
 println (+ 14 28)
 ```
 
-The firts two lines are simple to explain. The first tells "print in the console the string `Hello world!`". The second one is "Add `14` to `24`".
-The last sentence is however more complex as it introduces a new token. It works like a list except the tokens it contains are encolsed in parenthesis instead of square brackets. The reason for this is that, in addition to the action a sentence performs, there is always a value that is returned. We cant then use that value in a new sentence and do that a many times as we want. So what that sentence is about is adding 14 to 28 and printing the result to the console.
+The firts two lines are simple to explain. The first tells "print in the console the string `Hello world!`". The second one is "add `14` to `24`".
+The last sentence is however more complex as it introduces a new token. It works like a list except the tokens it contains are encolsed in parenthesis instead of square brackets. The reason for this is that, in addition to the action a sentence performs, there is always a value that is returned. We can then use that value in a new sentence and do that a many times as we want. So what that sentence is about is adding 14 to 28 and printing the result to the console.
 
-In fact, parenthesis are a bit used like in mathematics, both to decribe priority and to separte child sentences from parent ones.
+In fact, parenthesis are a bit used like in mathematics : to decribe priority and also to separte child sentences from parent ones.
 
 ### Long sentences
 
