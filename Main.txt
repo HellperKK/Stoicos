@@ -1,11 +1,6 @@
-= :count (function [:max] {
-    (= :c 0)
-    (= :aux (function [] {
-      (= :c (+ c 1))
-      (println c)
-      (if (< c max) {(aux)})
-    }))
-    (aux)
-  })
+= :var 0
 
-count 10
+while {(< var 10)} {
+    (println var)
+    (= :var (+ var 1))
+    }
