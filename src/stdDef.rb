@@ -265,9 +265,25 @@ $vars.set_value("times", NativeFunction.new("fun", lambda do |array|
 	$vars.unit
 end))
 
+$vars.set_value("while", NativeFunction.new("fun", lambda do |array|
+	first = look_at(array, 0).total_manip("block")
+	second = look_at(array, 1).total_manip("block")
+	while first.calculate.total_manip("bool").value
+		second.calculate
+	end
+	$vars.unit
+end))
+
 #Divers
-$vars.set_value("evalblock", NativeFunction.new("fun", lambda do |array|
+$vars.set_value("eval_block", NativeFunction.new("fun", lambda do |array|
 	look_at(array, 0).total_manip("block").calculate
+end))
+
+$vars.set_value("eval_block_stack", NativeFunction.new("fun", lambda do |array|
+	$vars.add_stack
+	result = look_at(array, 0).total_manip("block").calculate
+	$vars.remove_stack
+	result
 end))
 
 $vars.set_value("function", NativeFunction.new("fun", lambda do |array|
