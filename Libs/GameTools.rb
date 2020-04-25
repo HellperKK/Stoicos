@@ -25,6 +25,11 @@ class GameToolsSprite
 	end
 
   def move(x, y)
+		@x += x
+		@y += y
+  end
+
+  def teleport(x, y)
 		@x = x
 		@y = y
   end
@@ -132,7 +137,7 @@ $types["music"] = Type.new(lambda{$vars.unit})
 $types["sound"] = Type.new(lambda{$vars.unit})
 
 ######
-# Sprite Module
+# Main Module
 ######
 mainMod = Hash.new($vars.unit)
 
@@ -170,14 +175,52 @@ spriteMod["make"] = NativeFunction.new("fun", lambda do |array|
 end)
 
 spriteMod["move"] = NativeFunction.new("fun", lambda do |array|
-  first = look_at(array, 0).total_manip("string").value
+  first = look_at(array, 0).total_manip("sprite").value
   second = look_at(array, 1).total_manip("int").value
   third = look_at(array, 2).total_manip("int").value
 
   first = first.clone
   first.move(second, third)
 
-  Value.new(first)
+  Value.new("sprite", first)
+end)
+
+spriteMod["teleport"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("sprite").value
+  second = look_at(array, 1).total_manip("int").value
+  third = look_at(array, 2).total_manip("int").value
+
+  first = first.clone
+  first.teleport(second, third)
+
+  Value.new("sprite", first)
+end)
+
+######
+# Input Module
+######
+inputMod = Hash.new($vars.unit)
+
+inputMod["key_code"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("string").value
+  case first
+	when "UP" then Value.new("int", Gosu::KbUp)
+  when "DOWN" then Value.new("int", Gosu::KbDown)
+  when "LEFT" then Value.new("int", Gosu::KbLeft)
+  when "RIGHT" then Value.new("int", Gosu::KbRight)
+  when "SPACE" then Value.new("int", Gosu::KbSpace)
+  else $vars.unit
+  end
+end)
+
+inputMod["pressed"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("int").value
+	Value.new("bool", $gametools.pressed?(first))
+end)
+
+inputMod["pressing"] = NativeFunction.new("fun", lambda do |array|
+  first = look_at(array, 0).total_manip("int").value
+	Value.new("bool", $gametools.pressing?(first))
 end)
 
 ######
@@ -187,5 +230,6 @@ globalMod = Hash.new($vars.unit)
 
 globalMod["Main"] = Value.new("struct", mainMod)
 globalMod["Sprite"] = Value.new("struct", spriteMod)
+globalMod["Input"] = Value.new("struct", inputMod)
 
 $vars.set_value("Gametools", Value.new("struct", globalMod))

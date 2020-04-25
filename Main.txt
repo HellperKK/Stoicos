@@ -1,6 +1,28 @@
-= :var 0
+File.require "Libs/GameTools.rb"
+Struct.open Gametools
 
-while {(< var 10)} {
-    (println var)
-    (= :var (+ var 1))
-    }
+= :init (function []
+  {
+    (Sprite.make "Test/mouche.png" 32 32)
+  })
+
+= :update (function [:state]
+  {
+    (if {(Input.pressing (Input.key_code "UP"))}
+      {(= :state (Sprite.move state 0 -1))})
+    (if {(Input.pressing (Input.key_code "DOWN"))}
+      {(= :state (Sprite.move state 0 1))})
+    (if {(Input.pressing (Input.key_code "LEFT"))}
+      {(= :state (Sprite.move state -1 0))})
+    (if {(Input.pressing (Input.key_code "RIGHT"))}
+      {(= :state (Sprite.move state 1 0))})
+    state
+  })
+
+
+= :draw (function [:state]
+  {
+    (Main.draw state)
+  })
+
+Main.start init update draw
