@@ -1,3 +1,7 @@
+This was the initial repository repository for the stoicos language. It is now archived.
+The project is now maintained [here](https://github.com/HellperKK/stoicos-lang)
+
+
 This is a french version of the readme. For english version look [here](https://github.com/HellperKK/Stoicos/blob/master/README_ENG.md)
 
 # Stoicos
